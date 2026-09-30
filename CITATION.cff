@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use or discuss this work, please cite the article."
+title: "Three Depths of Interaction"
+type: software
+authors:
+  - given-names: "Adi"
+    family-names: "Dizdarevic"
+    website: "https://www.adidizdarevic.com/"
+url: "https://www.adidizdarevic.com/three-depths/"
+repository-code: "https://github.com/Dyya/three-depths-of-interaction"
+license:
+  - "MIT"
+  - "CC-BY-4.0"
+date-released: "2026-09-24"
+keywords:
+  - "interaction design"
+  - "human-computer interaction"
+  - "adaptive interfaces"
+  - "user experience"
+preferred-citation:
+  type: article
+  title: "Three Depths of Interaction"
+  authors:
+    - given-names: "Adi"
+      family-names: "Dizdarevic"
+  year: 2026
+  month: 9
+  url: "https://www.adidizdarevic.com/three-depths/"

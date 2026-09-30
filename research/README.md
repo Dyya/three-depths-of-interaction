@@ -2,7 +2,8 @@
 
 The two studies in the article record how readers move through them. This folder holds
 the code that receives those records, the table they are written to, and the plan for
-reading them, which was fixed before the first record arrived.
+reading them, written down before the first record arrived. Collection began on
+2026-09-24, when the article was published. No results or analysis are published yet.
 
 The live endpoint, `https://www.adidizdarevic.com/three-depths/api/run`, runs
 `worker.js` exactly as it is here. The same Worker also serves the article itself,
@@ -42,23 +43,29 @@ size; a date strip, radios, buttons; pills. Components: B buttons, D date strip,
 radios, P people, M menu (drawn only without the rules). Styles: c chip, p pill, s
 segmented.
 
-## What is never stored
+## What the study database never holds
 
-No IP address, no user agent, no cookies, no free text. The Worker drops any key it does
-not expect before the insert and refuses bodies over 4 KB. It refuses a post whose
-`Origin` or `Sec-Fetch-Site` header names another site, and it allows one address sixty
-posts a minute. The address is the rate limiter's key and nothing else: it is never
-written to the table.
+No IP address, no user agent, no cookies, no free text: the table has no column for any
+of them, and the Worker drops any key it does not expect before the insert and refuses
+bodies over 4 KB. It refuses a post whose `Origin` or `Sec-Fetch-Site` header names
+another site, and it allows one address sixty posts a minute. The address is the rate
+limiter's key and nothing else: it is never written to the table.
 
-## The plan, fixed before the first row
+This covers the study database, which is what `worker.js` and `schema.sql` can show. The
+site's host, Cloudflare, processes each request, the address included, in order to serve
+it, as any host does, and the domain runs Cloudflare Web Analytics, which counts page
+views without cookies. Neither writes to this table.
+
+## The plan, written before the first row
 
 **Exclusion rules**, applied at analysis, not at collection:
 
 - Rows never arrive for unfinished versions (a study posts on completion only).
-- Drop runs under a floor time per version.
+- Drop runs under a floor time per version. *The floor values are not yet fixed.*
 - Drop `is_repeat = 1`.
 - Drop a study whose versions are not all present for the run.
-- Drop paths that contain impossible sequences for the version.
+- Drop paths that contain sequences impossible for the version. *The list of impossible
+  sequences is not yet written.*
 - Record the order (`seq`) as a factor.
 
 **Hypotheses:**
@@ -71,6 +78,13 @@ written to the table.
 
 The first question the data answers is whether a blind commitment appears in other
 people's paths where the rubric expects it.
+
+## Amendments
+
+The two open items above, and any later change to the plan, are recorded here with their
+date, and fixed before any outcome data are examined.
+
+- None yet.
 
 ## Build history
 
