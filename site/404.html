@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#FCFCFC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23FCFCFC'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%23121212'/%3E%3C/svg%3E">
+<title>Not found · Three Depths of Interaction</title>
+<!-- Pages serves this for any path under /three-depths/ that has no file, at
+     any depth. Without it Pages takes the build for a single-page app and
+     answers every wrong path with the article and a 200, and a wrong path one
+     level down loses its stylesheet, because the article's relative links
+     resolve against the wrong folder. So this page links nothing relatively:
+     the style is inline, the face and the way back are absolute. On a bare
+     pages.dev preview the face path misses and the fallback stack takes over. -->
+<style>
+  @font-face{font-family:"Article Mono";src:url("/three-depths/fonts/article-mono-book.woff2") format("woff2");
+    font-weight:100 500;font-style:normal;font-display:swap;}
+  @font-face{font-family:"Article Mono";src:url("/three-depths/fonts/article-mono-semibold.woff2") format("woff2");
+    font-weight:600 900;font-style:normal;font-display:swap;}
+  :root{--paper:#FCFCFC;--ink:#121212;--muted:rgba(18,18,18,.62);
+    --mono:"Article Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;}
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--mono);
+    font-size:17px;line-height:28px;-webkit-font-smoothing:antialiased;
+    display:grid;place-items:center;padding:24px;}
+  main{width:min(100%, 40ch);}
+  .kicker{font-size:11px;line-height:16px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);font-variant-numeric:tabular-nums;font-weight:500;margin-bottom:24px;}
+  h1{font-size:24px;line-height:32px;font-weight:700;letter-spacing:-.02em;margin-bottom:16px;}
+  a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px;}
+  a:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;}
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">404</p>
+  <h1>Nothing is here.</h1>
+  <p><a href="/three-depths/">Three Depths of Interaction</a></p>
+</main>
+</body>
+</html>

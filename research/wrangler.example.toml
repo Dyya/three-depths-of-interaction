@@ -1,0 +1,24 @@
+# The bindings worker.js expects. Replace the placeholders with your own zone,
+# database id and a rate limit namespace id (any integer unused in your account).
+name = "three-depths-router"
+main = "worker.js"
+compatibility_date = "2026-08-01"
+
+routes = [
+  { pattern = "www.example.com/three-depths*", zone_name = "example.com" },
+  { pattern = "example.com/three-depths*", zone_name = "example.com" }
+]
+
+[[d1_databases]]
+binding = "TDP_DB"
+database_name = "three-depths-runs"
+database_id = "YOUR-D1-DATABASE-ID"
+
+# One address may post sixty runs a minute.
+[[ratelimits]]
+name = "TDP_LIMIT"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 60
+  period = 60

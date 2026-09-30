@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- A fragment of the article, not a page of its own: kept out of search as a
+     bare URL, still readable to a crawler inside the article that embeds it.
+     Paper only, like the article, so a forced dark mode leaves it alone. -->
+<meta name="robots" content="noindex, indexifembedded">
+<meta name="color-scheme" content="only light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23FCFCFC'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%23121212'/%3E%3C/svg%3E">
+<title>Three Depths of Interaction · Opening scene</title>
+<style>
+  :root{
+    /* The three greys below are system.css's, by value rather than by link:
+       this scene is an independent document with its own type stack, and
+       linking the stylesheet would hand it the article's body size and face.
+       They had drifted: --bg was #E8E7E4, a WARM grey (R>G>B), sitting beside
+       study bands at a cool #EFEFF1 (B>R=G), which is why the header read as
+       a different material rather than a different lightness. --paper was
+       #FBFBFA and --ink #141413, one or two per channel off the article's.
+       If system.css moves, these move with it. */
+    --bg: #EFEFF1;      /* = --surface1, the band a study sits on */
+    --paper: #FCFCFC;   /* = --paper */
+    --ink: #121212;     /* = --ink */
+    --hairline: rgba(20,20,19,.10);
+    --dot: #CF7A6B;
+    --title-h: 26px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{
+    background: var(--bg);
+    /* The scene draws no type: every window is bars, and the one piece of text
+       it ever had was the readout, which is gone. The stack here named a
+       commercial face the article does not license and never loaded, which was
+       misleading to read even though nothing rendered from it. The system stack
+       is what an inert declaration should say. */
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    color: var(--ink);
+    overflow: hidden;
+  }
+
+  .hero{
+    position:relative;
+    width:100vw; height:100svh; min-height:480px;
+    overflow:hidden;
+    -webkit-user-select:none; user-select:none;
+    touch-action:manipulation;
+  }
+
+  /* ---------- windows ---------- */
+  .win{
+    position:absolute; top:0; left:0;
+    border-radius:6px;
+    background: var(--paper);
+    box-shadow:
+      0 0 0 1px rgba(20,20,19,.08),
+      0 28px 64px -28px rgba(20,20,19,.22),
+      0 6px 18px -10px rgba(20,20,19,.12);
+    will-change: transform, opacity;
+    transform-origin: center;
+    transition: box-shadow .5s ease;
+  }
+  .win.live{
+    box-shadow:
+      0 0 0 1px rgba(20,20,19,.12),
+      0 36px 80px -30px rgba(20,20,19,.30),
+      0 8px 22px -10px rgba(20,20,19,.16);
+  }
+  .win .bar{
+    position:absolute; top:0; left:0; right:0;
+    height:var(--title-h);
+    display:flex; align-items:center; gap:8px;
+    padding:0 10px;
+    /* the divider is an inset line, not a border: a border lies outside the
+       overflow clip, so neither hand portal could paint over its 1px row and
+       the hairline printed straight through the finger. Inset, it is part of
+       the bar's face and the hand covers it like everything else. */
+    box-shadow: inset 0 -1px 0 var(--hairline);
+    border-radius:6px 6px 0 0;
+    background: color-mix(in srgb, var(--paper) 88%, var(--bg));
+    /* the bar clips its own hand portal, so a finger pressing the title bar
+       is visible on the bar and still never leaves the window's frame */
+    overflow:hidden;
+  }
+  .win .chip{
+    width:7px; height:7px; border-radius:50%; flex:none;
+    background: rgba(20,20,19,.18);
+    transition: background .4s ease, box-shadow .4s ease;
+  }
+  .win.live .chip{ background: var(--dot); }
+  .win.queued .chip{ box-shadow: 0 0 0 3px rgba(207,122,107,.28); background: var(--dot); }
+  .win .ttl{ height:3px; border-radius:2px; background: rgba(20,20,19,.15); }
+
+  .win .content{
+    position:absolute; top:var(--title-h); left:0; right:0; bottom:0;
+    overflow:hidden;
+    border-radius:0 0 6px 6px;
+  }
+  .doc{
+    position:absolute; top:0; left:0; right:0;
+    padding:18px 18px 0;
+    opacity:.13;
+    transition: opacity .55s ease;
+    will-change: transform;
+  }
+  .win.live .doc{ opacity:1; }
+  .doc .ln{
+    height:3px; border-radius:2px;
+    background: rgba(20,20,19,.14);
+    margin-bottom:11px;
+  }
+  .doc .gap{ height:16px; }
+
+  /* focal element: a skeleton hyperlink inside the text flow */
+  .figure{
+    position:relative; height:9px;
+    margin:2px 0 14px;
+  }
+  .figure .lnk{
+    position:absolute; left:0; top:0; right:0; height:3px;
+    border-radius:2px;
+    background: rgba(20,20,19,.34);
+    transition: background .35s ease;
+  }
+  .win.resolved .figure .lnk{ background: var(--ink); }
+
+  .sb{
+    position:absolute; right:3px; width:3px; border-radius:2px;
+    background: rgba(20,20,19,.30);
+    opacity:0;
+    will-change: transform, opacity;
+  }
+
+  /* the hand exists only inside window frames */
+  .portal{
+    position:absolute; top:0; left:0;
+    transform-origin: 0 0;
+    pointer-events:none;
+    will-change: transform;
+  }
+  .hero > .hand{ display:none; }
+
+  /* ---------- hand agent ---------- */
+  .hand{
+    position:absolute; left:0; top:0;
+    pointer-events:none;
+    z-index:400;
+    will-change: transform;
+  }
+  .hand .press{ will-change: transform; }
+  .hand svg{ display:block; shape-rendering: crispEdges; }
+
+  /* ---------- fx ---------- */
+  .fx{
+    position:absolute;
+    border:2px solid rgba(20,20,19,.5);
+    border-radius:50%;
+    pointer-events:none;
+    z-index:390;
+    transform: translate(-50%,-50%) scale(.2);
+    opacity:.7;
+    animation: fxr .62s ease-out forwards;
+  }
+  @keyframes fxr{ to{ transform:translate(-50%,-50%) scale(1); opacity:0; } }
+
+  /* The hand is never hidden. The scene plays on every system, and its still
+     (?still=1, for captures) rests the hand on the resolved window; see the
+     end of boot. */
+</style>
+</head>
+<body>
+
+<header class="hero" id="hero" aria-label="An autonomous pixel cursor exploring floating windows: access, orientation, resolution">
+</header>
+
+<script>
+/* Everything is measured from the hero's size, so nothing may run until it has
+   one. Inside the article the frame is laid out only when the page appears
+   from behind the entrance, which is after this script has loaded: booting
+   at load would measure 0 x 0 and pile every window at the origin. */
+function boot(){
+  /* ================= config ================= */
+  const CFG = {
+    ambientWindows: 8,
+    minSpeed: 8,
+    maxSpeed: 30,
+    handFrac: 0.18,
+    travelSpeed: 950,
+    interludeChance: 0.4,
+  };
+
+  const hero = document.getElementById('hero');
+  /* The scene plays the same whatever the system's motion setting: the
+     author's call (2026-09-28), after a Windows machine with animation effects
+     off showed a still where a Mac showed the scene. The still is kept, on
+     request only, for captures: ?still=1. */
+  const still = /[?&]still=1(&|$)/.test(location.search);
+  const TB = 26;
+  let W = hero.clientWidth, H = hero.clientHeight;
+
+  const rand  = (a,b)=> a + Math.random()*(b-a);
+  const clamp = (v,a,b)=> Math.max(a, Math.min(b,v));
+  const eio   = p => p<.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2;
+  const eo    = p => 1-Math.pow(1-p,3);
+  const eb    = p => 1 + 2.3*Math.pow(p-1,3) + 1.3*Math.pow(p-1,2);
+
+  function animate(dur,onU,ease=eio){
+    return new Promise(res=>{
+      const t0 = performance.now();
+      (function step(now){
+        const p = Math.min(1,(now-t0)/dur);
+        onU(ease(p),p);
+        p<1 ? requestAnimationFrame(step) : res();
+      })(t0);
+    });
+  }
+  const wait = ms => new Promise(r=>setTimeout(r,ms));
+
+  /* ================= windows ================= */
+  const TYPES = [[0.34,0.32],[0.30,0.44],[0.50,0.30],[0.26,0.36],[0.42,0.26],[0.36,0.36],[0.28,0.30]];
+  const wins = [];
+  let uid = 0;
+
+  function docMarkup(){
+    const line = () => `<div class="ln" style="width:${Math.round(rand(34,88))}%"></div>`;
+    const rows = [];
+    const n = 9 + (Math.random()*4|0);
+    for(let i=0;i<n;i++){
+      rows.push(line());
+      if (Math.random()<.28) rows.push('<div class="gap"></div>');
+    }
+    const more = [];
+    const m = 8 + (Math.random()*3|0);
+    for(let i=0;i<m;i++) more.push(line());
+    return rows.join('') +
+      `<div class="figure" style="width:${Math.round(rand(30,48))}%"><span class="lnk"></span></div>` +
+      more.join('');
+  }
+
+  function makeWindow(opts={}){
+    const el = document.createElement('div');
+    el.className = 'win';
+    const t = TYPES[(uid++) % TYPES.length];
+    const s = rand(.85,1.15);
+    const w = Math.round(opts.w ?? clamp(t[0]*H*s, 150, W*.5));
+    const h = Math.round(opts.h ?? clamp(t[1]*H*s, 140, H*.6));
+    const depth = clamp((w*h)/(0.18*H*H), .25, 1);
+    el.style.width = w+'px';
+    el.style.height = h+'px';
+    el.style.zIndex = 10 + Math.round(depth*8);
+    el.innerHTML = `
+      <div class="bar">
+        <span class="chip"></span>
+        <span class="ttl" style="width:${Math.round(rand(34,68))}px"></span>
+        <div class="portal">${HAND_MARKUP}</div>
+      </div>
+      <div class="content"><div class="doc">${docMarkup()}</div><div class="sb"></div><div class="portal">${HAND_MARKUP}</div></div>`;
+    hero.appendChild(el);
+
+    /* two portals, one clip each: the content below the divider and the bar
+       above it. Together they complete the hand across the whole window
+       face, and it still exists nowhere outside one. */
+    const portal  = el.querySelector('.content .portal');
+    const bportal = el.querySelector('.bar .portal');
+    for (const p of [portal, bportal]){
+      p.style.width = W+'px';
+      p.style.height = H+'px';
+    }
+
+    const ch = h - TB;
+    const win = {
+      el, w, h, ch, depth,
+      doc: el.querySelector('.doc'),
+      sb:  el.querySelector('.sb'),
+      portal,
+      pHand:  portal.querySelector('.hand'),
+      pPress: portal.querySelector('.press'),
+      bportal,
+      bHand:  bportal.querySelector('.hand'),
+      bPress: bportal.querySelector('.press'),
+      x: opts.x ?? rand(0, W*1.2),
+      y0: opts.y ?? rand(.04*H, Math.max(.05*H, .94*H - h)),
+      amp: rand(4,10), yf: rand(.25,.5), phase: rand(0,Math.PI*2),
+      speed: CFG.minSpeed + depth*(CFG.maxSpeed-CFG.minSpeed),
+      scale: opts.scale ?? 1,
+      docY: 0, sbO: 0,
+      docH: 0, figY: 0,
+      drawX: 0, drawY: 0,
+      subject:false, settling:false,
+    };
+    win.docH = Math.max(win.doc.scrollHeight, ch*1.9);
+    const fig = el.querySelector('.figure');
+    win.figY = fig.offsetTop + 2;
+    win.figX = fig.offsetLeft + fig.offsetWidth*rand(.35,.7);
+    win.sb.style.height = Math.max(24, ch*(ch/win.docH)*.8) + 'px';
+    wins.push(win);
+    return win;
+  }
+
+  function recycle(win){
+    win.x = W + 80 + rand(0,260);
+    win.y0 = rand(.04*H, Math.max(.05*H, .94*H - win.h));
+    win.phase = rand(0,Math.PI*2);
+    win.docY = 0; win.scale = 1;
+    win.el.classList.remove('live','resolved','queued');
+  }
+
+  function removeWindow(win){
+    const i = wins.indexOf(win);
+    if (i>=0) wins.splice(i,1);
+    win.el.remove();
+  }
+
+  /* ================= 8-bit hand cursor =================
+     Final glyph: 66x80 viewBox on a 4.125px grid.
+     Two paths only: paper silhouette underlay + ink outline. */
+  const HAND_H = clamp(H*CFG.handFrac, 78, 160);
+  const HAND_W = HAND_H * 66/80;
+  const HOT = { x: HAND_W * (20.625/66), y: 1 };   // index fingertip
+
+  const HAND_INK =
+    "M53.625 80H16.5V75.8974H53.625V80Z"+
+    "M16.5 75.8974H12.375V71.7949H16.5V75.8974Z"+
+    "M57.75 75.8974H53.625V67.6923H57.75V75.8974Z"+
+    "M12.375 71.7949H8.25V67.6923H12.375V71.7949Z"+
+    "M8.25 67.6923H4.125V59.4872H8.25V67.6923Z"+
+    "M61.875 67.6923H57.75V59.4872H61.875V67.6923Z"+
+    "M4.125 59.4872H0V41.0256H4.125V59.4872Z"+
+    "M66 59.4872H61.875V32.8205H66V59.4872Z"+
+    "M16.5 49.2308H12.375V36.9231H8.25V32.8205H12.375V4.10256H16.5V49.2308Z"+
+    "M61.875 32.8205H53.625V45.1282H49.5V28.7179H61.875V32.8205Z"+
+    "M8.25 41.0256H4.125V36.9231H8.25V41.0256Z"+
+    "M49.5 28.7179H41.25V41.0256H37.125V24.6154H49.5V28.7179Z"+
+    "M28.875 20.5128H37.125V24.6154H28.875V36.9231H24.75V4.10256H28.875V20.5128Z"+
+    "M24.75 4.10256H16.5V0H24.75V4.10256Z";
+
+  const HAND_PAPER =
+    "M16.5 0H24.75V4.10256H28.875V20.5128H37.125V24.6154H49.5V28.7179"+
+    "H61.875V32.8205H66V59.4872H61.875V67.6923H57.75V75.8974H53.625V80"+
+    "H16.5V75.8974H12.375V71.7949H8.25V67.6923H4.125V59.4872H0V41.0256"+
+    "H4.125V36.9231H8.25V32.8205H12.375V4.10256H16.5V0Z";
+
+  const HAND_MARKUP = `
+    <div class="hand">
+      <div class="press" style="transform-origin:${HOT.x}px ${HOT.y}px">
+        <svg width="${HAND_W}" height="${HAND_H}" viewBox="0 0 66 80"
+             style="margin-left:${-HOT.x}px; margin-top:${-HOT.y}px" aria-hidden="true">
+          <path d="${HAND_PAPER}" fill="#FCFCFC"/>
+          <path d="${HAND_INK}" fill="#121212"/>
+        </svg>
+      </div>
+    </div>`;
+
+  const tmp = document.createElement('div');
+  tmp.innerHTML = HAND_MARKUP;
+  const handEl = tmp.firstElementChild;
+  hero.appendChild(handEl);
+  const pressEl = handEl.querySelector('.press');
+
+  for(let i=0;i<CFG.ambientWindows;i++) makeWindow();
+
+  const hand = {
+    x: W*.5, y: H*.72,
+    lean: 0,
+    pressed:false, pv:0,
+    attached:null, anchorPt:'mid',
+    local:{x:0,y:0},
+    px: W*.5, py: H*.72,
+  };
+
+  function anchorOf(win, pt){
+    const x = win.drawX, y = win.drawY;
+    if (pt==='bar')    return { x: x + win.w*.32, y: y + 13 };
+    if (pt==='mid')    return { x: x + win.w*.5,  y: y + TB + win.ch*.52 };
+    if (pt==='figure') return { x: x + win.figX,  y: y + TB + (win.figY - win.docY) };
+    return { x: x + win.w*.5, y: y + win.h*.5 };
+  }
+  function handPos(){
+    if (hand.attached){
+      const a = anchorOf(hand.attached, hand.anchorPt);
+      return { x: a.x + hand.local.x, y: a.y + hand.local.y };
+    }
+    return { x: hand.x, y: hand.y };
+  }
+  function attach(win, pt){ hand.attached=win; hand.anchorPt=pt; hand.local.x=0; hand.local.y=0; }
+  function detach(){ const p=handPos(); hand.x=p.x; hand.y=p.y; hand.attached=null; }
+
+  async function travelTo(win, pt){
+    detach();
+    const sx=hand.x, sy=hand.y;
+    const a0=anchorOf(win, pt);
+    const d = Math.hypot(a0.x-sx, a0.y-sy);
+    const dur = clamp(d/CFG.travelSpeed*1000, 420, 1600);
+    const arcY = -clamp(d*.12, 10, 64);
+    await animate(dur, e=>{
+      const a=anchorOf(win, pt);
+      hand.x = sx + (a.x-sx)*e;
+      hand.y = sy + (a.y-sy)*e + Math.sin(e*Math.PI)*arcY;
+    });
+    attach(win, pt);
+  }
+
+  function ripple(x,y,size=90,alpha=.5){
+    const make = parent => {
+      const el=document.createElement('div');
+      el.className='fx';
+      el.style.left=x+'px'; el.style.top=y+'px';
+      el.style.width=size+'px'; el.style.height=size+'px';
+      el.style.borderColor=`rgba(20,20,19,${alpha})`;
+      parent.appendChild(el);
+      el.addEventListener('animationend',()=>el.remove());
+    };
+    if (portalMode) wins.forEach(w2 => { make(w2.portal); make(w2.bportal); });
+    else make(hero);
+  }
+
+  async function click(size=80){
+    hand.pressed=true;
+    const p=handPos();
+    ripple(p.x,p.y,size);
+    await wait(150);
+    hand.pressed=false;
+    await wait(120);
+  }
+
+  /* ================= spatial intelligence ================= */
+  function bestSpawnSpot(w,h){
+    let best={x:W*.5,y:H*.45}, bs=-1;
+    for(let i=0;i<48;i++){
+      const cx = rand(W*.12+w/2, W*.88-w/2);
+      const cy = rand(H*.10+h/2, H*.84-h/2);
+      let dmin=1e9;
+      for(const o of wins){
+        dmin = Math.min(dmin, Math.hypot(cx-(o.x+o.w/2), cy-(o.y0+o.h/2)));
+      }
+      const center = Math.exp(-(((cx-W*.5)/(W*.45))**2 + ((cy-H*.45)/(H*.45))**2));
+      const s = Math.min(dmin,440)*(.35+.65*center);
+      if (s>bs){ bs=s; best={x:cx,y:cy}; }
+    }
+    return best;
+  }
+
+  function chooseNext(child){
+    if (userNext){
+      const n = userNext; userNext = null;
+      n.el.classList.remove('queued');
+      return n;
+    }
+    return child;   // the story always descends into the window it opened
+  }
+
+  /* ================= story beats ================= */
+  let userNext = null;
+
+  async function beatAccess(win){
+    await travelTo(win,'bar');
+    await click(64);
+    win.el.classList.add('live');
+    win.el.style.zIndex = 200;
+    win.subject = true;
+    await wait(420);
+  }
+
+  async function beatOrientation(win){
+    await travelTo(win,'mid');
+    hand.pressed = true;
+    await wait(140);
+    const targetY = clamp(win.figY - win.ch*.55, 0, win.docH - win.ch);
+    const pull = Math.min(targetY*.6, win.ch*.3);
+
+    // drag: finger-locked, accelerating into the release (quad-in)
+    const D = 700;
+    await animate(D, e=>{
+      win.docY = pull*e;
+      hand.local.y = -pull*e;
+      win.sbO = 1;
+    }, p=>p*p);
+    hand.pressed = false;
+
+    // coast: content leaves at the drag's release velocity, decays exponentially
+    const R = targetY - pull;
+    if (R > 2){
+      const v0 = 2*pull/(D/1000);                 // px/s at release
+      const k  = clamp(v0/R, 3.3, 13);            // decay rate, 1/s
+      const dur = clamp(4600/k, 350, 1400);
+      const norm = 1 - Math.exp(-k*dur/1000);
+      const relaxFrom = hand.local.y;
+      await animate(dur, (e,p)=>{
+        win.docY = pull + R*(1 - Math.exp(-k*dur*p/1000))/norm;
+        hand.local.y = relaxFrom + 8*Math.min(1, p*3);   // finger lifts, barely
+        win.sbO = 1;
+      }, p=>p);
+      win.docY = targetY;
+    }
+    await wait(280);
+  }
+
+  async function beatResolution(win){
+    await travelTo(win,'figure');
+    hand.pressed = true;
+    const p = handPos();
+    ripple(p.x, p.y, 120, .55);             // the one resolving circle
+    await wait(160);
+    hand.pressed = false;
+    win.el.classList.add('resolved');
+    await wait(700);
+
+    // recursion: born at the resolved point, settles where the canvas needs it
+    const fp = anchorOf(win,'figure');
+    const child = makeWindow({ scale:.1 });
+    const home = bestSpawnSpot(child.w, child.h);
+    child.el.style.zIndex = 210;
+    child.settling = true;
+    await new Promise(res=>{
+      animate(760, e=>{
+        const cx = fp.x + (home.x-fp.x)*e;
+        const cy = fp.y + (home.y-fp.y)*e;
+        child.x  = cx - child.w/2;
+        child.y0 = cy - child.h/2;
+        child.scale = .1 + .9*eb(e);
+      }, eo).then(res);
+    });
+    child.settling = false;
+    win.subject = false;
+    await wait(420);
+    return child;
+  }
+
+  async function interlude(){
+    const others = wins.filter(w2 => !w2.subject && !w2.settling &&
+      w2.drawX > W*.08 && w2.drawX + w2.w < W*.95);
+    if (!others.length) return;
+    const p = handPos();
+    const w2 = others.reduce((a,b)=>
+      Math.hypot(b.drawX+b.w/2-p.x, b.drawY+b.h/2-p.y) >
+      Math.hypot(a.drawX+a.w/2-p.x, a.drawY+a.h/2-p.y) ? b : a);
+    await travelTo(w2,'mid');
+    await animate(700, e=>{
+      w2.docY = clamp(Math.sin(e*Math.PI)*22, 0, w2.docH - w2.ch);
+      hand.local.y = Math.sin(e*Math.PI)*(-6);
+      w2.sbO = .8;
+    }, eio);
+    hand.local.y = 0;
+    await wait(200);
+  }
+
+  async function director(){
+    await wait(900);
+    let subject = wins.reduce((a,b)=>
+      Math.abs(b.x + b.w/2 - W*.55) < Math.abs(a.x + a.w/2 - W*.55) ? b : a);
+    for(;;){
+      try{
+        await beatAccess(subject);
+        await beatOrientation(subject);
+        const child = await beatResolution(subject);
+        if (!userNext && Math.random() < CFG.interludeChance) await interlude();
+        subject = chooseNext(child);
+      }catch(e){
+        await wait(600);
+        subject = wins[(Math.random()*wins.length)|0];
+      }
+    }
+  }
+
+  /* ================= user input ================= */
+  const portalMode = true;
+
+  let tx=0, ty=0, mx=0, my=0;
+  hero.addEventListener('pointermove', e=>{
+    tx=(e.clientX/W)*2-1; ty=(e.clientY/H)*2-1;
+  });
+  hero.addEventListener('pointerleave', ()=>{ tx=0; ty=0; });
+  hero.addEventListener('pointerdown', e=>{
+    ripple(e.clientX, e.clientY, 56, .35);
+    const hit = [...wins]
+      .sort((a,b)=> (+b.el.style.zIndex)-(+a.el.style.zIndex))
+      .find(w2 => !w2.subject &&
+        e.clientX > w2.drawX && e.clientX < w2.drawX + w2.w &&
+        e.clientY > w2.drawY && e.clientY < w2.drawY + w2.h);
+    if (hit){
+      if (userNext) userNext.el.classList.remove('queued');
+      userNext = hit;
+      hit.el.classList.add('queued');
+    }
+  });
+
+  /* ================= frame loop ================= */
+  let last = performance.now();
+  function frame(now){
+    const dt = Math.min(.05,(now-last)/1000); last = now;
+    const t = now/1000;
+    mx += (tx-mx)*.06; my += (ty-my)*.06;
+
+    for (const w2 of [...wins]){
+      if (!still && !w2.settling){
+        w2.x -= w2.speed * dt * (w2.subject ? .1 : 1);
+        if (w2.x < -w2.w - 90 && !w2.subject){
+          if (wins.length > CFG.ambientWindows) removeWindow(w2);
+          else recycle(w2);
+        }
+      }
+      const y = w2.y0 + Math.sin(t*w2.yf + w2.phase)*(still?0:w2.amp)*(w2.subject||w2.settling?.25:1);
+      w2.drawX = w2.x + mx*9*w2.depth;
+      w2.drawY = y   + my*7*w2.depth;
+      w2.el.style.transform = `translate3d(${w2.drawX}px,${w2.drawY}px,0) scale(${w2.scale})`;
+      w2.doc.style.transform = `translate3d(0,${-w2.docY}px,0)`;
+      if (w2.sbO > .01){
+        const track = w2.ch - parseFloat(w2.sb.style.height) - 8;
+        const f = w2.docY / Math.max(1, w2.docH - w2.ch);
+        w2.sb.style.transform = `translateY(${TB + 4 + clamp(f,0,1)*track}px)`;
+        w2.sb.style.opacity = w2.sbO.toFixed(2);
+        w2.sbO *= .96;
+      } else if (w2.sb.style.opacity !== '0'){
+        w2.sb.style.opacity = '0';
+      }
+    }
+
+    const p = handPos();
+    hand.lean += (clamp((p.x - hand.px)*.35, -6, 6) - hand.lean)*.10;
+    hand.pv   += ((hand.pressed?1:0) - hand.pv)*.28;
+    const idle = hand.attached ? 0 : Math.sin(t*1.6)*3;
+    const handT  = `translate3d(${p.x}px,${p.y+idle}px,0) rotate(${hand.lean.toFixed(2)}deg)`;
+    const pressT = `translateY(${(hand.pv*6).toFixed(2)}px) scale(${(1-hand.pv*.035).toFixed(3)})`;
+    handEl.style.transform = handT;
+    pressEl.style.transform = pressT;
+
+    if (portalMode){
+      for (const w2 of wins){
+        const s = w2.scale;
+        const ptx = w2.w/2 - (w2.w/2 + w2.drawX)/s;
+        const pty = w2.h/2 - (w2.h/2 + w2.drawY)/s - TB;
+        w2.portal.style.transform = `translate3d(${ptx.toFixed(2)}px,${pty.toFixed(2)}px,0) scale(${(1/s).toFixed(4)})`;
+        w2.pHand.style.transform = handT;
+        w2.pPress.style.transform = pressT;
+        /* the bar's portal runs the same mapping from the window's own top,
+           so the two clips meet exactly at the divider */
+        w2.bportal.style.transform = `translate3d(${ptx.toFixed(2)}px,${(pty + TB).toFixed(2)}px,0) scale(${(1/s).toFixed(4)})`;
+        w2.bHand.style.transform = handT;
+        w2.bPress.style.transform = pressT;
+      }
+    }
+    hand.px = p.x; hand.py = p.y;
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  if (!still) director();
+  else {
+    /* A still, with its protagonist: the most visible window (the tallest of
+       those wholly in view) is the resolved one, its page scrolled to bring the
+       figure into the window, and the hand rests on the link it has resolved.
+       It comes to the front, as a window being used does, since one overlapping
+       it would otherwise cover the hand (windows stack from 10 to 18).
+       Nothing moves: the director never runs, an attached hand has no idle
+       bob, and starting the lean from the hand's own place keeps it upright. */
+    wins.forEach((w2,i)=>{ if(i<3) w2.el.classList.add('live'); });
+    const inView = w2 => {
+      const vx = Math.max(0, Math.min(W, w2.x + w2.w) - Math.max(0, w2.x));
+      const vy = Math.max(0, Math.min(H, w2.y0 + w2.h) - Math.max(0, w2.y0));
+      return vx*vy / (w2.w*w2.h);
+    };
+    const main = [...wins].sort((a,b)=> (inView(b) - inView(a)) || (b.h - a.h))[0];
+    if (main){
+      main.el.classList.add('live', 'resolved');
+      main.el.style.zIndex = 19;
+      main.docY = clamp(main.figY - main.ch*.4, 0, Math.max(0, main.docH - main.ch));
+      main.drawX = main.x; main.drawY = main.y0;
+      attach(main, 'figure');
+      const p0 = handPos(); hand.px = p0.x; hand.py = p0.y;
+    }
+  }
+
+  let rz;
+  addEventListener('resize', ()=>{
+    clearTimeout(rz);
+    rz = setTimeout(()=>{
+      W=hero.clientWidth; H=hero.clientHeight;
+      for (const w2 of wins){
+        for (const p of [w2.portal, w2.bportal]){
+          p.style.width = W+'px';
+          p.style.height = H+'px';
+        }
+      }
+    }, 150);
+  });
+}
+(function(){
+  const h = document.getElementById('hero');
+  const sized = () => h.clientWidth > 0 && h.clientHeight > 0;
+  if (sized()){ boot(); return; }
+  const ro = new ResizeObserver(() => { if (sized()){ ro.disconnect(); boot(); } });
+  ro.observe(h);
+})();
+</script>
+</body>
+</html>

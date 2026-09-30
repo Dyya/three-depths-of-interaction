@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- A fragment of the article, not a page of its own: kept out of search as a
+     bare URL, still readable to a crawler inside the article that embeds it.
+     Paper only, like the article, so a forced dark mode leaves it alone. -->
+<meta name="robots" content="noindex, indexifembedded">
+<meta name="color-scheme" content="only light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23FCFCFC'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%23121212'/%3E%3C/svg%3E">
+<title>Three Depths of Interaction · Study 02</title>
+<!-- Both panels are generated, by the same generator, and only one of them
+     follows the rules. One difference between the panels, so whatever a reader
+     feels can only be about the path. A fixed panel was left out on purpose: on
+     a three-question booking a static form always wins, and study 01 already
+     carries the static comparison. (Merged from the review build on
+     2026-09-24; the earlier fixed-against-generated study is in git history.) -->
+<link rel="stylesheet" href="../system.css">
+<style>
+  /* Tokens, the reset, the base type, the label idiom and the focus state come
+     from system.css, linked above and shared with the article. Below is this
+     study's own work, and nothing else. */
+
+  .wrap{max-width:var(--track);margin:0 auto;padding:var(--s6) var(--edge) var(--s7);}
+  .k{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);font-weight:500;}
+
+  header .k{display:flex;justify-content:space-between;margin-bottom:var(--s3);}
+  h1{font-size:var(--fs-h2);line-height:var(--lh-h2);font-weight:700;letter-spacing:-.02em;max-width:var(--w-text);}
+  .lede{margin-top:var(--s3);max-width:var(--w-text);font-size:var(--fs-body);line-height:var(--lh-body);color:var(--muted);}
+  .lede b{color:var(--ink);font-weight:600;}
+
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5);margin-top:var(--s5);align-items:stretch;}
+  .grid > section{display:flex;flex-direction:column;}
+  @media(max-width:900px){.grid{grid-template-columns:1fr;gap:var(--s6);}}
+  /* reserveDeviceHeight() is authoritative and sets --dev-h from a real
+     measurement. The fallback is not a guess: the tallest form left in the
+     generator is the two column grid of touch tier options, whose height is
+     the option count and not the width, and it measures 536 at 1440, 900,
+     600 and 390. Having a true value here is what keeps the study from
+     growing on screen a moment after it has been drawn. If the option lists
+     change, the measurement will be right and this number will only be
+     briefly wrong. */
+  .device{min-height:var(--dev-h, 536px);}
+
+
+  /* ---------- product sim ---------- */
+  .device{
+    background:var(--surface0);border-radius:var(--r-card);flex:1;position:relative;overflow:hidden;
+    box-shadow:var(--lift);
+    display:flex;flex-direction:column;
+  }
+  .sim-body{flex:1;display:flex;flex-direction:column;padding:12px;gap:12px;
+    transition:opacity 160ms var(--settle), transform 160ms var(--settle);}
+  /* the surface on screen lifts away, and the next one is built in its place */
+  .sim-body.regen{opacity:0;transform:translateY(-6px);}
+
+  /* ---------- a draw is built the way it is read ----------
+     Row by row, top to bottom: every control in a row arrives together, a
+     short beat after the row above, with a fade and a small rise and nothing
+     else. A group's panel comes with its label, by fading only, so the label
+     does not travel twice. A control cannot be pressed until it has started
+     to appear. Reduced motion: the surface simply appears. */
+  @keyframes rv-in{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+  @keyframes rv-fade{from{opacity:0;}to{opacity:1;}}
+  .rv.go{animation:rv-in 460ms var(--settle) both;}
+  .group.rv.go{animation-name:rv-fade;}
+  .rv.wait{pointer-events:none;}
+
+  /* groups: several generated styles */
+  .group{border-radius:var(--r-sm);padding:12px;}
+  /* The group decides what fills an option inside it. Before this the two were
+     chosen independently and three of the twelve pairs collided exactly:
+     o-row (--surface1) inside g-card or g-tint, and o-pill (white) on the
+     device's own white. g-card and g-tint also declared the same fill, so the
+     study advertised three skins and drew two. Deriving the option fill from
+     the group makes a collision impossible rather than unlikely. */
+  .group{--opt:var(--surface1); --opt-edge:var(--surface2);}
+  .g-plain{background:transparent;}
+  .g-card{background:var(--surface1); --opt:var(--surface0); --opt-edge:var(--surface2);}
+  .g-tint{background:var(--surface2); --opt:var(--surface0); --opt-edge:var(--surface1);}
+  .g-label{font-size:var(--fs-meta);line-height:16px;font-weight:700;letter-spacing:.02em;margin-bottom:8px;
+    display:flex;align-items:center;}
+  .g-label.center{justify-content:center;}
+
+  .opts{display:flex;gap:8px;flex-wrap:wrap;}
+  .opts.grid2{display:grid;grid-template-columns:1fr 1fr;}
+
+  /* ---------- the components a generator picks for a question ----------
+     Each fits what the question is: a strip of dates for a day, a list of
+     times with a radio, a count shown as people. All four answers stay in
+     view and any one is a single press, so the task and its count of
+     commitments are the same whichever the draw gave. The exception is the
+     menu, which hides its answers until it is opened: only the generator with
+     no rules may draw it, because the rules keep the possibilities in view. */
+  .dates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;}
+  .o-date{flex-direction:column;gap:2px;min-height:56px;border-radius:var(--r-sm);
+    background:var(--opt);box-shadow:inset 0 0 0 var(--ring) var(--opt-edge);}
+  .o-date .dw{font-size:var(--fs-meta);line-height:14px;color:var(--muted);font-weight:500;}
+  .o-date .dn{font-size:18px;line-height:22px;font-weight:700;}
+  .o-date.sel .dw{color:inherit;opacity:.72;}
+  .radios{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .o-radio{justify-content:flex-start;gap:10px;padding:0 12px;border-radius:var(--r-sm);background:var(--opt);}
+  .o-radio .dot{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1.5px currentColor;flex:none;
+    display:grid;place-items:center;}
+  .o-radio.sel .dot::after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;}
+  .people{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .o-people{gap:8px;border-radius:var(--r-pill);background:var(--opt);padding:0 14px;}
+  .o-people .ppl{display:inline-flex;gap:2px;}
+  .o-people svg{width:9px;height:12px;fill:currentColor;opacity:.8;}
+  .sel-wrap{position:relative;}
+  .opt-select{appearance:none;-webkit-appearance:none;width:100%;min-height:var(--ctl-touch);border:0;
+    border-radius:var(--r-sm);background:var(--opt);box-shadow:inset 0 0 0 var(--ring) var(--opt-edge);
+    font:inherit;font-size:var(--fs-ctl);font-weight:500;color:var(--ink);padding:0 40px 0 14px;cursor:pointer;}
+  .opt-select.empty{color:var(--muted);}
+  .sel-wrap::after{content:"";position:absolute;right:18px;top:50%;width:7px;height:7px;margin-top:-6px;
+    border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);transform:rotate(45deg);
+    pointer-events:none;}
+
+  /* --ctl-touch, not --ctl-card. These sixteen are the study: choosing among
+     them is the whole of the task, and the system gives the touch tier to
+     every primary action, not only to what sits inside a phone. They were 36,
+     which is the tier for a control inside a card. */
+  .opt{font-size:var(--fs-ctl);font-weight:500;min-height:var(--ctl-touch);
+    display:flex;align-items:center;justify-content:center;
+    transition:background var(--t2) var(--settle),color .15s;}
+  .opt.sel{background:var(--ink)!important;color:var(--surface0)!important;}
+
+  .o-chip{background:var(--opt);border-radius:var(--r-pill);padding:0 16px;}
+  .o-pill{background:var(--opt);box-shadow:inset 0 0 0 var(--ring) var(--opt-edge);border-radius:var(--r-sm);padding:0 12px;}
+  .o-seg{background:var(--opt);padding:0;flex:1;text-align:center;}
+  .seg-wrap{display:flex;border-radius:var(--r-sm);overflow:hidden;gap:4px;}
+
+  .confirm{
+    background:var(--ink);color:var(--surface0);border-radius:var(--r-sm);padding:0;
+    min-height:var(--ctl-touch);font-size:var(--fs-ctl);font-weight:600;width:100%;flex:none;
+    transition:opacity var(--t2) var(--settle);
+  }
+  /* disabled by losing the ink fill, not by fading it: at .28 the label read
+     2.49 against its own background. Muted on the recess reads 4.8. */
+  .confirm:disabled{background:var(--surface2);color:var(--muted);cursor:default;}
+
+  .booked{
+    flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+    gap:8px;padding:8px;
+  }
+  .booked:focus-visible{outline:none;}
+  .booked h3{font-size:var(--fs-h3);line-height:var(--lh-h3);font-weight:700;letter-spacing:-.02em;}
+  .booked p{font-size:var(--fs-ctl);color:var(--muted);}
+
+  /* analysis */
+  .analysis{margin-top:var(--s7);display:none;}
+  .analysis.show{display:block;}
+  /* results: study 01's idiom exactly. Two columns on the devices' own grid,
+     one per interface, the same six rows in the same order. Small mono, label
+     left and value right, set off by the row rhythm and not by rules. Accent
+     is kept for the two facts that carry the argument, the corrections and
+     whether the intent was reached at all. */
+  .results{margin-top:0;}
+  .res{display:flex;flex-direction:column;}
+  .res .k{margin:0;}
+  .facts{margin-top:auto;padding-top:var(--s4);}
+  .facts{font-family:var(--mono);font-size:var(--fs-small);line-height:var(--lh-small);
+    font-variant-numeric:tabular-nums;}
+  .facts div{display:grid;grid-template-columns:1fr auto;gap:var(--s3);padding:4px 0;}
+  .facts dt{color:var(--muted);}
+  .facts dd{text-align:right;}
+  .facts .hot{color:var(--accent);font-weight:700;}
+  footer{margin-top:var(--s7);display:flex;justify-content:space-between;
+    font-family:var(--mono);font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);line-height:var(--lh-label);}
+
+  .notice{max-width:var(--w-text);margin-top:var(--s2);font-family:var(--mono);font-size:var(--fs-small);line-height:var(--lh-small);color:var(--muted);}
+
+  /* ---------- the look of the product inside the device ----------
+     Paper. The device and the panels are never outlined: their edges come
+     from a fill or a shadow. Fill: quiet grey controls on white. Lift: white
+     controls raised by a soft shadow from pale panels, with a faint line of
+     their own, so a white control still reads where it sits on white. Blend:
+     a control is always one tone away from what it sits on, grey on white and
+     raised white on a panel, so white never meets white. Black when chosen,
+     everywhere. Each variation sets the same few roles and the components
+     read only the roles; the generator's three skins become three ways a
+     group sits in the look. */
+  html[data-look] .device{background:#FFFFFF;color:#121212;border-radius:24px;transition:none;
+    box-shadow:0 2px 6px -2px rgba(18,18,18,.05),0 28px 56px -30px rgba(18,18,18,.26);}
+  html[data-look] .sim-body{padding:20px;gap:22px;}
+  html[data-look] .g-label{color:rgba(18,18,18,.5);font-size:10.5px;line-height:16px;font-weight:500;
+    letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+  html[data-look] .group{padding:var(--g-pad);border-radius:16px;box-shadow:none;}
+  /* a question with no panel sits on the device as it is: no padding at all,
+     so its rhythm is the page's gap and not a panel's inset */
+  html[data-look] .g-plain{background:transparent;padding:0;}
+  html[data-look] .g-card{background:var(--g-a);}
+  html[data-look] .g-tint{background:var(--g-b);}
+  html[data-look] .o-chip,html[data-look] .o-pill,html[data-look] .o-seg,html[data-look] .o-date,
+  html[data-look] .o-radio,html[data-look] .o-people,html[data-look] .opt-select{
+    background:var(--c-fill);box-shadow:var(--c-shadow);color:#121212;
+    transition:background var(--t1) var(--settle),transform var(--t1) var(--settle),box-shadow var(--t1) var(--settle);}
+  html[data-look] .o-chip,html[data-look] .o-people{border-radius:var(--r-pill);}
+  html[data-look] .o-pill,html[data-look] .o-date,html[data-look] .o-radio,html[data-look] .opt-select{border-radius:12px;}
+  /* a segmented control without dividers: its segments stand apart by a gap */
+  html[data-look] .seg-wrap{gap:6px;border-radius:12px;background:transparent;box-shadow:none;overflow:visible;}
+  html[data-look] .o-seg{border-radius:10px;}
+  @media (hover:hover){
+    html[data-look] .opt:not(.sel):hover,html[data-look] .opt-select:hover{background:var(--c-hover);}}
+  html[data-look] .opt:active{transform:scale(.97);}
+  html[data-look] .opt.sel{background:#121212!important;color:#FFFFFF!important;box-shadow:none;}
+  /* The day and its number are one label, so they sit far closer together
+     than to the card's edges, and the number is set in the book weight, not
+     bold. Measured on the glyphs, not the boxes: 12px above the day, 4.7
+     between day and number, 12 below the number. Most of the gap is the
+     face's own room above its figures, so the boxes touch (gap 0). The height
+     is written here because the generic control height comes later in the
+     sheet and had been setting every date card to 44px, not the 56 it
+     declared. */
+  html[data-look] .o-date{gap:0;min-height:50px;padding:0;}
+  html[data-look] .o-date .dw{color:rgba(18,18,18,.5);text-transform:uppercase;letter-spacing:.06em;
+    font-size:10px;line-height:10px;}
+  html[data-look] .o-date .dn{font-size:20px;line-height:20px;font-weight:500;letter-spacing:-.01em;}
+  html[data-look] .o-date.sel .dw{color:inherit;opacity:.7;}
+  html[data-look] .opt-select.empty{color:rgba(18,18,18,.5);}
+  html[data-look] .confirm{background:#121212;color:#FFFFFF;border-radius:14px;min-height:48px;
+    font-weight:600;letter-spacing:.01em;margin-top:auto;}
+  html[data-look] .confirm:disabled{background:var(--c-off,#F1F1F3);color:rgba(18,18,18,.4);}
+  html[data-look] .booked p{color:rgba(18,18,18,.5);}
+
+  /* Blend: a control is always one tone away from what it sits on, grey on the
+     device and raised white on a panel, so white never meets white. The grey
+     is the faintest of the three that were tried (#F4F4F6, #F6F6F7, #F8F8F9):
+     the author's pick. The panels move with it, and a disabled button takes
+     the control's grey. */
+  html[data-look="blend"] .device{--g-pad:14px;--c-shadow:none;
+    --c-fill:#F8F8F9;--c-hover:#F1F1F3;--c-off:#F7F7F8;--g-a:#FAFAFA;--g-b:#F7F7F8;}
+  html[data-look="blend"] .g-card,html[data-look="blend"] .g-tint{--c-fill:#FFFFFF;--c-hover:#FAFAFB;
+    --c-shadow:0 1px 2px rgba(18,18,18,.07),0 4px 12px -6px rgba(18,18,18,.12);}
+
+</style>
+<script>if(window.self!==window.top)document.documentElement.classList.add('embed');
+document.documentElement.setAttribute('data-look', 'blend');</script>
+<style>
+  /* this study ends on a lifted box, so the frame must be told about the room
+     the shadow needs below it or the article slices it off */
+  html.embed .wrap{max-width:none;margin:0;padding:0 var(--bleed) var(--bleed-b);}
+  html.embed header{display:none;}
+  html.embed body{background:transparent;}
+  html.embed .grid{margin-top:0;}
+  html.embed footer{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="k"><span>Interactive study · 02</span><span>The Three-Depth Principle</span></div>
+  <h1>Book a table</h1>
+  <p class="lede">Complete the same task on both screens (top-down on mobile): table for two, Friday at 19:00.</p>
+  <p class="notice">Counts, timings and the layouts shown are sent anonymously for research.</p>
+</header>
+
+<div class="grid">
+  <section aria-label="Version A">
+    <div class="device" id="devA"></div>
+  </section>
+  <section aria-label="Version B">
+    <div class="device" id="devB"></div>
+  </section>
+</div>
+
+<!-- Only the facts, as in study 01: two columns on the devices' own grid, one
+     per interface, the same six rows in the same order. The heading, the note,
+     the table and the axiom were all saying what the article says in its own
+     voice under the study, so they went. -->
+<div class="analysis" id="analysis">
+  <div class="grid results" id="results"></div>
+</div>
+
+<footer><span>Three Depths of Interaction</span><span>Adi Dizdarevic · 2026</span></footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+var INTENT = {size:"2", day:"Friday", time:"19:00"};
+var GROUPS = [
+  {id:"size", label:"Party size", options:["2","3","4","6"]},
+  {id:"day",  label:"Day", options:["Thursday","Friday","Saturday","Sunday"]},
+  {id:"time", label:"Time", options:["18:00","19:00","20:30","21:00"]}
+];
+var AUTO_MS = 3000;
+/* How long the pointer has to be off the panel before the clock starts again.
+   A glance away, or crossing a corner of it, should not count. */
+var LEAVE_MS = 1000;
+/* the rules the fixed interface was designed by: one question at a time, in
+   the order that narrows the rest (the day decides which times are open), the
+   answers kept in view, the options in sequence. The generator either obeys
+   them or ignores them; the surface is free either way. */
+var STEPS = ["day","time","size"];
+/* What a real generator varies from one draw to the next, and the old one did
+   not: what a question is called, and how its answers are written. The answer
+   underneath never changes: every button carries the canonical value, so the
+   intent is matched the same way whatever the surface said. What it no longer
+   does is shuffle the answers inside a question. No generator lists 20:30
+   before 18:00, and a skeptic would be right to call that a strawman. */
+var LABELS = {day:["Day","Date","Which day"], time:["Time","Arrival","What time"],
+              size:["Party size","Guests","People"]};
+function fmtDay(v, f){ return f ? v.slice(0,3) : v; }
+function fmtTime(v, f){
+  if(!f) return v;
+  var h = +v.slice(0,2);
+  return (h % 12 || 12) + ":" + v.slice(3) + (h < 12 ? " am" : " pm");
+}
+/* a segmented control is a compact control, and a generator gives it compact
+   answers: the short day, the 24 hour time. It also keeps four day names from
+   overflowing four segments three devices across. */
+function label(d, g, v){
+  var seg = d.style === "seg";
+  if(g === "day") return fmtDay(v, seg ? 1 : d.fday);
+  if(g === "time") return fmtTime(v, seg ? 0 : d.ftime);
+  return v;
+}
+var SEEDS = []; for(var i = 0; i < 400; i++) SEEDS.push(Math.floor(Math.random() * 1e9));
+var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var sims = {}, rounds = [];
+function byId(id){ return GROUPS.filter(function(g){ return g.id === id; })[0]; }
+
+function shuffled(arr, rnd){
+  var a = arr.slice();
+  for(var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(rnd() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function rng(seed){
+  return function(){
+    seed = (seed * 1664525 + 1013904223) % 4294967296;
+    return seed / 4294967296;
+  };
+}
+/* one generated surface. With the rules, only the surface is drawn from the
+   seed; structure comes from the rules. Without them, structure is drawn too. */
+var KIND = {day:"dates", time:"radios", size:"people"};
+function draw(sim, n){
+  /* two generators, not one drawn twice: on the same seeds the two panels
+     redrew into the same surface in step until the reader touched one */
+  var r = rng(SEEDS[(n + (sim.rules ? 211 : 0)) % SEEDS.length]);
+  var d = {
+    style:["chip","pill","seg"][Math.floor(r() * 3)],
+    skin:["g-plain","g-card","g-tint"][Math.floor(r() * 3)],
+    arr:["wrap","grid2"][Math.floor(r() * 2)],
+    center:r() < 0.35,
+    fday:Math.floor(r() * 2), ftime:Math.floor(r() * 2),
+    labels:{day:LABELS.day[Math.floor(r() * 3)], time:LABELS.time[Math.floor(r() * 3)],
+            size:LABELS.size[Math.floor(r() * 3)]}
+  };
+  /* which component shows each question. Both generators draw from the same
+     pool, except the menu: it hides the answers until it is opened, and the
+     rules keep the possibilities in view, so only the one with no rules may
+     draw it */
+  d.kind = {};
+  ["day","time","size"].forEach(function(g){
+    var x = r();
+    d.kind[g] = (!sim.rules && x < .16) ? "select" : (x < .58 ? "buttons" : KIND[g]);
+  });
+  /* the answers keep their order everywhere; only the questions move, and
+     only without the rules */
+  d.order = sim.rules ? STEPS.map(byId) : shuffled(GROUPS, r);
+  d.optOrder = GROUPS.reduce(function(m,g){ m[g.id] = g.options.slice(); return m; },{});
+  return d;
+}
+function sig(d){
+  return [d.style, d.skin, d.arr, d.center, d.style === "seg" ? "" : d.fday + "" + d.ftime,
+          d.labels.day, d.labels.time, d.labels.size, d.kind.day, d.kind.time, d.kind.size,
+          d.order.map(function(g){ return g.id; }).join()].join("|");
+}
+/* A redraw that looks the same is not a redraw, but it was counted as one and
+   armed a recovery. Under the rules the surfaces that can be told apart are a
+   few hundred, so a repeat is rare but real; the next seed is taken until the
+   draw differs from the one on screen. */
+function generate(sim){
+  var d = draw(sim, sim.draws);
+  for(var k = 1; sim.gen && sig(d) === sig(sim.gen) && k < 12; k++) d = draw(sim, sim.draws + k);
+  return d;
+}
+/* Focus follows a keyboard and nothing else: these run only when the control
+   that was used had visible keyboard focus, so a click behaves as it always
+   has. A redraw replaces every control, so the one in use is found again by
+   what it is (its group and value), not by the element it was. */
+/* A menu takes visible focus from a click as well as from a key, so the last
+   input decides, not the focus ring alone. */
+var lastKey = false;
+addEventListener("keydown", function(){ lastKey = true; }, true);
+addEventListener("pointerdown", function(){ lastKey = false; }, true);
+function byKeyboard(root){
+  var a = document.activeElement;
+  return !!(a && root.contains(a) && a.matches(":focus-visible") && lastKey);
+}
+function refocus(sim, g, v){
+  var el = sim.done ? sim.dev.querySelector(".booked")
+    : (g && (sim.dev.querySelector("[data-g='" + g + "'][data-v='" + v + "']") ||
+             sim.dev.querySelector("select[data-g='" + g + "']"))) ||
+      sim.dev.querySelector(".opt, .opt-select, [data-confirm]");
+  if(el) el.focus({preventScroll:true});
+}
+/* the dates of the coming Thursday to Sunday, so a strip of days carries the
+   numbers a real one would; the answer underneath is still the weekday */
+var DATES = (function(){
+  var t = new Date(); t.setHours(12, 0, 0, 0);
+  var thu = new Date(t.getTime() + ((4 - t.getDay() + 7) % 7) * 864e5), m = {};
+  ["Thursday","Friday","Saturday","Sunday"].forEach(function(n, i){
+    m[n] = new Date(thu.getTime() + i * 864e5).getDate(); });
+  return m;
+})();
+var PERSON = "<svg viewBox='0 0 9 12' aria-hidden='true'><circle cx='4.5' cy='2.6' r='2.3'/>" +
+             "<path d='M0 12c0-3.1 2-5.2 4.5-5.2S9 8.9 9 12z'/></svg>";
+function groupHTML(sim, d, g){
+  var id = g.id, kind = d.kind[id], v = sim.value[id], lid = "lbl" + sim.id + id;
+  var h = "<div class='group rv " + d.skin + "' data-grp='" + id + "'><div class='g-label rv" +
+          (d.center ? " center" : "") + "' data-grp='" + id + "' id='" + lid + "'>" + d.labels[id] + "</div>";
+  function btn(cls, o, inner){
+    return "<button class='opt rv " + cls + (v === o ? " sel" : "") + "' data-g='" + id + "' data-v='" + o +
+           "' data-grp='" + id + "' aria-pressed='" + (v === o) + "'>" + inner + "</button>";
+  }
+  var opts = d.optOrder[id];
+  if(kind === "select"){
+    h += "<div class='sel-wrap rv' data-grp='" + id + "'><select class='opt-select" + (v ? "" : " empty") +
+         "' data-g='" + id + "' aria-labelledby='" + lid + "'><option value=''" + (v ? "" : " selected") +
+         " disabled>Choose</option>" + opts.map(function(o){
+           return "<option value='" + o + "'" + (v === o ? " selected" : "") + ">" + label(d, id, o) + "</option>";
+         }).join("") + "</select></div>";
+  } else if(kind === "dates"){
+    h += "<div class='dates'>" + opts.map(function(o){
+      return btn("o-date", o, "<span class='dw'>" + o.slice(0, 3) + "</span><span class='dn'>" + DATES[o] + "</span>");
+    }).join("") + "</div>";
+  } else if(kind === "radios"){
+    h += "<div class='radios'>" + opts.map(function(o){
+      return btn("o-radio", o, "<span class='dot'></span>" + label(d, id, o));
+    }).join("") + "</div>";
+  } else if(kind === "people"){
+    h += "<div class='people'>" + opts.map(function(o){
+      for(var p = "", i = 0; i < +o; i++) p += PERSON;
+      return btn("o-people", o, "<span class='ppl'>" + p + "</span>" + o);
+    }).join("") + "</div>";
+  } else {
+    h += "<div class='" + (d.style === "seg" ? "seg-wrap" : "opts " + (d.arr === "grid2" ? "grid2" : "")) + "'>" +
+         opts.map(function(o){ return btn(optClass(d.style), o, label(d, id, o)); }).join("") + "</div>";
+  }
+  return h + "</div>";
+}
+function optClass(style){
+  return {chip:"o-chip", pill:"o-pill", seg:"o-seg"}[style];
+}
+/* under the rules the structure is always the same: answered steps stay, the
+   next appears, nothing beyond it is shown. Without them every question shows
+   at once, in whatever order the draw gave. The surface is drawn either way. */
+function render(sim){
+  var html = "<div class='sim-body' id='body" + sim.id + "'>";
+  if(sim.done){
+    html += "<div class='booked' tabindex='-1'><h3>Booked</h3><p>Table for " + GROUPS.map(function(g){
+      return sim.value[g.id]; }).join(" · ") + "</p></div></div>";
+    sim.dev.innerHTML = html; return;
+  }
+  var d = sim.gen || {style:"chip", skin:"g-plain", arr:"wrap", center:false, fday:0, ftime:0,
+                      labels:{day:"Day", time:"Time", size:"Party size"},
+                      kind:{day:"buttons", time:"buttons", size:"buttons"},
+                      order:STEPS.map(byId), optOrder:GROUPS.reduce(function(m,g){ m[g.id] = g.options.slice(); return m; },{})};
+  var structured = sim.mode === "fixed" || sim.rules;
+  for(var i = 0; i < d.order.length; i++){
+    var g = d.order[i];
+    html += groupHTML(sim, d, g);
+    if(structured && !sim.value[g.id]) break;
+  }
+  var ready = GROUPS.every(function(g){ return sim.value[g.id]; });
+  if(structured){
+    if(ready) html += "<button class='confirm rv' data-grp='confirm' data-confirm>Confirm booking</button>";
+  } else {
+    html += "<button class='confirm rv' data-grp='confirm' data-confirm " + (ready ? "" : "disabled") + ">Confirm booking</button>";
+  }
+  html += "</div>";
+  sim.dev.innerHTML = html;
+}
+
+/* A draw is built the way it is read, row by row. The rows are found from the
+   layout itself (a group's panel counts as its label's row), so whatever the
+   draw gave, a strip of dates, two rows of radios or a wrapped run of chips,
+   arrives one row at a time. `only` limits the build to what is new, which is
+   how the next question arrives under the rules without the answered ones
+   replaying. */
+var ROW_MS = 55;
+function shown(sim){
+  var seen = {};
+  [].forEach.call(sim.dev.querySelectorAll("[data-grp]"), function(e){ seen[e.dataset.grp] = 1; });
+  return seen;
+}
+function build(sim, only){
+  if(reduced || sim.done) return;
+  var body = document.getElementById("body" + sim.id); if(!body) return;
+  var els = [].filter.call(body.querySelectorAll(".rv"), function(e){ return !only || only[e.dataset.grp]; });
+  if(!els.length) return;
+  /* each element's row: its own top, or for a group's panel, its label's */
+  var tops = els.map(function(e){
+    var ref = e.classList.contains("group") ? (e.querySelector(".g-label") || e) : e;
+    return ref.getBoundingClientRect().top;
+  });
+  var rows = tops.slice().sort(function(a, b){ return a - b; }).reduce(function(list, t){
+    if(!list.length || t - list[list.length - 1] > 6) list.push(t);
+    return list;
+  }, []);
+  var last = 0;
+  els.forEach(function(e, i){
+    var row = 0;
+    while(row + 1 < rows.length && tops[i] - rows[row + 1] >= -6) row++;
+    last = Math.max(last, row);
+    e.style.animationDelay = row * ROW_MS + "ms";
+    e.classList.add("wait", "go");
+    e.addEventListener("animationstart", function(){ e.classList.remove("wait"); }, {once:true});
+    e.addEventListener("animationend", function(){ e.classList.remove("go"); e.style.animationDelay = ""; }, {once:true});
+  });
+  clearTimeout(sim.buildT);
+  sim.buildT = setTimeout(function(){ els.forEach(function(e){ e.classList.remove("wait"); }); }, last * ROW_MS + 600);
+}
+
+/* Reduced motion changes how a regeneration looks and nothing about when one
+   happens. That distinction is the whole of this study's honesty: the article
+   promises the generated interface "remains unchanged while you use it, and
+   once you move away the generator produces another", and that promise is the
+   condition being measured. It used to be suspended for anyone with the
+   preference set: the idle clock never started, leaving never scheduled
+   anything, and instead the panel regenerated on every single selection. A
+   reader with the preference set was answering a different question from the
+   one beside them, under an interface that changed in their hands, and their
+   run still emitted regenerations and recovery times as if it were the same
+   study. An accessibility preference is not a study condition. */
+function regen(sim){
+  if(sim.done) return;
+  sim.draws++;
+  /* Every printed fact describes one window: the first tap to the confirm.
+     The panel regenerates from first visibility so it is alive as the reader
+     arrives, but a redraw nobody was mid-task for is theatre, not data: it
+     neither counts nor arms a recovery. The seed walks with the draws, so
+     the pre-task theatre still varies. */
+  if(sim.t0 !== null){
+    sim.regens++;
+    sim.regenAt = performance.now();
+    sim.backAt = null;
+  }
+  sim.gen = generate(sim);
+  var body = document.getElementById("body" + sim.id);
+  var a = document.activeElement, kb = byKeyboard(sim.dev);
+  var g = kb ? a.dataset.g : null, v = kb ? a.dataset.v : null;
+  if(reduced || !body){ render(sim); if(kb) refocus(sim, g, v); return; }
+  body.classList.add("regen");
+  setTimeout(function(){ render(sim); build(sim); if(kb) refocus(sim, g, v); }, 160);
+}
+
+/* The surface holds still while someone is on it. Redrawing a control out from
+   under a reach is a bug, not a demonstration, and it lets a reader dismiss the
+   whole thing as unfair. So the clock stops the moment the pointer arrives
+   anywhere on the panel and does not start again until it has been gone for a
+   second. What the reader meets instead is the honest version of the problem:
+   the interface they come back to is not the interface they left. */
+/* A redraw happens only while the reader is away, so time measured from the
+   redraw includes however long they stayed away: up to the three seconds
+   between two redraws. The moment they come back to the changed panel is
+   kept as well, and the time from it to their next press is the time it took
+   to find their way again. A pointer's or a keyboard's return can be seen; a
+   finger's cannot (its arrival is the press itself), so on touch only the
+   time from the redraw is kept. */
+function back(sim, visible){
+  if(visible && sim.regenAt !== null && sim.backAt === null) sim.backAt = performance.now();
+}
+/* the layout a press was made on, in nine characters: the order of the
+   questions, the component each was shown as, and the button style */
+var KC = {buttons:"B", dates:"D", radios:"R", people:"P", select:"M"};
+function code(d){
+  return d.order.map(function(g){ return g.id.charAt(0); }).join("") + ":" +
+    ["day","time","size"].map(function(g){ return KC[d.kind[g]]; }).join("") + ":" + d.style.charAt(0);
+}
+function engage(sim){
+  if(sim.mode !== "auto" || sim.done) return;
+  sim.overIt = true;
+  clearTimeout(sim.leave); sim.leave = null;
+  if(sim.timer){ clearInterval(sim.timer); sim.timer = null; }
+}
+function release(sim){
+  if(sim.mode !== "auto" || sim.done) return;
+  /* a hand on the panel is proof enough that the study is being seen */
+  sim.armed = true;
+  sim.overIt = false;
+  clearTimeout(sim.leave);
+  sim.leave = setTimeout(function(){
+    if(sim.done) return;
+    /* it redraws as the reader steps away, where they can still see it happen,
+       rather than silently three seconds later */
+    regen(sim);
+    sim.timer = setInterval(function(){ regen(sim); }, AUTO_MS);
+  }, LEAVE_MS);
+}
+
+function makeSim(id, mode, rules){
+  var sim = {id:id, mode:mode, rules:rules, dev:document.getElementById("dev" + id),
+             gen:null, armed:false, overIt:false, ptr:false, kb:false,
+             value:{}, done:false, taps:0, corrections:0, regens:0, draws:0,
+             t0:null, elapsed:null, regenAt:null, recoveries:[], timer:null, leave:null,
+             backAt:null, reorients:[], surfaces:[]};
+  if(mode === "auto"){
+    sim.gen = generate(sim);
+    /* The clock starts when the study is first seen, not when the page loads.
+       It used to run from load, so the printed regeneration count mostly
+       measured how long the reader had spent in the article above this study:
+       11 after 35 seconds at the top of the page, and a normal read would
+       have shown hundreds. The panel is already alive as the reader arrives,
+       which is the point; what it did before anyone could see it was not part
+       of any run. The implicit IntersectionObserver root is the top level
+       viewport even inside a same origin frame, which is exactly the
+       visibility that matters here. */
+    var arm = function(){
+      if(sim.armed || sim.done) return;
+      sim.armed = true;
+      /* if a hand is already resting on the panel when visibility arrives,
+         the clock waits for it to leave: release() starts it then */
+      if(sim.overIt) return;
+      sim.timer = setInterval(function(){ regen(sim); }, AUTO_MS);
+    };
+    if("IntersectionObserver" in window){
+      var io = new IntersectionObserver(function(es){
+        for(var i = 0; i < es.length; i++) if(es[i].isIntersecting){
+          io.disconnect(); arm(); return;
+        }
+      });
+      io.observe(sim.dev);
+      /* and the surface the reader first meets is built in front of them,
+         once enough of the device is on screen to see it happen */
+      var seen = new IntersectionObserver(function(es){
+        for(var i = 0; i < es.length; i++) if(es[i].isIntersecting){ seen.disconnect(); build(sim); return; }
+      }, {threshold:.3});
+      seen.observe(sim.dev);
+    } else { arm(); }
+    /* pointerenter and pointerleave, not over and out: they fire for the panel
+       as a whole and stay quiet while the pointer moves between its children */
+    sim.dev.addEventListener("pointerenter", function(e){ sim.ptr = true; back(sim, e.pointerType !== "touch"); engage(sim); });
+    sim.dev.addEventListener("pointerleave", function(){ sim.ptr = false; if(!sim.kb) release(sim); });
+    /* The lede promises the panel changes unless you focus on it, and keyboard
+       focus is focus. It holds the panel still like a resting pointer, and
+       the clock starts again only when neither is on it. Only focus a
+       keyboard put there counts: a click also focuses a button in most
+       browsers, and that must not stop the panel from changing once the
+       pointer has gone. */
+    sim.dev.addEventListener("focusin", function(e){
+      if(e.target.matches(":focus-visible") && lastKey){ sim.kb = true; back(sim, true); engage(sim); }
+    });
+    sim.dev.addEventListener("focusout", function(e){
+      if(sim.dev.contains(e.relatedTarget) || !sim.kb) return;
+      sim.kb = false;
+      if(!sim.ptr) release(sim);
+    });
+  }
+  render(sim);
+  sims[id] = sim;
+}
+
+/* One answer, however it was given: a press on a button or a choice in a menu.
+   A menu's change is one commitment, like a press. */
+var grid = document.querySelector(".grid");
+grid.addEventListener("click", function(e){
+  var t = e.target.closest("button[data-g], button[data-confirm]");
+  if(!t) return;
+  var sim = sims[t.closest(".device").id.slice(3)];
+  act(sim, t.dataset.g, t.dataset.v, sim && byKeyboard(sim.dev));
+});
+grid.addEventListener("change", function(e){
+  var t = e.target.closest("select[data-g]");
+  if(!t || !t.value) return;
+  var sim = sims[t.closest(".device").id.slice(3)];
+  act(sim, t.dataset.g, t.value, sim && byKeyboard(sim.dev));
+});
+function act(sim, g, v, kb){
+  if(!sim || sim.done) return;
+  if(sim.t0 === null) sim.t0 = performance.now();
+  /* a tap is being on it, which matters where there is no hover to read */
+  engage(sim);
+  sim.taps++;
+  /* acting again is any tap on the panel, not a correct one: the study
+     promises the time to act again after a redraw, and a wrong turn or a
+     correction is acting */
+  var now = performance.now();
+  if(sim.regenAt !== null){
+    sim.recoveries.push((now - sim.regenAt) / 1000);
+    if(sim.backAt !== null) sim.reorients.push((now - sim.backAt) / 1000);
+    sim.regenAt = null; sim.backAt = null;
+  }
+  if(sim.gen) sim.surfaces.push(code(sim.gen));
+  if(g !== undefined){
+    if(sim.value[g] && sim.value[g] !== v) sim.corrections++;
+    sim.value[g] = v;
+    var before = shown(sim), fresh = {}, any = false;
+    render(sim);
+    Object.keys(shown(sim)).forEach(function(k){ if(!before[k]){ fresh[k] = 1; any = true; } });
+    if(any) build(sim, fresh);
+    if(kb) refocus(sim, g, v);
+  } else {
+    sim.done = true;
+    sim.elapsed = (performance.now() - sim.t0) / 1000;
+    if(sim.timer) clearInterval(sim.timer);
+    clearTimeout(sim.leave);
+    render(sim);
+    if(kb) refocus(sim);
+    rounds.push(sim);
+    emit(sim);
+    /* a confirmed booking is finished. The panel used to respawn itself here
+       for a second round under the rules, which meant confirming did not end
+       anything: the booked card sat for 1.8s and then the surface started
+       moving again. One booking each, and the study is done.
+       makeSim still takes a rules flag and render still honours it, so the
+       constrained round can be brought back without rebuilding it. */
+    if(rounds.length === 2) showAnalysis();
+  }
+}
+
+
+/* ---------- research send: numbers only, nothing that identifies anyone ----------
+   Fires only under /three-depths/ (the published route), so previews and local
+   copies send nothing. One run id per browser tab links the versions of a study
+   and the two studies; it is random and lives in sessionStorage. A flag in
+   localStorage marks a later session from the same browser as a repeat so it
+   can be excluded at analysis. Nothing else leaves the page. */
+var TDP_BUILD = "2026-09-24";
+var tdpSend = (function(){
+  var on = /^\/three-depths\//.test(location.pathname);
+  var run = null;
+  try{ run = sessionStorage.getItem("tdp-run"); }catch(e){}
+  if(!run){
+    run = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() :
+      "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c){
+        var r = Math.random()*16|0; return (c === "x" ? r : (r&3|8)).toString(16); });
+    try{ sessionStorage.setItem("tdp-run", run); }catch(e){}
+  }
+  var seq = 0;
+  return function(study, version, metrics){
+    if(!on) return;
+    var prev = null; try{ prev = localStorage.getItem("tdp-sent-" + study); }catch(e){}
+    seq++;
+    var body = JSON.stringify({run:run, study:study, version:version, seq:seq, build:TDP_BUILD,
+      embed: window.parent !== window,
+      pointer: (window.matchMedia && matchMedia("(pointer:coarse)").matches) ? "coarse" : "fine",
+      vw: Math.round(window.innerWidth/100)*100,
+      repeat: (prev && prev !== run) ? 1 : 0, metrics: metrics});
+    try{
+      if(navigator.sendBeacon) navigator.sendBeacon("/three-depths/api/run", new Blob([body], {type:"application/json"}));
+      else fetch("/three-depths/api/run", {method:"POST", headers:{"Content-Type":"application/json"}, body:body, keepalive:true});
+    }catch(e){}
+    try{ localStorage.setItem("tdp-sent-" + study, run); }catch(e){}
+  };
+})();
+
+function emit(sim){
+  var version = sim.mode === "fixed" ? "fixed" : (sim.rules ? "generated-rules" : "generated");
+  var metrics = {seconds:+sim.elapsed.toFixed(1), commitments:sim.taps, corrections:sim.corrections,
+    regenerations:sim.regens,
+    recovery:sim.recoveries.length ? +(sim.recoveries.reduce(function(a,b){return a+b;},0)/sim.recoveries.length).toFixed(1) : null,
+    reorient:sim.reorients.length ? +(sim.reorients.reduce(function(a,b){return a+b;},0)/sim.reorients.length).toFixed(1) : null,
+    matchedIntent:GROUPS.every(function(g){ return sim.value[g.id] === INTENT[g.id]; })};
+  try{ parent.postMessage({type:"tdp-demo", demo:2, version:version, metrics:metrics}, "*"); }catch(e){}
+  metrics.recoveries = sim.recoveries.map(function(r){ return +r.toFixed(1); });
+  metrics.reorients = sim.reorients.map(function(r){ return +r.toFixed(1); });
+  metrics.surfaces = sim.surfaces.slice(0, 60);
+  tdpSend(2, version, metrics);
+}
+
+function showAnalysis(){
+  /* the author's names: A shows everything at once on the surface, B opens
+     one stage at a time */
+  var NAME = {A:"Exposed", B:"Staged"};
+  /* built from sims in A, B order rather than from rounds, so the columns line
+     up with the devices above them however the reader chose to work. The table
+     used to list them in the order they were booked, which put B first
+     whenever someone started on the right. */
+  document.getElementById("results").innerHTML = ["A","B"].map(function(id){
+    var s = sims[id];
+    if(!s) return "";
+    var matched = GROUPS.every(function(g){ return s.value[g.id] === INTENT[g.id]; });
+    var times = s.reorients.length ? s.reorients : s.recoveries;
+    var rec = times.length
+      ? (times.reduce(function(a,b){ return a+b; },0)/times.length).toFixed(1) + " s"
+      : "·";
+    function fact(k, v, hot){ return "<div><dt>"+k+"</dt><dd"+(hot?" class='hot'":"")+">"+v+"</dd></div>"; }
+    return "<div class='res'><div class='k'>"+id+" · "+NAME[id]+"</div>" +
+      "<dl class='facts'>" +
+      fact("Commitments", s.taps) +
+      fact("Corrections", s.corrections, s.corrections > 0) +
+      fact("Regenerations", s.regens) +
+      fact("Recovery after a redraw", rec) +
+      fact("Time", s.elapsed.toFixed(1) + " s") +
+      fact("Matched intent", matched ? "Yes" : "No", !matched) +
+      "</dl></div>";
+  }).join("");
+
+  var an = document.getElementById("analysis");
+  an.classList.add("show");
+  an.scrollIntoView({behavior:reduced ? "auto" : "smooth", block:"start"});
+}
+
+/* ---------- a device does not change size --------------------------------
+   The generator's layouts differ in height. The device was passing that
+   through, so every regeneration changed the height of the study, which
+   changed the height of the article, which moved every paragraph below it,
+   every three seconds from the moment the study is first seen until it is
+   booked. The full width row forms (the col arrangement, and the row style
+   whose options were always full width) were later removed outright: every
+   option on its own row set an 848px ceiling that the fixed side and the
+   booked state then had to stand in, and 536 is the ceiling without them.
+
+   Inside the article it also cut the panel off. The frame is resized by the
+   height this study posts back and animates to it over 360ms, so for the
+   length of that animation the taller layout was 90px larger than the frame
+   holding it, and the frame does not scroll.
+
+   Both are the same mistake: treating the device as if it were the interface.
+   The interface is what is being replaced here. The device is the thing it is
+   being replaced inside, and a device has a size.
+
+   So the tallest layout the generator can produce is measured once, at the
+   width in force, and both devices are held at it. The space is small and
+   fully enumerable, three styles by two arrangements by three skins, so this
+   is the real maximum rather than a number that looked safe. */
+var STYLES = ["chip","pill","seg"], ARRS = ["wrap","grid2"],
+    SKINS = ["g-plain","g-card","g-tint"];
+
+function reserveDeviceHeight(){
+  var sim = sims.A;
+  if(!sim || sim.done) return;
+  var save = sim.gen, max = 0;
+  document.documentElement.style.setProperty("--dev-h", "0px");
+  /* The device is a stack: its padding and gaps, the button, and one panel per
+     question, and a panel's height depends on its own component and on what
+     the draw shares (style, arrangement, skin, formats), never on the other
+     panels. So for every shared combination each question's tallest panel is
+     found on its own, from three renders (every question as buttons, then as
+     its own component, then as a menu), and the tallest stack is their sum.
+     The same maximum as trying all 27 component mixes, at a ninth of the
+     renders; a look may pad one skin and not another, so every skin is
+     tried. */
+  var K = [["buttons","buttons","buttons"], ["dates","radios","people"], ["select","select","select"]];
+  for(var a = 0; a < STYLES.length; a++)
+    for(var b = 0; b < ARRS.length; b++)
+      for(var c = 0; c < SKINS.length; c++)
+        for(var f = 0; f < 4; f++){
+          var best = {day:0, time:0, size:0}, rest = 0;
+          for(var k = 0; k < 3; k++){
+            sim.gen = {style:STYLES[a], skin:SKINS[c], arr:ARRS[b], center:false,
+                       fday:f & 1, ftime:f >> 1,
+                       labels:{day:"Which day", time:"What time", size:"Party size"},
+                       kind:{day:K[k][0], time:K[k][1], size:K[k][2]},
+                       order: GROUPS.slice(),
+                       optOrder: GROUPS.reduce(function(m,g){ m[g.id] = g.options.slice(); return m; },{})};
+            render(sim);
+            var sum = 0;
+            [].forEach.call(sim.dev.querySelectorAll(".group"), function(g){
+              var h = g.getBoundingClientRect().height;
+              if(h > best[g.dataset.grp]) best[g.dataset.grp] = h;
+              sum += h;
+            });
+            rest = Math.max(rest, sim.dev.scrollHeight - sum);
+          }
+          max = Math.max(max, rest + best.day + best.time + best.size);
+        }
+  sim.gen = save;
+  render(sim);
+  document.documentElement.style.setProperty("--dev-h", Math.ceil(max) + "px");
+}
+
+makeSim("A", "auto", false);
+makeSim("B", "auto", true);
+reserveDeviceHeight();
+
+if(/[?&]debug=1(&|$)/.test(location.search)) window.__study2 = {sims:sims, draw:draw, sig:sig, label:label, generate:generate, render:render, build:build, reserve:reserveDeviceHeight};
+
+/* Only the width can change the answer. Height must not, or this measures its
+   own effect: reserving a height resizes the frame in the article, which
+   resizes this document, which would run the measurement again against a
+   viewport it had just moved. That loop settled 7px away from where it
+   started, which is 7px of the panel outside the frame. */
+var devRz, devW = window.innerWidth;
+addEventListener("resize", function(){
+  if(window.innerWidth === devW) return;
+  devW = window.innerWidth;
+  clearTimeout(devRz);
+  devRz = setTimeout(reserveDeviceHeight, 200);
+});
+})();
+</script>
+
+<script>
+(function(){
+  /* documentElement.scrollHeight is clamped to the frame's own viewport, so it
+     can only grow. Measure the content element instead, and the frame can
+     shrink back when a view collapses. */
+
+/* the reading size, handed down by the article (see syncMeasure there): vw
+   inside a frame measures the frame, so the size cannot be worked out here */
+addEventListener("message", function(e){
+  /* From our embedder, and a plain CSS length or nothing.
+
+     This was an origin comparison, which is unanswerable here: opened over
+     file:// the article and this study are both opaque origins and never
+     match, so the study never heard the article and the article never heard
+     the study. Checking the sending window works on any protocol, and the
+     value is checked as well as the sender, because the one thing this sets
+     is a length and anything that is not a length is not from the article. */
+  if(e.source !== window.parent || window.parent === window) return;
+  var d = e.data || {};
+  if(d.type === "tdp-measure" && typeof d.size === "string" &&
+     /^[0-9]+(\.[0-9]+)?px$/.test(d.size))
+    document.documentElement.style.setProperty("--fs-body", d.size);
+});
+
+  var last = 0;
+  function post(){
+    var w = document.querySelector(".wrap");
+    var h = w ? Math.ceil(w.getBoundingClientRect().height) + 8
+              : document.body.scrollHeight;
+    if(Math.abs(h - last) < 2) return;
+    last = h;
+    try{ parent.postMessage({type:"tdp-height", demo:2, height:h}, "*"); }catch(e){}
+  }
+  if(window.ResizeObserver){
+    var ro = new ResizeObserver(post);
+    ro.observe(document.querySelector(".wrap"));
+  }
+  addEventListener("load", post);
+  setInterval(post, 700);
+  post();
+})();
+</script>
+</body>
+</html>

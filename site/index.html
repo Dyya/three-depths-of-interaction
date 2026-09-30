@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- The page is paper only, so it says so: "only light" keeps a browser's forced
+     dark mode from inverting it, and the toolbar takes the band the page opens
+     on, #EFEFF1, which is the colour at the top of the header scene. -->
+<meta name="color-scheme" content="only light">
+<meta name="theme-color" content="#EFEFF1">
+<title>Three Depths of Interaction · AD&amp;</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23FCFCFC'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%23121212'/%3E%3C/svg%3E">
+<!-- Which copy is the real one is a statement for a machine, not a line of prose
+     the reader has to be told while already standing on it. The Worker binds both
+     www.adidizdarevic.com/three-depths* and adidizdarevic.com/three-depths* and
+     sends the apex to www, the way /nui and the WordPress site already do, so one
+     host serves the article and this names that host. The trailing slash is the
+     Worker's own 301 target, so this points at what is actually served rather
+     than at a redirect. -->
+<link rel="canonical" href="https://www.adidizdarevic.com/three-depths/">
+<meta name="description" content="A structure beneath changing interfaces. The Three-Depth Principle, with two interactive studies.">
+<meta name="author" content="Adi Dizdarevic">
+<link rel="author" href="https://www.adidizdarevic.com/">
+<!-- The robots line the WordPress pages send: index, and let a result or a
+     Discover card show the share image large. -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+<!-- The card a link unfurls to. Written out rather than left to the crawler:
+     the ones that matter here (Slack, LinkedIn, iMessage, Discord) read the
+     markup and do not run scripts, and the article's own text lives behind a
+     script that reveals it. Without these an unfurl of this URL is a bare
+     domain and a blank rectangle. og:url is the canonical, so a link shared
+     from either host resolves to one card and one article. -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="AD&amp;">
+<meta property="article:published_time" content="2026-09-24T13:45:00-07:00">
+<meta property="article:author" content="https://www.adidizdarevic.com/">
+<meta property="og:title" content="Three Depths of Interaction">
+<meta property="og:description" content="A structure beneath changing interfaces. The Three-Depth Principle, with two interactive studies.">
+<meta property="og:url" content="https://www.adidizdarevic.com/three-depths/">
+<meta property="og:image" content="https://www.adidizdarevic.com/three-depths/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pale application windows float on a grey field, one pressed by a pixel hand cursor, above the title Three depths of interaction.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@dyya">
+<meta name="twitter:creator" content="@dyya">
+<meta name="twitter:title" content="Three Depths of Interaction">
+<meta name="twitter:description" content="A structure beneath changing interfaces. The Three-Depth Principle, with two interactive studies.">
+<meta name="twitter:image" content="https://www.adidizdarevic.com/three-depths/share.jpg">
+<meta name="twitter:image:alt" content="Pale application windows float on a grey field, one pressed by a pixel hand cursor, above the title Three depths of interaction.">
+
+<!-- One page of the AD& site rather than a site of its own, in the terms the
+     WordPress pages already use: AD& as the site name, @dyya on X, and here the
+     person @id the WordPress graph declares, so a search engine files the
+     article under the same author as the rest of the site. Inside this script
+     the ampersand is written plain: it is JSON, not HTML. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://www.adidizdarevic.com/three-depths/#article",
+  "headline": "Three depths of interaction",
+  "description": "A structure beneath changing interfaces. The Three-Depth Principle, with two interactive studies.",
+  "url": "https://www.adidizdarevic.com/three-depths/",
+  "mainEntityOfPage": "https://www.adidizdarevic.com/three-depths/",
+  "image": {"@type": "ImageObject", "url": "https://www.adidizdarevic.com/three-depths/share.jpg", "width": 1200, "height": 630},
+  "datePublished": "2026-09-24T13:45:00-07:00",
+  "dateModified": "2026-09-24T13:45:00-07:00",
+  "inLanguage": "en",
+  "keywords": ["Three-Depth Principle", "interaction design", "interface design", "generative interfaces", "adaptive interfaces"],
+  "author": {
+    "@type": "Person",
+    "@id": "https://www.adidizdarevic.com/#/schema/person/d606aa5c96aa3db867bd6ea47d80e7c1",
+    "name": "Adi Dizdarevic",
+    "url": "https://www.adidizdarevic.com/",
+    "sameAs": ["https://www.linkedin.com/in/adidizdarevic/", "https://www.instagram.com/ad.log/", "https://x.com/dyya", "https://www.behance.net/dyya", "https://www.youtube.com/@adidizdarevic", "https://www.pinterest.com/dyya/"]
+  },
+  "publisher": {"@id": "https://www.adidizdarevic.com/#/schema/person/d606aa5c96aa3db867bd6ea47d80e7c1"},
+  "isPartOf": {"@type": "WebSite", "@id": "https://www.adidizdarevic.com/#website", "name": "AD&", "url": "https://www.adidizdarevic.com/"}
+}
+</script>
+
+<!-- Both faces are on the first screen (the title is Semibold, the standfirst
+     Book), and without this they are found only once system.css has arrived.
+     crossorigin is required even here: fonts are fetched in CORS mode, and a
+     preload made without it is not the request the font face makes. -->
+<link rel="preload" href="fonts/article-mono-book.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/article-mono-semibold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="system.css">
+
+<!-- Set before the stylesheet is applied and before anything is painted, so
+     the opt-in path never shows the article and then takes it away. This is
+     the only place the query string is read. -->
+<script>
+  if (/[?&]entrance=1(&|$)/.test(location.search))
+    document.documentElement.className += " entrance";
+</script>
+
+<style>
+/* ---------------------------------------------------------------------------
+   Three Depths of Interaction, article shell.
+   Layout system adapted from the studio's It's Time page: one reading track,
+   one left edge (the spine), measures instead of shares, a type scale written
+   once. Palette and voice belong to this article, not to that page.
+--------------------------------------------------------------------------- */
+/* Tokens, the reset, the base type, the label idiom and the focus state now
+   live in system.css, linked above and shared with every study. Below is the
+   article's own layout, and nothing else. */
+/* ---------- the entrance, off the default path ---------------------------
+   The article opens on the article. The entrance is still here and still
+   works, at ?entrance=1, and it is worth keeping: it is the one thing this
+   piece does that an essay cannot. It is not worth putting in front of a
+   reader who did not ask for it.
+
+   It used to be the default, and it cost three things.
+
+   It broke every link into the article. A link to a citation showed the
+   entrance, and the reveal ended on window.scrollTo(0,0): the reader landed
+   at the top with the fragment still in the address, so nothing looked
+   wrong. There are eleven citations, wired in both directions, and every one
+   of them is an address somebody can send.
+
+   It was the only thing between a reader and the article, and it had no
+   fallback. Measured: 6.3 seconds from load to the first line if you commit,
+   14.6 if you hesitate and the timer has to run out. The whole article sat
+   behind display:none waiting on one function, so anything that went wrong
+   after the entrance bound its listeners was a blank page. The noscript
+   block answers "no script at all"; it cannot answer "the script ran and
+   then something threw".
+
+   And it is no longer measuring anything. It composed a branch and a
+   duration for the trace, and the trace is gone.
+
+   The class goes on <html> from a script in the head, before the first
+   paint, so the opt-in path never flashes the article before hiding it.
+   Nothing else in the page reads the query. */
+body.locked{overflow:hidden;height:100vh;}
+
+/* ---------- entrance ---------- */
+.stage{position:fixed;inset:0;background:var(--paper);z-index:40;
+  display:none;align-items:center;justify-content:center;}
+html.entrance .stage{display:flex;}
+.control{width:64px;height:64px;border-radius:50%;background:var(--ink);
+  transition:transform .18s cubic-bezier(.2,.9,.3,1),opacity .3s;}
+.control:hover{transform:scale(1.06);}
+.control:active{transform:scale(.94);}
+.control:focus-visible{outline:2px solid var(--ink);outline-offset:6px;}
+.control.gone{opacity:0;pointer-events:none;transform:scale(.85);}
+.response{position:absolute;text-align:center;max-width:var(--w-text);padding:0 var(--edge);
+  font-family:var(--sans);font-size:var(--fs-body);line-height:var(--lh-body);}
+.response .line{opacity:0;transform:translateY(6px);
+  transition:opacity .4s,transform .4s cubic-bezier(.2,.9,.3,1);}
+.response .line.on{opacity:1;transform:none;}
+.response em{font-style:normal;color:var(--accent);}
+.response .t{font-variant-numeric:tabular-nums;color:var(--accent);}
+.response.fade{opacity:0;transition:opacity .5s;}
+
+/* ---------- the writing ----------
+   The essay is written as it is read. Every word carries a mask, and an edge
+   driven by the scroll sweeps the mask off, line by line, in reading order.
+   The scroll is the only timeline: there is no transition and no duration
+   anywhere in here, because a transition is a second clock, and a second
+   clock is what makes a scroll-driven reveal feel loose. The mechanism is the
+   one on adidizdarevic.com/its-time, cut to a line's own position rather than
+   a block's, since an essay is read one line at a time and a section here can
+   run three screens tall. A word without the mask is a word the script never
+   touched, so the page reads whole without it. */
+.tm-w{display:inline-block;
+  -webkit-mask-image:linear-gradient(90deg,#000 var(--e,-9999px),
+    transparent calc(var(--e,-9999px) + var(--s,40px)));
+  mask-image:linear-gradient(90deg,#000 var(--e,-9999px),
+    transparent calc(var(--e,-9999px) + var(--s,40px)));}
+/* written: the mask comes off rather than being parked off the end, so a page
+   that has been read carries no masks at all */
+.tm-w.tm-done{-webkit-mask-image:none;mask-image:none;}
+/* an inline-block does not carry its parent's underline, so a link's words
+   draw their own, at the page's own thickness and offset */
+a .tm-w{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;}
+/* but the SPACES between those words are bare text nodes, still owned by the
+   link, and the link carries no mask. So an unread link painted an underline
+   under each of its gaps and nothing else: a scatter of short dashes across
+   any part of the page the reading had not reached yet, worst on reload,
+   which restores the scroll position into unread text. The link's own
+   underline is suspended while any of its words is still masked, and returns
+   the moment the last one lands, so the gaps close exactly as before and the
+   finished state is unchanged. */
+a:has(.tm-w:not(.tm-done)){text-decoration:none;}
+/* a line's own mark (the reference numeral) arrives with its first line */
+.tm-lead::before{opacity:var(--o,0);}
+/* the studies arrive whole, in their turn in the same wave,
+   with a lift small enough not to compete with the prose */
+.tm-obj{opacity:var(--o,0);transform:translate3d(0,calc((1 - var(--o,0)) * 6px),0);}
+@media (prefers-reduced-motion:reduce){
+  .tm-w,.tm-obj{-webkit-mask-image:none !important;mask-image:none !important;
+    opacity:1 !important;transform:none !important;}
+  .tm-lead::before{opacity:1 !important;}
+  /* nothing is ever marked written here, so the suspended underline above
+     would never come back. This block already exists for the case where the
+     preference is turned on after a split has happened. */
+  a:has(.tm-w){text-decoration:underline !important;}
+}
+
+/* the rail: the page's own path, and its navigation. The pattern is the one
+   from the Anti Tapes design system: the section indices lift out of the flow
+   and stand on the canvas, flush left, filling in as they are passed. It
+   arrives with the first section, not with the page, so the opening is left
+   alone. Marker shape carries the kind: a square is a part of the argument,
+   and a subsection or a study, both things that follow one, take the same
+   circle. */
+/* The rail rides with the article rather than with the window: it begins on
+   the first section's label line and sticks a gutter from the top once it
+   reaches it, then leaves with the last section. The host is a zero height
+   sticky box, so it takes no room in the flow, and the two offsets cancel:
+   the host sticks at s6 minus the lead, the rail sits at the lead inside it,
+   so the rail lands exactly s6 from the top when stuck. */
+.railhost{position:sticky;top:calc(var(--s6) - var(--rail-lead));height:0;z-index:30;}
+.rail{position:absolute;top:var(--rail-lead);left:var(--s3);
+  display:flex;flex-direction:column;gap:2px;align-items:flex-start;
+  max-height:calc(100vh - var(--s6) * 2);
+  opacity:0;pointer-events:none;transition:opacity var(--t3) var(--settle);}
+.rail.on{opacity:1;pointer-events:auto;}
+.rail a{display:flex;align-items:center;gap:10px;padding:5px 0;
+  text-decoration:none;color:var(--muted);white-space:nowrap;
+  font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);
+  letter-spacing:.08em;text-transform:uppercase;
+  font-variant-numeric:tabular-nums;transition:color var(--t2) var(--settle);}
+/* every marker keeps the same size and the same place: only its fill moves,
+   hairline ring ahead, grey once passed, full ink for the one being read */
+.rail a::before{content:"";flex:none;width:6px;height:6px;
+  background:transparent;box-shadow:inset 0 0 0 1.2px var(--rule);
+  transition:background var(--t2) var(--settle),box-shadow var(--t2) var(--settle);}
+/* the part is the square; a subsection and a study are both things that
+   follow one, so they take the same circle */
+.rail a.sub::before,
+.rail a.study::before{border-radius:50%;}
+.rail a:hover{color:var(--ink);}
+.rail a.passed{color:var(--muted);}
+.rail a.passed::before{background:var(--muted);box-shadow:none;}
+.rail a.cur{color:var(--ink);}
+.rail a.cur::before{background:var(--ink);box-shadow:none;}
+.rail a:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px;}
+/* the names are drawn, not written: Safari's Reader copies the article's text
+   and would print them as a line of words; each link keeps its name for a
+   screen reader in aria-label */
+.rail .t::before{content:attr(data-t);}
+/* The rail stands in the page margin; it goes when that margin does. The
+   threshold is 1221, not the 1101 where the margin first fits, because the
+   claim it reserves used to push study 01's frame under its own 998px
+   breakpoint: from 1101 to 1220 the three phones stacked into one while
+   both neighbouring widths showed three, and landscape iPads live exactly
+   there. Below 1221 the page is the plain centred track and three-up is
+   continuous from 999px of viewport. */
+@media (max-width:1220px){.rail{display:none;}}
+/* where a rail link lands: on the system, like every other vertical value */
+[data-sec],[data-sub],[data-study]{scroll-margin-top:var(--break-in);}
+
+/* ---------- the vertical rhythm --------------------------------------------
+   Two values carry every vertical gap on the page, and there is no third.
+
+     --break     96   between one top-level block and the next, and the air a
+                      band of reading holds inside itself, top and bottom. A
+                      study is a change of material, so it takes the break
+                      twice: once on the paper before it, once as its own
+                      inset. The two bands that are not reading take it once,
+                      on the paper alone: the opening scene and the closing
+                      figure are rendered environments, and an environment
+                      that stops short of its own edges is a picture of one.
+                      The figure in particular fades its atmosphere in over
+                      56px at the top and bottom of its stage; that fade is
+                      built to land on the paper, and an inset of flat grey
+                      above it prints the fade as a bar of light across the
+                      band instead.
+     --break-in  48   between the parts of one block: the lede, the
+                      demonstration and the reading inside a study, a
+                      definition group or a raised line lifted out of the
+                      prose around it.
+
+   Under those, a heading sits --s3 above its body, and a paragraph sits one
+   line of leading above the next. Those are type, not layout.
+
+   Before this the page ran seven different breaks: 96 between sections, 128
+   before a study but 64 after it (so a band was 192 in and 160 out), 64 before
+   the figure and 96 after, 128 before the references, and 48 of hero padding
+   on top of the 96 that already followed it. Every one of those is now one of
+   the two below. */
+:root{ --break:var(--s7); --break-in:var(--s5); }
+
+/* ---------- the edges ------------------------------------------------------
+   A band does not meet the paper on a line any more, it dissolves into it.
+   Three numbers say how far, and one tile and two tones say what that costs.
+
+   Every ramp below runs on smootherstep rather than a straight line. A
+   straight line has a corner in its slope at each end, the eye is a very good
+   corner detector, and it draws the corner in as a band. Smootherstep arrives
+   at both ends with zero slope and zero curvature, so there is no corner left
+   to find. The same reasoning took the corners off the figure's air, where a
+   stop at 20 percent of the stage was drawing a line across the whole page.
+
+   Every ramp is also dithered, because paper to surface1 is 13 levels and over
+   a 240 pixel run that is a level every 18 pixels, which contours on any panel
+   worth the name. The tile is the one the figure already carried, declared
+   here now that three things use it.
+
+   The tile multiplies, so it darkens what it dithers by its own mean, about
+   1.1 percent. The two tones below are --paper and --surface1 written that
+   much brighter; they arrive at --paper and --surface1 once the tile has been
+   through them, which is what lets a dissolve meet flat paper with no seam.
+   Measured: 0.28 of a level at the paper end, 0.31 at the band end. */
+:root{
+  --tile:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='.022' intercept='.978'/%3E%3CfeFuncG type='linear' slope='.022' intercept='.978'/%3E%3CfeFuncB type='linear' slope='.022' intercept='.978'/%3E%3CfeFuncA type='linear' slope='0' intercept='1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  --paper-lift:rgb(255,255,255);      /* --paper,    written for the tile */
+  --surface1-lift:rgb(242,242,244);   /* --surface1, written for the tile */
+  --blend-run:120px;                  /* a band, each way from where its edge was */
+  --fade-run:152px;                   /* the figure's air, in from each end of the stage */
+  --hero-lift:80px;                   /* the room the header scene is given back */
+}
+
+/* ---------- page frame -----------------------------------------------------
+   One frame, centred on the track, and inside it one reading column, centred
+   in turn. Thought sits in the middle column; evidence (the studies, the
+   axiom) takes the whole track. The rhythm of the page is that alternation.
+   The measure is set in characters, not pixels: this face is monospaced, so
+   one character is exactly 0.64em and 66 of them is an exact width at any
+   body size. Change --fs-body and the column follows. */
+#page{display:block;}
+html.entrance #page{display:none;}
+html.entrance #page.on{display:block;}
+.spineblock,.studywrap{width:min(100% - 2 * var(--edge), var(--track));
+  margin-inline:auto;}
+.spineblock{display:grid;column-gap:var(--s3);
+  grid-template-columns:minmax(0,1fr) minmax(0,var(--w-text)) minmax(0,1fr);}
+.spineblock > *{grid-column:2;}
+/* On a phone the reading column no longer fits beside its two side columns,
+   which collapse to zero width; their two 24px column gaps did not, so body
+   text stood 40px from the screen edge while the hero and its title stood at
+   the 16px page edge. The gaps go where the side columns are already gone,
+   and the column takes the same edge as everything else. */
+@media (max-width:680px){.spineblock{column-gap:0;}}
+
+.studywrap .inner{max-width:none;}
+
+.prose{max-width:var(--w-text);}
+.prose p{margin:0 0 var(--lh-body);}
+.prose p:last-child{margin-bottom:0;}
+.prose b{font-weight:600;}
+.prose .doubt{color:var(--muted);}
+
+/* a citation marker: raised and small like a footnote, not a sentence link,
+   so it carries no underline of its own until it is the thing in focus */
+.cite{font-family:var(--mono);font-size:.7em;font-weight:600;
+  vertical-align:super;line-height:0;color:var(--muted);
+  text-decoration:none;margin-left:1px;
+  transition:color var(--t2) var(--settle);}
+.cite:hover,.cite:focus-visible{color:var(--ink);}
+.cite:focus-visible{outline:1.5px solid var(--ink);outline-offset:2px;}
+/* the sentence carries the citation right up against the period; the mark
+   itself needs a little clearance from the top of the window it scrolls to */
+.cite{scroll-margin-top:var(--s5);}
+
+/* hero: the one block that opens wide, centred on the track */
+.hero{grid-column:1 / -1;min-height:88vh;display:flex;flex-direction:column;
+  justify-content:center;}
+
+/* the depth field, carrying the three stage words at three real distances.
+   It runs the full width of the frame rather than the track, because it is a
+   field and not a column, and it is loaded with its own chrome switched off.
+   The heading below it does the naming; the field only shows the thing. */
+/* The scene is its own document, at a height that answers the window, so it
+   dissolves under a mask on the frame rather than under a strip measured
+   against it. Three mask layers: alpha = ramp * (1 - tile * bump).
+     ramp   the dissolve itself, eased
+     tile   the dither, which a frame cannot be given any other way, since
+            nothing on this side of it can reach the scene's own pixels
+     bump   where the dither is allowed to act, zero at both ends of the run,
+            so the noise never starts or stops on an edge of its own
+   The run takes 176 pixels off the bottom of the scene, so the scene is given
+   --hero-lift of it back and the dissolve starts that much lower down. */
+.heroscene{display:block;width:100vw;margin-left:calc(50% - 50vw);
+  height:calc(min(68vh, 660px) + var(--hero-lift));margin-bottom:var(--break);
+  border:0;background:#E8E7E4;
+  -webkit-mask-image:linear-gradient(180deg, rgb(0,0,0) 0,rgb(0,0,0) calc(100% - 176px), rgba(0,0,0,0.9988) calc(100% - 167.2px),
+      rgba(0,0,0,0.9914) calc(100% - 158.4px), rgba(0,0,0,0.9734) calc(100% - 149.6px),
+      rgba(0,0,0,0.9421) calc(100% - 140.8px), rgba(0,0,0,0.8965) calc(100% - 132px),
+      rgba(0,0,0,0.8369) calc(100% - 123.2px), rgba(0,0,0,0.7648) calc(100% - 114.4px),
+      rgba(0,0,0,0.6826) calc(100% - 105.6px), rgba(0,0,0,0.5931) calc(100% - 96.8px),
+      rgba(0,0,0,0.5) calc(100% - 88px), rgba(0,0,0,0.4069) calc(100% - 79.2px),
+      rgba(0,0,0,0.3174) calc(100% - 70.4px), rgba(0,0,0,0.2352) calc(100% - 61.6px),
+      rgba(0,0,0,0.1631) calc(100% - 52.8px), rgba(0,0,0,0.1035) calc(100% - 44px),
+      rgba(0,0,0,0.0579) calc(100% - 35.2px), rgba(0,0,0,0.0266) calc(100% - 26.4px),
+      rgba(0,0,0,0.0086) calc(100% - 17.6px), rgba(0,0,0,0.0012) calc(100% - 8.8px),
+      rgba(0,0,0,0) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='.18' intercept='0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg,rgba(0,0,0,0) 0, rgba(0,0,0,0) calc(100% - 176px),
+      rgba(0,0,0,0.0086) calc(100% - 158.4px), rgba(0,0,0,0.0579) calc(100% - 140.8px),
+      rgba(0,0,0,0.1631) calc(100% - 123.2px), rgba(0,0,0,0.3174) calc(100% - 105.6px),
+      rgba(0,0,0,0.5) calc(100% - 88px), rgba(0,0,0,0.6826) calc(100% - 70.4px),
+      rgba(0,0,0,0.8369) calc(100% - 52.8px), rgba(0,0,0,0.9421) calc(100% - 35.2px),
+      rgba(0,0,0,0.9914) calc(100% - 17.6px), rgba(0,0,0,1) 100%,
+      rgba(0,0,0,0.9914) calc(100% - 79.2px), rgba(0,0,0,0.9421) calc(100% - 70.4px),
+      rgba(0,0,0,0.8369) calc(100% - 61.6px), rgba(0,0,0,0.6826) calc(100% - 52.8px),
+      rgba(0,0,0,0.5) calc(100% - 44px), rgba(0,0,0,0.3174) calc(100% - 35.2px),
+      rgba(0,0,0,0.1631) calc(100% - 26.4px), rgba(0,0,0,0.0579) calc(100% - 17.6px),
+      rgba(0,0,0,0.0086) calc(100% - 8.8px), rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(180deg, rgb(0,0,0) 0,rgb(0,0,0) calc(100% - 176px), rgba(0,0,0,0.9988) calc(100% - 167.2px),
+      rgba(0,0,0,0.9914) calc(100% - 158.4px), rgba(0,0,0,0.9734) calc(100% - 149.6px),
+      rgba(0,0,0,0.9421) calc(100% - 140.8px), rgba(0,0,0,0.8965) calc(100% - 132px),
+      rgba(0,0,0,0.8369) calc(100% - 123.2px), rgba(0,0,0,0.7648) calc(100% - 114.4px),
+      rgba(0,0,0,0.6826) calc(100% - 105.6px), rgba(0,0,0,0.5931) calc(100% - 96.8px),
+      rgba(0,0,0,0.5) calc(100% - 88px), rgba(0,0,0,0.4069) calc(100% - 79.2px),
+      rgba(0,0,0,0.3174) calc(100% - 70.4px), rgba(0,0,0,0.2352) calc(100% - 61.6px),
+      rgba(0,0,0,0.1631) calc(100% - 52.8px), rgba(0,0,0,0.1035) calc(100% - 44px),
+      rgba(0,0,0,0.0579) calc(100% - 35.2px), rgba(0,0,0,0.0266) calc(100% - 26.4px),
+      rgba(0,0,0,0.0086) calc(100% - 17.6px), rgba(0,0,0,0.0012) calc(100% - 8.8px),
+      rgba(0,0,0,0) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='.18' intercept='0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg,rgba(0,0,0,0) 0, rgba(0,0,0,0) calc(100% - 176px),
+      rgba(0,0,0,0.0086) calc(100% - 158.4px), rgba(0,0,0,0.0579) calc(100% - 140.8px),
+      rgba(0,0,0,0.1631) calc(100% - 123.2px), rgba(0,0,0,0.3174) calc(100% - 105.6px),
+      rgba(0,0,0,0.5) calc(100% - 88px), rgba(0,0,0,0.6826) calc(100% - 70.4px),
+      rgba(0,0,0,0.8369) calc(100% - 52.8px), rgba(0,0,0,0.9421) calc(100% - 35.2px),
+      rgba(0,0,0,0.9914) calc(100% - 17.6px), rgba(0,0,0,1) 100%,
+      rgba(0,0,0,0.9914) calc(100% - 79.2px), rgba(0,0,0,0.9421) calc(100% - 70.4px),
+      rgba(0,0,0,0.8369) calc(100% - 61.6px), rgba(0,0,0,0.6826) calc(100% - 52.8px),
+      rgba(0,0,0,0.5) calc(100% - 44px), rgba(0,0,0,0.3174) calc(100% - 35.2px),
+      rgba(0,0,0,0.1631) calc(100% - 26.4px), rgba(0,0,0,0.0579) calc(100% - 17.6px),
+      rgba(0,0,0,0.0086) calc(100% - 8.8px), rgba(0,0,0,0) 100%);
+  mask-composite:subtract, intersect, add;
+  -webkit-mask-size:100% 100%, 180px 180px, 100% 100%;
+  mask-size:100% 100%, 180px 180px, 100% 100%;
+  -webkit-mask-repeat:no-repeat, repeat, no-repeat;
+  mask-repeat:no-repeat, repeat, no-repeat;}
+@media (max-width:680px){
+  .heroscene{height:calc(min(58vh, 460px) + var(--hero-lift));}}
+/* No reduced-motion height: the scene plays on every system (2026-09-28), so
+   its frame is the same size on every system too. */
+.hero h1{font-size:var(--fs-h1);line-height:var(--lh-h1);font-weight:700;
+  letter-spacing:-.03em;max-width:var(--w-display);margin-inline:auto;}
+.standfirst{margin-top:var(--s3);max-width:var(--w-mid);font-size:var(--fs-h3);
+  line-height:var(--lh-h3);margin-inline:auto;}
+
+/* sections */
+section.txt{padding-top:var(--break);}
+.kicker{display:flex;gap:var(--s2);align-items:baseline;margin-bottom:var(--s3);}
+.kicker .num{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  font-variant-numeric:tabular-nums;font-weight:500;}
+h2,h3{font-size:var(--fs-h2);line-height:var(--lh-h2);font-weight:700;letter-spacing:-.02em;
+  max-width:var(--w-text);margin-bottom:var(--s3);}
+.inlineq{font-size:var(--fs-h3);line-height:var(--lh-h3);font-weight:700;
+  letter-spacing:-.01em;max-width:var(--w-text);margin:var(--break-in) 0 0;}
+.stagedefs{margin:var(--break-in) 0;max-width:var(--w-text);}
+.stagedefs p{margin-bottom:var(--s3);}
+.stagedefs p:last-child{margin-bottom:0;}
+.stagedefs b{font-weight:700;}
+
+/* studies: reading happens on paper, doing happens on the surface tone */
+/* clip-x, so the bleed a study borrows for its shadows cannot push the page
+   sideways at widths where the frame is inset by less than the bleed. Clip
+   rather than hidden: hidden on one axis forces the other to scroll, which
+   would cut the shadows off below instead. */
+/* A study's ground is one layer behind everything the study holds, not the
+   band's own background, because the dissolve has to run further than the
+   band's padding: an opaque strip laid over the edge could only reach the
+   --break of 96 before it started painting over the first line of type, and
+   the run is 120. Behind, at z-index -1, it can be any length, because the
+   study's type and frames paint on top of it whatever it does. The flat middle
+   picks up the tile too, which costs nothing: a dither on a flat field is a
+   dither of nothing. */
+div.study{position:relative;margin-top:var(--break);background:transparent;
+  padding:var(--break) 0;overflow-x:clip;}
+div.study::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+  left:0;right:0;top:calc(-1 * var(--blend-run));bottom:calc(-1 * var(--blend-run));
+  background-color:var(--surface1-lift);
+  background-image:var(--tile), linear-gradient(180deg,rgba(255,255,255,1) 0px, rgba(255,255,255,0.9988) 12px, rgba(255,255,255,0.9914) 24px,
+      rgba(255,255,255,0.9734) 36px, rgba(255,255,255,0.9421) 48px,
+      rgba(255,255,255,0.8965) 60px, rgba(255,255,255,0.8369) 72px,
+      rgba(255,255,255,0.7648) 84px, rgba(255,255,255,0.6826) 96px,
+      rgba(255,255,255,0.5931) 108px, rgba(255,255,255,0.5) 120px,
+      rgba(255,255,255,0.4069) 132px, rgba(255,255,255,0.3174) 144px,
+      rgba(255,255,255,0.2352) 156px, rgba(255,255,255,0.1631) 168px,
+      rgba(255,255,255,0.1035) 180px, rgba(255,255,255,0.0579) 192px,
+      rgba(255,255,255,0.0266) 204px, rgba(255,255,255,0.0086) 216px,
+      rgba(255,255,255,0.0012) 228px, rgba(255,255,255,0) 240px,rgba(255,255,255,0) calc(100% - 240px), rgba(255,255,255,0.0012) calc(100% - 228px),
+      rgba(255,255,255,0.0086) calc(100% - 216px), rgba(255,255,255,0.0266) calc(100% - 204px),
+      rgba(255,255,255,0.0579) calc(100% - 192px), rgba(255,255,255,0.1035) calc(100% - 180px),
+      rgba(255,255,255,0.1631) calc(100% - 168px), rgba(255,255,255,0.2352) calc(100% - 156px),
+      rgba(255,255,255,0.3174) calc(100% - 144px), rgba(255,255,255,0.4069) calc(100% - 132px),
+      rgba(255,255,255,0.5) calc(100% - 120px), rgba(255,255,255,0.5931) calc(100% - 108px),
+      rgba(255,255,255,0.6826) calc(100% - 96px), rgba(255,255,255,0.7648) calc(100% - 84px),
+      rgba(255,255,255,0.8369) calc(100% - 72px), rgba(255,255,255,0.8965) calc(100% - 60px),
+      rgba(255,255,255,0.9421) calc(100% - 48px), rgba(255,255,255,0.9734) calc(100% - 36px),
+      rgba(255,255,255,0.9914) calc(100% - 24px), rgba(255,255,255,0.9988) calc(100% - 12px),
+      rgba(255,255,255,1) 100%);
+  background-size:180px 180px, 100% 100%;
+  background-blend-mode:multiply, normal;}
+.studynotice{max-width:var(--w-text);margin-top:var(--s2);font-family:var(--mono);font-size:var(--fs-small);line-height:var(--lh-small);color:var(--muted);}
+.studylede{max-width:var(--w-text);font-size:var(--fs-body);line-height:var(--lh-body);
+  color:var(--muted);}
+/* A study is a band on the page, not a window into one. Its frame is sized to
+   its content by the height the study posts back, so the only scrolling in a
+   study band should be the page's own. Without scrolling="no" the frame starts
+   at the 640px it is written with and scrolls its own document until the first
+   height arrives, which on a phone is 2,568px of study behind a 640px frame,
+   with the scroll bar that implies. The opening scene has always said this;
+   the studies had not. */
+.study iframe{display:block;width:calc(100% + 2 * var(--bleed));
+  margin-inline:calc(-1 * var(--bleed));border:none;overflow:hidden;
+  transition:height var(--t3) var(--settle);}
+.studywrap{margin-top:var(--break-in);}
+
+/* references */
+/* the apparatus is set off by space alone, never by a rule */
+.refs{margin-top:var(--break);padding-bottom:var(--break);}
+/* the kicker already sets a heading's distance from its body; the list takes
+   no second margin on top of it */
+.refs ol{list-style:none;}
+.refs li{font-family:var(--mono);font-size:var(--fs-small);
+  line-height:var(--lh-small);color:var(--muted);max-width:var(--w-mid);
+  scroll-margin-top:var(--s4);
+  /* a wrapped entry returns to its text, not under its number: two digits and
+     the space after them, which in a monospaced face is exactly 3ch, plus the
+     number's own margin */
+  padding-left:calc(3ch + var(--s2));text-indent:calc(-3ch - var(--s2));}
+/* the reveal sets every word as an inline block, and an inline block takes the
+   indent it inherits for its own first line; the hang belongs to the entry */
+.refs li *{text-indent:0;}
+.refs a{color:var(--ink);}
+/* the number is the way back to the sentence that cited it: the same mark
+   the reader followed down, so the trip back needs no second glyph */
+.refs .num{font-variant-numeric:tabular-nums;margin-right:var(--s2);}
+
+/* the colophon closes the apparatus in the references' voice: mono at the
+   small size, muted, links in ink. It takes no top margin of its own: the
+   references already pad 96 below themselves, which is the article's own
+   major break, and it carries the bottom of the page instead. */
+.colophon{padding-bottom:var(--break);}
+.colophon p{font-family:var(--mono);font-size:var(--fs-small);line-height:var(--lh-small);
+  color:var(--muted);}
+.colophon p + p{margin-top:var(--s1);}
+.colophon a{color:var(--ink);}
+
+/* The frame is the track, centred, and it never runs under the rail. The rail
+   rides flush left on the canvas and needs 137px; at 1440 the centring margin
+   is only 120, so the labels used to print over the studies, which sit on the
+   full track. At 1280 they overran it by 97. Reserving the rail's claim on both
+   edges keeps the page centred and holds a constant gutter of clearance from
+   1221 up, where the rail shows. Above 1506 it evaluates to the plain centred
+   track, unchanged. The
+   reading column is derived from characters, not the track, so it does not move. */
+@media (min-width:1221px){
+  .spineblock,.studywrap{width:min(100% - 2 * var(--rail-claim), var(--track));}
+}
+
+  /* ---- the closing figure ------------------------------------------------
+     Inlined rather than framed. It is a sticky stage inside a 240vh track, and
+     sticky inside an iframe binds to the iframe's own viewport, which never
+     scrolls, so there is no version of this that works behind a frame.
+
+     Every selector is scoped under .depthfig, so the article cannot reach into
+     the figure and the figure cannot reach out. Two collisions were real and
+     are handled: the figure's .stage is renamed .dstage, because the article's
+     .stage is the entrance overlay at position:fixed inset:0 z-index:40 and the
+     id collided too, which would have had the figure drive the entrance; and
+     the article sets max-width and margin-bottom on a bare h2 and h3, which the
+     figure's .ct does not override and which would break the card.
+     The article's .num rules are already scoped to .kicker and .refs, so the
+     card's own .num was never at risk. */
+  .depthfig h3{max-width:none;margin:0;}
+/* ------------------------------------------------------------------ *
+     The closing figure. Not a study and not a demonstration: an image of
+     the argument, running quietly at the end of the article.
+
+     Version b. The same figure, with the three stages written on the
+     layers instead of tagged beside them.
+
+     That one move changes what the interaction is for. In version a the
+     focus rack was a way of showing depth; here it is the only way to
+     read anything, because a layer out of focus is a layer whose words
+     cannot be made out. Pointing at a depth is the act of going to it.
+
+     It also breaks one of the page's own rules, deliberately and at the
+     author's instruction: white is the surface of a simulated product and
+     nothing that talks ABOUT the principle is white. These layers talk
+     about the principle. If the rule is to hold, this version's card
+     wants --surface1 and the fog wants to be lighter around it.
+
+     The environment is doing real work here. Distance is carried by four
+     cues at once (parallax, blur, haze, and the weakening of a shadow),
+     which is what separates a rendered depth from a diagram of one.
+   * ------------------------------------------------------------------ *//* clip, not hidden. hidden on one axis forces the other to auto, which makes
+     the body a scrolling box, and a sticky element measured against a box that
+     does not itself scroll is one browser bug away from never sticking. Chrome
+     pins the stage either way (measured), but clip contains the same overflow
+     without ever raising the question. It is the rule the article already
+     follows around its study frames. *//* ---------- the page around the figure ---------- *//* ---------- the volume ----------------------------------------------
+     The track is what the scroll spends on the figure. The stage is stuck
+     to the window for the whole of it, so the reader turns the object
+     rather than passing it. */
+  
+  
+
+  
+
+  
+  .depthfig .track{position:relative;height:240vh;}
+  /* manipulation, not the default: double tap to zoom was armed on the stage,
+     so two quick taps on a card zoomed the whole page, which read as the page
+     jumping. Panning and pinching survive, which is what lets a reader scroll
+     through the figure at all. Nothing on the stage is selectable text, so
+     the loupe has no business here either. */
+  .depthfig .dstage{position:sticky;top:0;height:100svh;min-height:520px;overflow:hidden;
+    touch-action:manipulation;-webkit-user-select:none;user-select:none;
+    perspective:1500px;perspective-origin:50% 46%;
+    background:var(--paper-lift);}/* ---------- the air --------------------------------------------------
+     Four coats, none of them a colour of their own: the page's own paper
+     and its two surface tones, thinned and set far apart. A pool of slightly
+     deeper air sits behind the stack so a white card has something to be
+     lighter than, which is the only reason the front layer reads at all
+     without an outline around it. *//* the air is densest around the stack and thins to the page at the two
+     edges of the band, so the figure joins the article instead of cutting a
+     grey stripe across it. While the stage is stuck to the window those edges
+     are off screen; they are only ever seen on the way in and the way out. */
+
+  
+  
+  .depthfig .env{position:absolute;inset:0;pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,0) 0px, rgba(0,0,0,0.0012) 7.6px, rgba(0,0,0,0.0086) 15.2px,
+      rgba(0,0,0,0.0266) 22.8px, rgba(0,0,0,0.0579) 30.4px, rgba(0,0,0,0.1035) 38px,
+      rgba(0,0,0,0.1631) 45.6px, rgba(0,0,0,0.2352) 53.2px, rgba(0,0,0,0.3174) 60.8px,
+      rgba(0,0,0,0.4069) 68.4px, rgba(0,0,0,0.5) 76px, rgba(0,0,0,0.5931) 83.6px,
+      rgba(0,0,0,0.6826) 91.2px, rgba(0,0,0,0.7648) 98.8px, rgba(0,0,0,0.8369) 106.4px,
+      rgba(0,0,0,0.8965) 114px, rgba(0,0,0,0.9421) 121.6px, rgba(0,0,0,0.9734) 129.2px,
+      rgba(0,0,0,0.9914) 136.8px, rgba(0,0,0,0.9988) 144.4px, rgb(0,0,0) 152px,rgb(0,0,0) calc(100% - 152px), rgba(0,0,0,0.9988) calc(100% - 144.4px),
+      rgba(0,0,0,0.9914) calc(100% - 136.8px), rgba(0,0,0,0.9734) calc(100% - 129.2px),
+      rgba(0,0,0,0.9421) calc(100% - 121.6px), rgba(0,0,0,0.8965) calc(100% - 114px),
+      rgba(0,0,0,0.8369) calc(100% - 106.4px), rgba(0,0,0,0.7648) calc(100% - 98.8px),
+      rgba(0,0,0,0.6826) calc(100% - 91.2px), rgba(0,0,0,0.5931) calc(100% - 83.6px),
+      rgba(0,0,0,0.5) calc(100% - 76px), rgba(0,0,0,0.4069) calc(100% - 68.4px),
+      rgba(0,0,0,0.3174) calc(100% - 60.8px), rgba(0,0,0,0.2352) calc(100% - 53.2px),
+      rgba(0,0,0,0.1631) calc(100% - 45.6px), rgba(0,0,0,0.1035) calc(100% - 38px),
+      rgba(0,0,0,0.0579) calc(100% - 30.4px), rgba(0,0,0,0.0266) calc(100% - 22.8px),
+      rgba(0,0,0,0.0086) calc(100% - 15.2px), rgba(0,0,0,0.0012) calc(100% - 7.6px),
+      rgba(0,0,0,0) 100%);
+    mask-image:linear-gradient(180deg,rgba(0,0,0,0) 0px, rgba(0,0,0,0.0012) 7.6px, rgba(0,0,0,0.0086) 15.2px,
+      rgba(0,0,0,0.0266) 22.8px, rgba(0,0,0,0.0579) 30.4px, rgba(0,0,0,0.1035) 38px,
+      rgba(0,0,0,0.1631) 45.6px, rgba(0,0,0,0.2352) 53.2px, rgba(0,0,0,0.3174) 60.8px,
+      rgba(0,0,0,0.4069) 68.4px, rgba(0,0,0,0.5) 76px, rgba(0,0,0,0.5931) 83.6px,
+      rgba(0,0,0,0.6826) 91.2px, rgba(0,0,0,0.7648) 98.8px, rgba(0,0,0,0.8369) 106.4px,
+      rgba(0,0,0,0.8965) 114px, rgba(0,0,0,0.9421) 121.6px, rgba(0,0,0,0.9734) 129.2px,
+      rgba(0,0,0,0.9914) 136.8px, rgba(0,0,0,0.9988) 144.4px, rgb(0,0,0) 152px,rgb(0,0,0) calc(100% - 152px), rgba(0,0,0,0.9988) calc(100% - 144.4px),
+      rgba(0,0,0,0.9914) calc(100% - 136.8px), rgba(0,0,0,0.9734) calc(100% - 129.2px),
+      rgba(0,0,0,0.9421) calc(100% - 121.6px), rgba(0,0,0,0.8965) calc(100% - 114px),
+      rgba(0,0,0,0.8369) calc(100% - 106.4px), rgba(0,0,0,0.7648) calc(100% - 98.8px),
+      rgba(0,0,0,0.6826) calc(100% - 91.2px), rgba(0,0,0,0.5931) calc(100% - 83.6px),
+      rgba(0,0,0,0.5) calc(100% - 76px), rgba(0,0,0,0.4069) calc(100% - 68.4px),
+      rgba(0,0,0,0.3174) calc(100% - 60.8px), rgba(0,0,0,0.2352) calc(100% - 53.2px),
+      rgba(0,0,0,0.1631) calc(100% - 45.6px), rgba(0,0,0,0.1035) calc(100% - 38px),
+      rgba(0,0,0,0.0579) calc(100% - 30.4px), rgba(0,0,0,0.0266) calc(100% - 22.8px),
+      rgba(0,0,0,0.0086) calc(100% - 15.2px), rgba(0,0,0,0.0012) calc(100% - 7.6px),
+      rgba(0,0,0,0) 100%);}
+  .depthfig .env .base{position:absolute;inset:0;
+    background:
+      radial-gradient(120% 78% at 50% 118%,rgba(255,255,255,0.9217) 0%, rgba(255,255,255,0.8965) 2.768%,
+      rgba(255,255,255,0.8645) 5.536%, rgba(255,255,255,0.8274) 8.304%,
+      rgba(255,255,255,0.7872) 11.071%, rgba(255,255,255,0.7453) 13.839%,
+      rgba(255,255,255,0.7028) 16.607%, rgba(255,255,255,0.66) 19.375%,
+      rgba(255,255,255,0.6171) 22.143%, rgba(255,255,255,0.5743) 24.911%,
+      rgba(255,255,255,0.5314) 27.679%, rgba(255,255,255,0.4886) 30.446%,
+      rgba(255,255,255,0.4457) 33.214%, rgba(255,255,255,0.4029) 35.982%,
+      rgba(255,255,255,0.36) 38.75%, rgba(255,255,255,0.3172) 41.518%,
+      rgba(255,255,255,0.2743) 44.286%, rgba(255,255,255,0.2317) 47.054%,
+      rgba(255,255,255,0.1895) 49.821%, rgba(255,255,255,0.1484) 52.589%,
+      rgba(255,255,255,0.1098) 55.357%, rgba(255,255,255,0.0755) 58.125%,
+      rgba(255,255,255,0.0475) 60.893%, rgba(255,255,255,0.0268) 63.661%,
+      rgba(255,255,255,0.0134) 66.429%, rgba(255,255,255,0.0058) 69.196%,
+      rgba(255,255,255,0.0022) 71.964%, rgba(255,255,255,0.0007) 74.732%,
+      rgba(255,255,255,0) 77.5%),
+      radial-gradient(66% 52% at 50% 44%,rgba(214,217,226,0.4993) 0%, rgba(214,217,226,0.4856) 3.214%,
+      rgba(214,217,226,0.4683) 6.429%, rgba(214,217,226,0.4482) 9.643%,
+      rgba(214,217,226,0.4264) 12.857%, rgba(214,217,226,0.4037) 16.071%,
+      rgba(214,217,226,0.3807) 19.286%, rgba(214,217,226,0.3575) 22.5%,
+      rgba(214,217,226,0.3343) 25.714%, rgba(214,217,226,0.3111) 28.929%,
+      rgba(214,217,226,0.2879) 32.143%, rgba(214,217,226,0.2646) 35.357%,
+      rgba(214,217,226,0.2414) 38.571%, rgba(214,217,226,0.2182) 41.786%,
+      rgba(214,217,226,0.195) 45%, rgba(214,217,226,0.1718) 48.214%,
+      rgba(214,217,226,0.1486) 51.429%, rgba(214,217,226,0.1255) 54.643%,
+      rgba(214,217,226,0.1026) 57.857%, rgba(214,217,226,0.0804) 61.071%,
+      rgba(214,217,226,0.0595) 64.286%, rgba(214,217,226,0.0409) 67.5%,
+      rgba(214,217,226,0.0257) 70.714%, rgba(214,217,226,0.0145) 73.929%,
+      rgba(214,217,226,0.0072) 77.143%, rgba(214,217,226,0.0032) 80.357%,
+      rgba(214,217,226,0.0012) 83.571%, rgba(214,217,226,0.0004) 86.786%,
+      rgba(214,217,226,0) 90%),
+      linear-gradient(180deg,rgba(252,252,252,0.8684) 0%, rgba(252,252,252,0.8049) 2%, rgba(252,252,252,0.7204) 4%,
+      rgba(252,252,252,0.6245) 6%, rgba(252,252,252,0.5246) 8%, rgba(252,252,252,0.4237) 10%,
+      rgba(252,252,252,0.323) 12%, rgba(252,252,252,0.2236) 14%, rgba(252,252,252,0.1302) 16%,
+      rgba(252,252,252,0.0537) 18%, rgba(252,252,252,0.0085) 20%, rgba(252,252,252,0.0019) 22%,
+      rgba(252,252,252,0.0266) 24%, rgba(252,252,252,0.0682) 26%, rgba(252,252,252,0.1158) 28%,
+      rgba(252,252,252,0.1648) 30%, rgba(252,252,252,0.2141) 32%, rgba(252,252,252,0.2633) 34%,
+      rgba(252,252,252,0.3125) 36%, rgba(252,252,252,0.3618) 38%, rgba(252,252,252,0.411) 40%,
+      rgba(252,252,252,0.4602) 42%, rgba(252,252,252,0.5093) 44%, rgba(252,252,252,0.5577) 46%,
+      rgba(252,252,252,0.6042) 48%, rgba(252,252,252,0.6474) 50%, rgba(252,252,252,0.6863) 52%,
+      rgba(252,252,252,0.7217) 54%, rgba(252,252,252,0.7554) 56%, rgba(252,252,252,0.7884) 58%,
+      rgba(252,252,252,0.8212) 60%, rgba(252,252,252,0.854) 62%, rgba(252,252,252,0.8867) 64%,
+      rgba(252,252,252,0.9194) 66%, rgba(252,252,252,0.9512) 68%, rgba(252,252,252,0.9794) 70%,
+      rgba(252,252,252,0.9975) 72%, rgba(252,252,252,0.9968) 74%, rgba(252,252,252,0.9731) 76%,
+      rgba(252,252,252,0.9305) 78%, rgba(252,252,252,0.8778) 80%, rgba(252,252,252,0.8215) 82%,
+      rgba(252,252,252,0.7647) 84%, rgba(252,252,252,0.7091) 86%, rgba(252,252,252,0.6597) 88%,
+      rgba(252,252,252,0.6278) 90%, rgba(252,252,252,0.6283) 92%, rgba(252,252,252,0.6677) 94%,
+      rgba(252,252,252,0.7357) 96%, rgba(252,252,252,0.8102) 98%,
+      rgba(252,252,252,0.8703) 100%),
+      #E9EBF1;}/* Two slow bodies of haze, so the air is never quite still. They carry no
+     filter: a radial gradient is already smooth, and blurring one costs a
+     1700x1000 offscreen surface per body to make a soft thing softer. It also
+     re-quantises after the blur, which is the opposite of what this scene
+     needs. */
+  
+  .depthfig .env .drift{position:absolute;left:50%;top:44%;width:120vmax;height:70vmax;
+    margin:-35vmax 0 0 -60vmax;border-radius:50%;
+    background:radial-gradient(50% 50% at 50% 50%,rgba(255,255,255,0.8161) 0%, rgba(255,255,255,0.7938) 3.125%,
+      rgba(255,255,255,0.7655) 6.25%, rgba(255,255,255,0.7326) 9.375%,
+      rgba(255,255,255,0.697) 12.5%, rgba(255,255,255,0.6599) 15.625%,
+      rgba(255,255,255,0.6222) 18.75%, rgba(255,255,255,0.5844) 21.875%,
+      rgba(255,255,255,0.5464) 25%, rgba(255,255,255,0.5085) 28.125%,
+      rgba(255,255,255,0.4705) 31.25%, rgba(255,255,255,0.4326) 34.375%,
+      rgba(255,255,255,0.3946) 37.5%, rgba(255,255,255,0.3567) 40.625%,
+      rgba(255,255,255,0.3188) 43.75%, rgba(255,255,255,0.2808) 46.875%,
+      rgba(255,255,255,0.2429) 50%, rgba(255,255,255,0.2051) 53.125%,
+      rgba(255,255,255,0.1678) 56.25%, rgba(255,255,255,0.1314) 59.375%,
+      rgba(255,255,255,0.0972) 62.5%, rgba(255,255,255,0.0669) 65.625%,
+      rgba(255,255,255,0.042) 68.75%, rgba(255,255,255,0.0237) 71.875%,
+      rgba(255,255,255,0.0118) 75%, rgba(255,255,255,0.0052) 78.125%,
+      rgba(255,255,255,0.0019) 81.25%, rgba(255,255,255,0.0006) 84.375%,
+      rgba(255,255,255,0) 87.5%);
+    animation:drift 54s ease-in-out infinite;}
+  .depthfig .env .drift.b{background:radial-gradient(50% 50% at 50% 50%,rgba(206,211,222,0.4033) 0%, rgba(206,211,222,0.3922) 3.125%,
+      rgba(206,211,222,0.3782) 6.25%, rgba(206,211,222,0.362) 9.375%,
+      rgba(206,211,222,0.3444) 12.5%, rgba(206,211,222,0.3261) 15.625%,
+      rgba(206,211,222,0.3075) 18.75%, rgba(206,211,222,0.2887) 21.875%,
+      rgba(206,211,222,0.27) 25%, rgba(206,211,222,0.2512) 28.125%,
+      rgba(206,211,222,0.2325) 31.25%, rgba(206,211,222,0.2138) 34.375%,
+      rgba(206,211,222,0.195) 37.5%, rgba(206,211,222,0.1763) 40.625%,
+      rgba(206,211,222,0.1575) 43.75%, rgba(206,211,222,0.1388) 46.875%,
+      rgba(206,211,222,0.12) 50%, rgba(206,211,222,0.1014) 53.125%,
+      rgba(206,211,222,0.0829) 56.25%, rgba(206,211,222,0.0649) 59.375%,
+      rgba(206,211,222,0.048) 62.5%, rgba(206,211,222,0.033) 65.625%,
+      rgba(206,211,222,0.0208) 68.75%, rgba(206,211,222,0.0117) 71.875%,
+      rgba(206,211,222,0.0059) 75%, rgba(206,211,222,0.0026) 78.125%,
+      rgba(206,211,222,0.001) 81.25%, rgba(206,211,222,0.0003) 84.375%,
+      rgba(206,211,222,0) 87.5%);
+    animation:drift 78s ease-in-out infinite reverse;animation-delay:-24s;}
+  @keyframes drift{
+    0%{transform:translate3d(-6%, -3%, 0) scale(1.04);}
+    50%{transform:translate3d(7%, 4%, 0) scale(1.14);}
+    100%{transform:translate3d(-6%, -3%, 0) scale(1.04);}
+  }/* the room closes at its edges, which is what makes it a room */
+  
+  .depthfig .env .vig{position:absolute;inset:0;
+    background:radial-gradient(78% 62% at 50% 46%,rgba(18,18,18,0) 32.5%, rgba(18,18,18,0.0001) 35.393%, rgba(18,18,18,0.0002) 38.286%,
+      rgba(18,18,18,0.0006) 41.179%, rgba(18,18,18,0.0014) 44.071%,
+      rgba(18,18,18,0.0027) 46.964%, rgba(18,18,18,0.0047) 49.857%,
+      rgba(18,18,18,0.0072) 52.75%, rgba(18,18,18,0.0099) 55.643%,
+      rgba(18,18,18,0.0128) 58.536%, rgba(18,18,18,0.0157) 61.429%,
+      rgba(18,18,18,0.0187) 64.321%, rgba(18,18,18,0.0216) 67.214%,
+      rgba(18,18,18,0.0246) 70.107%, rgba(18,18,18,0.0275) 73%, rgba(18,18,18,0.0304) 75.893%,
+      rgba(18,18,18,0.0334) 78.786%, rgba(18,18,18,0.0363) 81.679%,
+      rgba(18,18,18,0.0393) 84.571%, rgba(18,18,18,0.0422) 87.464%,
+      rgba(18,18,18,0.0451) 90.357%, rgba(18,18,18,0.0478) 93.25%,
+      rgba(18,18,18,0.0503) 96.143%, rgba(18,18,18,0.0523) 99.036%,
+      rgba(18,18,18,0.0536) 101.929%, rgba(18,18,18,0.0544) 104.821%,
+      rgba(18,18,18,0.0548) 107.714%, rgba(18,18,18,0.0549) 110.607%,
+      rgba(18,18,18,0.055) 113.5%);}/* the stack's own contact with the ground, and the pool of air it stands in */
+  
+  .depthfig .pool{position:absolute;left:50%;top:50%;width:min(150%, 1100px);height:70%;
+    transform:translate(calc(-50% + var(--pdx,0) * 1px), calc(-42% + var(--pdy,0) * 1px));
+    pointer-events:none;opacity:var(--open,0);
+    background:radial-gradient(50% 50% at 50% 50%,rgba(196,201,214,0.3841) 0%, rgba(196,201,214,0.3735) 3.036%,
+      rgba(196,201,214,0.3602) 6.071%, rgba(196,201,214,0.3448) 9.107%,
+      rgba(196,201,214,0.328) 12.143%, rgba(196,201,214,0.3105) 15.179%,
+      rgba(196,201,214,0.2928) 18.214%, rgba(196,201,214,0.275) 21.25%,
+      rgba(196,201,214,0.2571) 24.286%, rgba(196,201,214,0.2393) 27.321%,
+      rgba(196,201,214,0.2214) 30.357%, rgba(196,201,214,0.2036) 33.393%,
+      rgba(196,201,214,0.1857) 36.429%, rgba(196,201,214,0.1679) 39.464%,
+      rgba(196,201,214,0.15) 42.5%, rgba(196,201,214,0.1321) 45.536%,
+      rgba(196,201,214,0.1143) 48.571%, rgba(196,201,214,0.0965) 51.607%,
+      rgba(196,201,214,0.0789) 54.643%, rgba(196,201,214,0.0618) 57.679%,
+      rgba(196,201,214,0.0458) 60.714%, rgba(196,201,214,0.0315) 63.75%,
+      rgba(196,201,214,0.0198) 66.786%, rgba(196,201,214,0.0112) 69.821%,
+      rgba(196,201,214,0.0056) 72.857%, rgba(196,201,214,0.0024) 75.893%,
+      rgba(196,201,214,0.0009) 78.929%, rgba(196,201,214,0.0003) 81.964%,
+      rgba(196,201,214,0) 85%);}
+  .depthfig .contact{position:absolute;left:50%;bottom:calc(50% - var(--ch) / 2 - 10px);
+    width:calc(var(--cw) * 1.05);height:26px;margin-left:calc(var(--cw) * -.525 - var(--tagshift));
+    transform:translateX(calc(var(--cdx,0) * 1px)) scaleX(calc(1 + .12 * var(--open,0)));
+    background:radial-gradient(50% 50% at 50% 50%, rgba(18,18,18,.20) 0%, rgba(18,18,18,0) 72%);
+    filter:blur(6px);opacity:calc(.5 + .3 * var(--open,0));pointer-events:none;}/* THE DITHER. Six wide ramps inside a 20 level range cannot be held in 8
+     bits: they quantise into contours, and because most of them are radial the
+     contours come out as faint rings around the stack. Noise is the answer,
+     but it has to be the right noise, in the right place, at the right
+     amplitude, and each of those was got wrong once before it was got right.
+
+     Place: between the air and the stack. Not inside the air, because the air
+     is masked at its two edges and a grain inside that group would fade out
+     exactly where the fog ramps into the page. Not over everything either,
+     because multiply darkens what it dithers, and a layer of white card is not
+     a ramp and has nothing to gain from it: over the whole stage this cost
+     --surface0 two levels of the white it is defined as. Sitting here it
+     reaches every ramp in the scene (the air, the pool, the ground, the fade
+     at both edges) and touches nothing that is already flat.
+
+     Blend: multiply. Overlay against a 50 percent tile was the second attempt
+     and the wrong one here, because its amplitude is proportional to how far
+     the backdrop is from white, and this whole scene lives between 232 and
+     252. Multiply is the one that keeps its headroom against white.
+
+     Amplitude: the tile is opaque and flattened into [0.978, 1.000], which
+     puts about 0.45 of a level of standard deviation into the render. That is
+     the textbook figure, near enough: a little under half a level is what it
+     takes to decorrelate a one level step, and anything past a level begins to
+     read as texture rather than as air.
+
+     One octave at 1.1, not three at 0.62: the low octaves clump the noise into
+     five pixel blobs, and a blob can lie along a contour instead of across it.
+     Measured on the tile, one octave puts more energy between neighbouring
+     pixels than within them, which is exactly what a dither wants. sRGB
+     interpolation is declared because the default, linearRGB, would move the
+     tile off the range the amplitude was chosen in. */
+
+  
+  .depthfig .grain{position:absolute;inset:-2px;pointer-events:none;mix-blend-mode:multiply;
+    background-image:var(--tile);}/* ---------- the stack ------------------------------------------------
+     The deck is the only thing that turns, so every layer keeps its place
+     in the volume and the whole path pivots as one object. The pivot is on
+     the floor, not the centre: the front layer is the one a person is
+     holding, so it stays where it is and the path grows behind it. */
+
+  
+  .depthfig .deck{position:absolute;left:50%;top:50%;width:var(--cw);height:var(--ch);
+    margin-left:calc(var(--cw) / -2 - var(--tagshift));
+    margin-top:calc(var(--ch) / -2);
+    transform-style:preserve-3d;transform-origin:50% 100%;
+    transform:translateY(calc(var(--recentre,0) * 1px))
+      rotateX(calc(var(--tilt,0) * -1deg)) rotateY(calc(var(--lean,0) * 1deg));}/* a layer holds its place in the volume and carries no filter of its own,
+     so the 3D context it sits in is never flattened *//* The layer is what the pointer is answered off. It carries no fill of its
+     own, so the hit is the layer's own rectangle in the volume, turned and
+     projected by the browser exactly as it is drawn: what looks nearest at a
+     point is what is picked there.
+
+     --dy is the standing aside. It is a translation in the layer's own tilted
+     plane, so a layer that gives way slides down the volume rather than down
+     the screen, which is the same move as pulling a sheet out of a pile
+     towards you.
+
+     What a layer gives up is its place and its sharpness, never its substance:
+     no layer is ever faded. A card at half opacity is a card made of glass,
+     and the argument is that the other depths are solidly there and simply not
+     where you are looking. *//* pointer-events:none, which also means the words on a card cannot be
+     selected. That is the trade: the figure is something to point at rather
+     than a document to take text out of, the same three definitions are in the
+     article's own prose, and a drag that selected across the layers while it
+     was also moving the focus would serve neither. Assistive technology reads
+     the cards regardless: it never needed the pointer. */
+
+  
+  
+  
+  .depthfig .plane{position:absolute;inset:0;pointer-events:none;
+    transform:translateY(calc(var(--dy,0) * 1px))
+      translateZ(calc(var(--z,0) * 1px));}/* THE HIT PLATES. Three rectangles standing exactly where the three layers
+     stand when nothing is in focus, in a second deck that is turned and leaned
+     with the first but never steps aside. Nothing is drawn in it.
+
+     The pointer is answered off these and not off the cards, because a card
+     that moves is a card that can move itself out from under the pointer, or
+     worse, uncover the one behind it and hand it the focus. Both happened.
+     Pointing at the middle layer slid the front one down, which exposed the
+     back one at the same height, which took the focus, which slid the middle
+     one away too: one figure, two stable states, and which one you got
+     depended on the path you took to it.
+
+     Answering off a geometry that never moves makes the mapping from a point
+     to a depth single valued and permanent. It costs nothing in truthfulness
+     either, because the layer in focus is the one layer that never moves, so
+     the plates always agree with what is on the screen for the layer that is
+     actually being pointed at. */
+
+  
+  .depthfig .hits{position:absolute;left:50%;top:50%;width:var(--cw);height:var(--ch);
+    margin-left:calc(var(--cw) / -2 - var(--tagshift));
+    margin-top:calc(var(--ch) / -2);
+    transform-style:preserve-3d;transform-origin:50% 100%;
+    transform:translateY(calc(var(--recentre,0) * 1px))
+      rotateX(calc(var(--tilt,0) * -1deg)) rotateY(calc(var(--lean,0) * 1deg));}
+  .depthfig .hits i{position:absolute;inset:0;display:block;cursor:crosshair;
+    transform:translateZ(calc(var(--hz,0) * 1px));}/* haze standing between the layers, in the volume rather than over it.
+     This is the cue that makes the far layer read as far away rather than
+     as a small pale copy of the near one. */
+
+  
+  .depthfig .slab{position:absolute;left:50%;top:50%;width:260%;height:210%;
+    transform:translate(-50%,-50%) translateZ(calc(var(--z,0) * 1px));
+    opacity:calc(var(--open,0) * var(--k,1) * (1 - var(--lift,0)));pointer-events:none;
+    background:radial-gradient(52% 50% at 50% 50%,rgba(243,244,248,0.7873) 0%, rgba(243,244,248,0.7658) 3.304%,
+      rgba(243,244,248,0.7385) 6.607%, rgba(243,244,248,0.7067) 9.911%,
+      rgba(243,244,248,0.6724) 13.214%, rgba(243,244,248,0.6366) 16.518%,
+      rgba(243,244,248,0.6003) 19.821%, rgba(243,244,248,0.5637) 23.125%,
+      rgba(243,244,248,0.5271) 26.429%, rgba(243,244,248,0.4905) 29.732%,
+      rgba(243,244,248,0.4539) 33.036%, rgba(243,244,248,0.4173) 36.339%,
+      rgba(243,244,248,0.3807) 39.643%, rgba(243,244,248,0.3441) 42.946%,
+      rgba(243,244,248,0.3075) 46.25%, rgba(243,244,248,0.2709) 49.554%,
+      rgba(243,244,248,0.2343) 52.857%, rgba(243,244,248,0.1979) 56.161%,
+      rgba(243,244,248,0.1618) 59.464%, rgba(243,244,248,0.1268) 62.768%,
+      rgba(243,244,248,0.0938) 66.071%, rgba(243,244,248,0.0645) 69.375%,
+      rgba(243,244,248,0.0405) 72.679%, rgba(243,244,248,0.0229) 75.982%,
+      rgba(243,244,248,0.0114) 79.286%, rgba(243,244,248,0.005) 82.589%,
+      rgba(243,244,248,0.0019) 85.893%, rgba(243,244,248,0.0006) 89.196%,
+      rgba(243,244,248,0) 92.5%);}/* ---------- a layer, rendered ---------------------------------------
+     The layer carries its own scale. Every measurement inside it, type
+     included, is written in em against the card's unit, so the interface and
+     its words hold their proportions from a phone to a wide window. At full
+     width the em values are the tokens exactly: 24 padding, 20/28 for the
+     title, 13/20 for the text, 11/16 for the number. *//* The blur is set from script rather than from a variable, so that a layer
+     with nothing to blur can carry no filter at all. filter:blur(0) is not
+     free: it still promotes the card to its own surface and still costs it
+     subpixel antialiasing, and the layer in focus is the one whose 13px of
+     text can least afford to lose it. */
+
+  
+  
+  .depthfig .card{position:absolute;inset:0;background:var(--surface0);
+    font-size:var(--u);
+    border-radius:1.25em;padding:1.5em;
+    display:flex;flex-direction:column;
+    box-shadow:
+      0 2px 6px -3px rgba(18,18,18,calc(.16 * var(--sk,1))),
+      0 24px 60px -28px rgba(18,18,18,calc(.42 * var(--sk,1)));}/* The haze that has settled on this layer, and the lamp, which is one thing
+     here rather than two. In version a the light was a second coat painted
+     over the veil; over words it is a wash that takes them off the card, and
+     the layer in focus was the one it damaged most. So the light is the veil's
+     own mask instead: where it falls the haze thins, and where there is no
+     haze there is nothing for it to do, which is what a light in fog actually
+     does. Left alone it returns to the upper left. */
+
+  
+  .depthfig .veil{position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(180deg, rgba(230,233,241,.98), rgba(219,223,234,.98));
+    opacity:var(--veil,0);
+    -webkit-mask-image:radial-gradient(58% 58% at var(--lx,30%) var(--ly,22%),rgba(0,0,0,0.3087) 0%, rgba(0,0,0,0.3276) 3.125%, rgba(0,0,0,0.3516) 6.25%,
+      rgba(0,0,0,0.3794) 9.375%, rgba(0,0,0,0.4096) 12.5%, rgba(0,0,0,0.441) 15.625%,
+      rgba(0,0,0,0.4729) 18.75%, rgba(0,0,0,0.505) 21.875%, rgba(0,0,0,0.5371) 25%,
+      rgba(0,0,0,0.5693) 28.125%, rgba(0,0,0,0.6014) 31.25%, rgba(0,0,0,0.6336) 34.375%,
+      rgba(0,0,0,0.6657) 37.5%, rgba(0,0,0,0.6979) 40.625%, rgba(0,0,0,0.73) 43.75%,
+      rgba(0,0,0,0.7621) 46.875%, rgba(0,0,0,0.7942) 50%, rgba(0,0,0,0.8262) 53.125%,
+      rgba(0,0,0,0.8579) 56.25%, rgba(0,0,0,0.8887) 59.375%, rgba(0,0,0,0.9176) 62.5%,
+      rgba(0,0,0,0.9433) 65.625%, rgba(0,0,0,0.9644) 68.75%, rgba(0,0,0,0.9799) 71.875%,
+      rgba(0,0,0,0.99) 75%, rgba(0,0,0,0.9956) 78.125%, rgba(0,0,0,0.9984) 81.25%,
+      rgba(0,0,0,0.9995) 84.375%, rgba(0,0,0,1) 87.5%);
+    mask-image:radial-gradient(58% 58% at var(--lx,30%) var(--ly,22%),rgba(0,0,0,0.3087) 0%, rgba(0,0,0,0.3276) 3.125%, rgba(0,0,0,0.3516) 6.25%,
+      rgba(0,0,0,0.3794) 9.375%, rgba(0,0,0,0.4096) 12.5%, rgba(0,0,0,0.441) 15.625%,
+      rgba(0,0,0,0.4729) 18.75%, rgba(0,0,0,0.505) 21.875%, rgba(0,0,0,0.5371) 25%,
+      rgba(0,0,0,0.5693) 28.125%, rgba(0,0,0,0.6014) 31.25%, rgba(0,0,0,0.6336) 34.375%,
+      rgba(0,0,0,0.6657) 37.5%, rgba(0,0,0,0.6979) 40.625%, rgba(0,0,0,0.73) 43.75%,
+      rgba(0,0,0,0.7621) 46.875%, rgba(0,0,0,0.7942) 50%, rgba(0,0,0,0.8262) 53.125%,
+      rgba(0,0,0,0.8579) 56.25%, rgba(0,0,0,0.8887) 59.375%, rgba(0,0,0,0.9176) 62.5%,
+      rgba(0,0,0,0.9433) 65.625%, rgba(0,0,0,0.9644) 68.75%, rgba(0,0,0,0.9799) 71.875%,
+      rgba(0,0,0,0.99) 75%, rgba(0,0,0,0.9956) 78.125%, rgba(0,0,0,0.9984) 81.25%,
+      rgba(0,0,0,0.9995) 84.375%, rgba(0,0,0,1) 87.5%);}/* The name of the depth is the first thing on the layer and the only thing
+     in its top strip, which is the one band of a layer behind the front one
+     that is ever seen. The strip is 74 deep and the title ends at 52, so the
+     stack reads as three named depths before anything is pointed at. Nothing
+     rules the title off from its text: space does that. */
+
+  
+  .depthfig .top{height:1.75em;display:flex;align-items:baseline;
+    justify-content:space-between;flex:none;}
+  .depthfig .ct{font-size:1.25em;line-height:1.4;font-weight:700;letter-spacing:-.01em;
+    color:var(--ink);}/* The number the tag used to carry, now on the layer it belongs to, sitting
+     on the title's own baseline. --muted, not --faint: --faint on white is
+     2.5:1, and this is 11px of type, not a hairline. --muted is 5.1:1 and
+     still 4.9:1 under the haze the layer in focus keeps. */
+  
+  .depthfig .num{font-family:var(--mono);font-size:.6875em;line-height:1.4545;
+    letter-spacing:.08em;font-weight:700;font-variant-numeric:tabular-nums;
+    color:var(--muted);}/* the space under the title is measured in the card's unit, not in this
+     element's own em: 1.5em here would be 1.5 of 13 and the gap would come out
+     at 20 where the grid asks for 24 */
+  
+  .depthfig .cb{font-size:.8125em;line-height:1.5385;color:var(--muted);
+    margin-top:calc(var(--u) * 1.5);flex:none;}/* ---------- sizes ---------- *//* The card's own unit. 16px when the layer is at its full width, which is
+     where the grid below is authored: every gap inside the card is a multiple
+     of 8 of these and every element a multiple of 4, which is the same two
+     tiers the article runs on. The height is not a ratio picked by eye, it is
+     the content added up (12.5u), so nothing inside the card floats and the
+     last gap is the gap it was drawn as: 24 of padding, the 28 of the title,
+     24, the five lines of the longest of the three texts, 24.
+
+     Everything on the card is written in em against this unit, type included,
+     so the reading measure is a property of the design rather than of the
+     window: 44 characters to the line at every size, and therefore the same
+     five lines of text on the longest of the three at every size. That is
+     what lets one card height be exact for all three. */
+
+  
+  
+  /* the figure is an illustration band, so it stands on the same grey a study
+     stands on. Its atmosphere is all gradients over whatever ground is behind
+     it, so this changes what it modulates around, not how it is built. */
+  .depthfig{background:var(--paper);margin-top:var(--break);
+    --cw:clamp(280px, 30vw, 416px);--u:calc(var(--cw) / 26);
+    --ch:calc(var(--u) * 12.5);--tagshift:0px;}
+  @media (max-width:900px){.depthfig{--cw:clamp(280px, 52vw, 400px);}
+    .depthfig .track{height:200vh;}}
+  /* nothing stands beside the layer any more, so at the narrow end it takes
+     the width instead of giving it away */
+  @media (max-width:560px){.depthfig{--cw:min(92vw, 380px);}}
+
+  /* Forced colours. The whole of this figure is atmosphere and depth, and both
+     of those are made of colours a person in this mode has asked not to be
+     sent. Rather than hand them a stack of overlapping cards with the depth
+     cues stripped out, the figure gives up the volume entirely and becomes
+     what it was always saying: three named depths, in order, legible. */
+  @media (forced-colors: active){
+    .depthfig .track{height:auto;}
+    .depthfig .dstage{position:static;height:auto;min-height:0;overflow:visible;
+      perspective:none;padding:var(--s5) 0;}
+    .depthfig .env,
+  .depthfig .grain,
+  .depthfig .pool,
+  .depthfig .contact,
+  .depthfig .slab,
+  .depthfig .veil,
+  .depthfig .hits{display:none;}
+    .depthfig .deck{position:static;width:auto;height:auto;margin:0 auto;max-width:var(--w-mid);
+      display:flex;flex-direction:column;gap:var(--s3);transform:none!important;}
+    .depthfig .plane{position:static;transform:none!important;pointer-events:auto;}
+    .depthfig .card{position:static;filter:none!important;box-shadow:none;
+      border:1px solid CanvasText;}
+  }/* the figure alone, when the article frames it in an iframe */
+
+  
+  /* the figure's iframe mode is dropped: inlined, html.embed can never
+     match, and there is no frame to fit to */
+
+</style>
+
+<!-- The article without its script.
+
+     The article no longer needs one to be read: it ships open, and the
+     entrance is a branch off ?entrance=1 that a reader without a script never
+     takes. What is left for this block is the three things that are only a
+     frame until a script fills them.
+
+     The closing figure: its layers are written into an empty div, so what is
+     left is 240vh of empty air, and the paragraphs above it name the three
+     stages anyway. The opening scene: an iframe drawn entirely by its own
+     script, so it stands as a blank 660px field (460 on a phone) above the
+     title. And the two study frames: each is written at 640px and resized by
+     a message the script sends, so without one they hold a study that was
+     never built, clipped mid-way, under a title and lede repeating word
+     for word the ones the article has just printed above them. Measured on a
+     phone: study 01 is 2,568px of content in a 640px frame, study 02 is
+     1,816px.
+
+     What is left in every case is the prose that describes the thing, which
+     is the part that was always carrying the argument. Each study keeps its
+     kicker, its heading, its lede and its reading. -->
+<noscript><style>
+  .depthfig{display:none;}
+  .heroscene{display:none;}
+  .studywrap{display:none;}
+</style></noscript>
+</head>
+<body>
+
+<!-- entrance -->
+<div class="stage" id="stage">
+  <button class="control" id="control"
+    aria-label="A control with no label. Its effect is not disclosed."></button>
+  <div class="response" id="response" aria-live="polite"></div>
+</div>
+
+<main id="page">
+<!-- Safari offers Reader only when it can find the article, and the word
+     reveal hides it from every other test by splitting the prose into
+     single-word nodes. With og:type article, an article element inside main
+     is enough. It holds the title and the standfirst too, so Reader shows
+     them as its title and subhead (the "abstract" class) and does not take
+     the first h2, close under an article top, for a copy of the title. The
+     rail is inside it, so its names are drawn from data-t by CSS, which
+     Reader does not read. -->
+<article>
+
+<div class="hero-wrap spineblock">
+  <section class="hero">
+    <iframe class="heroscene" src="demos/depths-of-interaction-header.html"
+      title="A cursor working through floating windows: access, orientation, resolution, and a new window at every resolution."
+      scrolling="no" loading="eager"></iframe>
+    <h1>Three depths of interaction</h1>
+    <p class="standfirst abstract">The Three-Depth Principle proposes that intentional interaction should be understandable across three steps: <b>access to context</b>, <b>orientation within it</b>, and <b>clear resolution</b>. These steps repeat recursively throughout interactive paths, keeping complex systems understandable without flattening their capabilities. As interfaces move toward more adaptive, generative, and ambient capabilities, this principle provides a persistent interaction logic beneath a dynamic surface.<a href="#ref1" class="cite" id="cite1">[1]</a></p>
+  </section>
+</div>
+
+<div class="article">
+<div class="railhost"><nav class="rail" id="rail" aria-label="Sections"></nav></div>
+
+
+<section class="txt spineblock" data-sec="01" data-rail="Stages">
+  <div class="kicker"><span class="num">01</span></div>
+  <h2>Access, orientation, resolution</h2>
+  <div class="prose">
+    <p>Interfaces have taken various visual and experiential forms, from command lines to skeuomorphism, expressive minimalism, voice, gesture control, and beyond (more on this in “<a href="https://smmn.substack.com/p/the-gui-moment">The GUI moment</a>”). However, they still often get in the way rather than enabling direct access to what we came for.</p>
+    <p>GUIs in particular tend to surface many functions, often regardless of importance. Layouts have stayed linked to books, magazines, and the publishing industry since the early days of graphical interfaces. Common elements like icons or buttons have retained their forms and positions, and common menus have kept their categories, letting repetition turn position into memory until an interface feels obvious. However, this is shifting as interfaces become more adaptable (<a href="https://das.app/">DAS</a>), contextual (<a href="https://chatgpt.com/">ChatGPT</a>, <a href="https://claude.ai/">Claude</a> …), and generated. While these developments can make interaction paths more efficient, they also risk removing the familiar cues that made these interfaces easy to use. Carrying familiar cues forward within evolving systems helps us stay confident and in control as we navigate simple or complex, adaptive interfaces.</p>
+    <p>The Three-Depth Principle tackles these interaction stages in three steps:</p>
+    <div class="stagedefs">
+      <p><b>Access</b><br>A person establishes the relevant context, for example, by opening a messaging app, identifying a button, or recognizing a physical environment as the field of action.</p>
+      <p><b>Orientation</b><br>The possibilities become clear enough to identify and commit to the next step with confidence.</p>
+      <p><b>Resolution</b><br>The interaction reaches an outcome that resolves the intent and sometimes becomes the next context.</p>
+    </div>
+    <p>If you remove access, context disappears. Strip away orientation, and action becomes a guessing game. Finally, removing resolution makes the interaction seem aimless.</p>
+    <p>Depth is the noticeable stage we experience as we move from intention to outcome. However, it’s neither linear nor one-dimensional, since more than one action can occur within a single depth, and a single action can shift depths as understanding develops. The three stages illustrate our understanding of interaction as its path branches, reconnects, or unfolds within physical space. Having three depths doesn’t necessarily mean you’ll have three clicks, three screens, or three actions. The question is whether the shift from context to possibility to consequence is clear.</p>
+  </div>
+</section>
+
+<!-- The three stages, standing one behind the other. Placed here because the
+     paragraphs above have just named them and the reader has not yet been
+     asked to do anything with them. The figure is a 240vh track holding a
+     sticky stage, so it is inlined rather than framed and it is a direct
+     child of .article rather than a .spineblock, which lets it run the full
+     width the way a study band does. Its own intro and closing note are not
+     brought across: the article has already said both. -->
+<figure class="depthfig">
+<div class="track" id="track">
+  <div class="dstage" id="dstage">
+    <div class="env" aria-hidden="true">
+      <div class="base"></div>
+      <div class="drift"></div>
+      <div class="drift b"></div>
+      <div class="vig"></div>
+      <div class="pool"></div>
+      <div class="contact"></div>
+    </div>
+
+    <!-- the three stages are real text on the layers, so the figure reads
+         itself: no role and no label stand in for what is written here -->
+    <div class="grain" aria-hidden="true"></div>
+    <div class="deck" id="deck"></div>
+    <div class="hits" id="hits" aria-hidden="true"></div>
+  </div>
+</div>
+</figure>
+
+<section class="txt spineblock" data-sub data-rail="Commitments">
+  <h3>Commitments, not clicks</h3>
+  <div class="prose">
+    <p>Reducing the number of clicks remains a widely adopted technique, and a simple rule (the three-click rule) suggests that key content should be reachable within three clicks.<a href="#ref2" class="cite" id="cite2">[2]</a></p>
+    <p>However, a User Interface Engineering study reported by Joshua Porter, in which 44 people attempted 620 tasks with over 8,000 clicks, found no correlation between clicks and task success. In Porter’s words: “there wasn’t any more likelihood of a user quitting after three clicks than after 12 clicks,” and “hardly anybody gave up after three clicks.” Satisfaction showed no clear relationship with the click count either: the unsatisfied share ranged from 46% to 61% across different path lengths.</p>
+    <p>Reducing the number of clicks doesn’t necessarily improve interaction.</p>
+    <p>Within the same experience, one click can open a clearly labeled destination, while another click can engage an unclear icon, and you won’t know what it does until after you click. This is a blind commitment, which happens when people act without understanding what the action means, where it leads, what will change, or whether they can reverse it (see Study 01).</p>
+    <p>Clearer commitments help people better understand what their actions mean and where they lead. Clicks capture movement, while commitments capture decisions.</p>
+  </div>
+</section>
+
+<div class="study" data-study="1" data-rail="Study one">
+  <div class="spineblock">
+    <div class="kicker"><span class="num">Study 01</span></div>
+    <h3>Save for later</h3>
+    <p class="studylede">Complete the same task across all three screens from left to right (top-down on mobile).</p>
+    <p class="studynotice">Data and answers are anonymously logged for research.</p>
+  </div>
+  <div class="studywrap"><div class="inner">
+    <iframe id="d1" src="demos/demo-01.html" style="height:640px" scrolling="no"
+      title="Interactive study 01"></iframe>
+  </div></div>
+</div>
+
+<section class="txt spineblock" data-sec="02" data-rail="Recursion">
+  <div class="kicker"><span class="num">02</span></div>
+  <h2>Rich systems and recursive depth</h2>
+  <div class="prose">
+    <p>Complex systems can have substantial depth. But let’s start with a simple, familiar example: <b>When changing a setting on an iPhone, should I count the depths from unlocking the device or from opening Settings?</b></p>
+    <p>The answer begins with intent, and intent naturally precedes depths, setting the scope of the passage, even when it is partial or shifts along the way.</p>
+    <p>The Settings example demonstrates a simple, interactive frame. A frame can span an entire device or a software system, then narrow to a single function, control, and resulting state. This is why this principle operates with recursive frames. In the iOS Settings example, when a person lands in Settings, that resolves the device frame but not the broader intent to change a setting. In other words, Settings is open, but nothing has changed yet.</p>
+    <p>The Settings frame narrows to a specific (sub)feature, which then transitions to a new state. If the journey starts in Settings, the device frame is already set. However, if it begins in the pocket and results in a permission change, the analysis starts earlier, and every frame belongs to the analysis.</p>
+    <p>A screen or page change alone doesn’t create a new frame, but semantic resolution can. A new loop isn’t created simply because the interface opens another panel or screen. Recursion starts when the previous sequence produces a clear resolution and sets up a new, noticeable context with its own set of possibilities.</p>
+    <p>A system can also feel complex even when it exposes controls. A common example is an airplane cockpit, but let’s explore a more illustrative one: modular Eurorack systems (read: geeky synthesizers). These systems usually expose many controls. Even with years of training, the cognitive load can go through the roof. So despite the exposure of options, or (sometimes) “what you see is what you get,” one might be paralyzed by options, since every option can be combined with other options from the same set.</p>
+  </div>
+</section>
+
+<section class="txt spineblock" data-sub data-rail="Evolving">
+  <h3>Evolving data</h3>
+  <div class="prose">
+    <p>In research presented at CHI 2008, Gajos and colleagues tested an adaptive toolbar with a small group of 23 people. Increasing predictability and accuracy both led to significantly improved satisfaction. Contrary to the authors’ expectations, accuracy improvements affected performance, utilization, and some satisfaction ratings more than predictability. Under the random rule, eleven of the 23 called the toolbar “random,” “confusing,” or otherwise unpredictable, without prompting.<a href="#ref3" class="cite" id="cite3">[3]</a></p>
+    <p>Seventeen years later, in November 2025, Google Research showed a model generating the whole interface for a prompt, not only the content. Its evaluations showed that, with generation speed set aside, human raters strongly favored generated interfaces over standard LLM outputs, though pages created by human experts still came first.<a href="#ref4" class="cite" id="cite4">[4]</a></p>
+    <p>Another Google study, conducted with a group of 72 people who each used two versions of “a digital banking prototype,” found, in the authors’ words, that “the Adaptive generative version achieved a System Usability Scale (SUS) score of 84.38 (‘Excellent’), significantly outperforming the Deterministic version’s score of 53.96 (‘Poor’).” The authors credit the gap to a lower “navigation tax” and, in their reading, that is what improved perceived usability.<a href="#ref5" class="cite" id="cite5">[5]</a></p>
+    <p>Microsoft Research has turned the same question into a fellowship challenge, a brief for researchers to work on “AI-powered collaborative dynamic experiences that adapt and morph to users’ tasks and context.” The brief already says it: “Realizing this vision will require new computing abstractions, principles, and core interaction patterns, which empower users to work with these capabilities rather than be overwhelmed by them.” The stated aim is “the balance of dynamism with consistent and shared mental models.”<a href="#ref6" class="cite" id="cite6">[6]</a></p>
+    <p>Adaptation and generation can significantly enhance usability. In the toolbar study example, both predictability and accuracy improvements increased overall satisfaction, and improved accuracy also led to faster task completion and more frequent use of the adaptive toolbar. That supports adaptive and ambient interfaces (ambient meaning more than ubiquitous computing under a new name), with a design requirement: however the surface changes, the path must remain clear enough to follow.</p>
+  </div>
+</section>
+
+<section class="txt spineblock" data-sub data-rail="Conditions">
+  <h3>The designer, an author of conditions</h3>
+  <div class="prose">
+    <p>At this point, designers and design thinkers have covered (almost) everything about the design process; let’s respectfully call it the legacy design process, which is valuable as we build on it and continue.</p>
+    <p>I’ll simplify it into a 2D analogy. Consider most of what we have designed so far moving from 2D to 3D. With that, we are adding a Z-axis that represents input and orientation across time, context, modalities, and their states. Besides deciding what appears, where, and how, designing for the dynamic includes multiple dimensions and modalities.</p>
+    <p><b>I used to see traditional design systems as responsive graphics standards manuals.</b> However, that’s changing again. We can now confidently say design systems are becoming adaptive and evolving. This applies to all design aspects, including branding, colors, tones, experience, interactions, interactive elements, functionality, and how they’re expressed across different conditions. You can clearly see it’s not about individual segments but design as a whole.</p>
+    <p>The focus shifts from designing fixed components to establishing the rules that generate them. We will design fewer fixed interfaces and more rules by which interfaces are created. The designer becomes an author of conditions.</p>
+  </div>
+</section>
+
+<div class="study" data-study="2" data-rail="Study two">
+  <div class="spineblock">
+    <div class="kicker"><span class="num">Study 02</span></div>
+    <h3>Book a table</h3>
+    <p class="studylede">Complete the same task on both screens (top-down on mobile): table for two, Friday at 19:00.</p>
+    <p class="studynotice">Counts, timings and the layouts shown are sent anonymously for research.</p>
+  </div>
+  <div class="studywrap"><div class="inner">
+    <iframe id="d2" src="demos/demo-02.html" style="height:640px" scrolling="no"
+      title="Interactive study 02"></iframe>
+  </div></div>
+</div>
+
+
+<section class="txt spineblock" data-sec="03" data-rail="Ahead">
+  <div class="kicker"><span class="num">03</span></div>
+  <h2>Looking ahead</h2>
+  <div class="prose">
+    <p>With a recursive structure of access, orientation, and resolution, The Three-Depth Principle joins a broader conversation about the future of interaction. Norman’s gulfs of execution and evaluation, Hierarchical Task Analysis, Information Foraging Theory, feedforward, cognitive walkthroughs, and human-AI interaction guidelines each illuminate part of this territory.<a href="#ref7" class="cite" id="cite7">[7]</a><a href="#ref8" class="cite" id="cite8">[8]</a><a href="#ref9" class="cite" id="cite9">[9]</a><a href="#ref10" class="cite" id="cite10">[10]</a><a href="#ref11" class="cite" id="cite11">[11]</a><a href="#ref12" class="cite" id="cite12">[12]</a></p>
+    <p>The future of interaction design is built on design memory and depth, enabling digital environments to grow in complexity while meeting human interaction needs.</p>
+    <p>Interfaces are moving toward personalization, adapting to context and reshaping their appearance in real time, but the main goal remains the same: to translate complexity into a digestible form. To get there, we have to keep shaping the paths between intent and outcome.</p>
+  </div>
+</section>
+
+<div class="refs spineblock" id="refs">
+  <div class="kicker"><span class="num">Notes and references</span></div>
+  <ol>
+    <li id="ref1"><a href="#cite1" class="num" aria-label="Back to citation 1">01</a>  Ambient (as ambient interaction, not ambient computing), as used in the text: an interaction and interface whose surface adapts, evolves, or generates in response to a person’s intent and context, appearing when and in whatever modality fits. smmn uses ambient interaction as a central concept in its design language.</li>
+    <li id="ref2"><a href="#cite2" class="num" aria-label="Back to citation 2">02</a>  Joshua Porter. <a href="https://articles.centercentre.com/three_click_rule/">Testing the Three-Click Rule</a>. 2003.</li>
+    <li id="ref3"><a href="#cite3" class="num" aria-label="Back to citation 3">03</a>  Krzysztof Z. Gajos et al. <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/chi2008-predictability.pdf">Predictability and Accuracy in Adaptive User Interfaces</a>. CHI 2008.</li>
+    <li id="ref4"><a href="#cite4" class="num" aria-label="Back to citation 4">04</a>  Yaniv Leviathan et al. <a href="https://research.google/blog/generative-ui-a-rich-custom-visual-interactive-user-experience-for-any-prompt/">Generative UI</a>. Google Research, 2025.</li>
+    <li id="ref5"><a href="#cite5" class="num" aria-label="Back to citation 5">05</a>  Piyush Arora et al. <a href="https://research.google/pubs/self-evolving-systems-moving-beyond-deterministic-interfaces-to-adaptive-generative-interfaces/">Self-Evolving Systems</a>. Google Research, 2026.</li>
+    <li id="ref6"><a href="#cite6" class="num" aria-label="Back to citation 6">06</a>  Microsoft Research. <a href="https://www.microsoft.com/en-us/research/academic-program/2026-microsoft-research-fellowship/research-challenges/">AI-powered Collaborative Dynamic Experiences</a>. Research challenge, 2026.</li>
+    <li id="ref7"><a href="#cite7" class="num" aria-label="Back to citation 7">07</a>  Don Norman. <a href="https://mitpress.mit.edu/9780262525671/the-design-of-everyday-things/">The Design of Everyday Things</a>. The MIT Press, 2014.</li>
+    <li id="ref8"><a href="#cite8" class="num" aria-label="Back to citation 8">08</a>  John Annett and K. D. Duncan. <a href="https://eric.ed.gov/?id=ED019566">Task Analysis and Training Design</a>. 1967.</li>
+    <li id="ref9"><a href="#cite9" class="num" aria-label="Back to citation 9">09</a>  Peter Pirolli and Stuart Card. <a href="https://doi.org/10.1037/0033-295X.106.4.643">Information Foraging</a>. 1999.</li>
+    <li id="ref10"><a href="#cite10" class="num" aria-label="Back to citation 10">10</a>  Jo Vermeulen et al. <a href="https://doi.org/10.1145/2470654.2466255">Crossing the Bridge over Norman’s Gulf of Execution: Revealing Feedforward’s True Identity</a>. CHI 2013.</li>
+    <li id="ref11"><a href="#cite11" class="num" aria-label="Back to citation 11">11</a>  Cathleen Wharton et al. <a href="https://dl.acm.org/doi/10.5555/189200.189214">The Cognitive Walkthrough Method: A Practitioner’s Guide</a>. In Usability Inspection Methods. 1994.</li>
+    <li id="ref12"><a href="#cite12" class="num" aria-label="Back to citation 12">12</a>  Saleema Amershi et al. <a href="https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/">Guidelines for Human-AI Interaction</a>. CHI 2019.</li>
+  </ol>
+</div>
+
+<div class="colophon spineblock">
+  <p><a href="https://www.adidizdarevic.com/">Adi Dizdarevic</a> · September 2026.<br>
+    An interactive design proposition.</p>
+  <p>Thanks to Jenkin Lee for his thoughtful editorial pass on an earlier draft.</p>
+</div>
+
+</div><!-- /article -->
+
+</article>
+</main><!-- /page -->
+
+<script>
+(function(){
+"use strict";
+var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var t0 = performance.now(), decided = false;
+
+var stage = document.getElementById("stage"),
+    control = document.getElementById("control"),
+    response = document.getElementById("response"),
+    rail = document.getElementById("rail"),
+    page = document.getElementById("page");
+
+/* ---------- entrance ----------
+   Only when asked for. Without ?entrance=1 the article is already open and
+   there is nothing here to run: no overlay, no timer, no listeners on wheel,
+   touch or key, and no reveal standing between the reader and the page. */
+var wanted = document.documentElement.classList.contains("entrance");
+var seen = false;
+try{ seen = sessionStorage.getItem("tdp-entrance")==="1"; }catch(e){}
+
+if(!wanted || seen){
+  skip();
+} else {
+  document.body.classList.add("locked");
+  var hesTimer = setTimeout(function(){ decide("hesitate"); }, 9000);
+  control.addEventListener("click", function(){ decide("commit"); });
+  window.addEventListener("wheel", onAttempt, {passive:true});
+  window.addEventListener("touchmove", onAttempt, {passive:true});
+  window.addEventListener("keydown", onAttempt);
+}
+
+function onAttempt(e){
+  if(decided) return;
+  if(e.type==="keydown" && (!["ArrowDown","PageDown"," "].includes(e.key) || e.target===control)) return;
+  decide("hesitate");
+}
+
+function decide(branch){
+  if(decided) return;
+  decided = true; clearTimeout(hesTimer);
+  try{ sessionStorage.setItem("tdp-entrance","1"); }catch(e){}
+  var secs = ((performance.now()-t0)/1000).toFixed(1);
+  control.classList.add("gone");
+  var lines = branch==="commit" ?
+    ["<span class='t'>"+secs+"</span>",
+     "That was a <em>blind commitment</em>.",
+     "You acted without knowing what would happen.",
+     "This essay is about why."] :
+    ["You hesitated.",
+     "You would not act without knowing what would happen.",
+     "This essay is about that instinct."];
+  response.className = "response " + branch;
+  response.innerHTML = lines.map(function(l){return "<div class='line'>"+l+"</div>";}).join("");
+  var els = response.querySelectorAll(".line"), done = false;
+  function fin(){ if(done) return; done = true; reveal(); }
+  if(reduced){ els.forEach(function(el){el.classList.add("on");}); setTimeout(fin,3000); }
+  else{
+    els.forEach(function(el,i){ setTimeout(function(){el.classList.add("on");},500+i*620); });
+    var tin = 500+els.length*620;
+    setTimeout(fin, tin+2800);
+    setTimeout(function(){
+      stage.addEventListener("click", fin);
+      window.addEventListener("keydown", function(e){
+        if(e.key==="Enter"||e.key===" ") fin(); });
+    }, tin);
+  }
+}
+function reveal(){
+  response.classList.add("fade");
+  setTimeout(function(){
+    stage.style.display="none";
+    document.body.classList.remove("locked");
+    page.classList.add("on");
+    window.scrollTo(0,0);
+    buildRail();
+    writing();
+  }, reduced?0:500);
+}
+/* The ordinary way in, and the way back for a reader who has already met the
+   entrance this session. The scroll is left exactly where the browser put it:
+   an inbound link to a citation is now answered by the browser instead of
+   being overridden by a reveal that ended on scrollTo(0,0).
+
+   It is not answered perfectly. The page is not its final height when the
+   browser acts on the fragment, because the studies are still the 640px they
+   are written with and the figure, the mask and the face are all still to
+   come, so the reader lands near the citation rather than on it. Measured:
+   in view but low on a desktop, and about 2,700px short on a phone. Holding
+   the anchor through those changes was tried and taken back out: every
+   version of it either let go too early or went on correcting after the
+   reader had started scrolling, and a page that fights the reader for the
+   scroll is worse than one that lands them a screen off. It wants a real
+   fix, which is a separate piece of work from this one. */
+function skip(){
+  decided = true;
+  stage.style.display="none";
+  document.body.classList.remove("locked");
+  page.classList.add("on");
+  setTimeout(function(){ buildRail(); writing(); },0);
+}
+
+
+/* ---------- the writing ----------
+   For each line, p is how far its top has travelled through a band that
+   begins a little above the bottom edge of the window and ends about a third
+   of the way up, read straight off the line's position in the document:
+
+     start = top - vh * FRONT        the line begins here
+     band  = vh * (FRONT - BACK)     and is finished this much later
+     p     = clamp((y - start) / band, 0, 1)
+
+   p is never given back on the way up, so a line once written stays written,
+   and a page that has been read carries no masks at all. Lines are found by
+   measurement, never by wrapping: words are wrapped in spans and the spaces
+   between them stay text nodes, so the browser breaks lines exactly where it
+   did before.
+   The one exception to the scroll being the timeline is the landing: the hero
+   is on screen when the stage fades, and nothing has been scrolled to. It is
+   written by a virtual scroll of the same band, so the same wave carries it,
+   and the real scroll takes over where the virtual one stops. */
+var TW_FRONT = .92, TW_BACK = .70, TW_LAND = 1400;
+var TW_TEXT = "h1, h2, h3, p, li, .kicker, .inlineq";
+var TW_OBJ = ".studywrap";
+var TW_SKIP = ".heroscene, .railhost, .depthfig";
+var twElems = [], twUnits = [], twStarted = false, twLanding = false, twTick = false;
+
+function twSplit(el){
+  var texts = [], w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+  while(w.nextNode()) if(w.currentNode.nodeValue.trim()) texts.push(w.currentNode);
+  texts.forEach(function(node){
+    var frag = document.createDocumentFragment();
+    node.nodeValue.split(/(\s+)/).forEach(function(part){
+      if(!part) return;
+      if(/^\s+$/.test(part)){ frag.appendChild(document.createTextNode(" ")); return; }
+      var sp = document.createElement("span");
+      sp.className = "tm-w"; sp.textContent = part;
+      frag.appendChild(sp);
+    });
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+function twCollect(root){
+  Array.prototype.slice.call(root.children).forEach(function(c){
+    if(c.matches(TW_SKIP)) return;
+    if(c.matches(TW_OBJ)){ c.classList.add("tm-obj"); twElems.push({el:c, obj:true}); return; }
+    if(c.matches(TW_TEXT)){ twSplit(c); c.classList.add("tm-lead"); twElems.push({el:c}); return; }
+    twCollect(c);
+  });
+}
+/* lines from word boxes: a new line whenever a word's top moves by more than a
+   third of the leading. Re-run on any relayout; the written state lives on the
+   word elements, so it survives. */
+function twMeasure(){
+  var y = window.pageYOffset;
+  twUnits = [];
+  twElems.forEach(function(e){
+    if(e.obj){
+      twUnits.push({obj:e.el, top:e.el.getBoundingClientRect().top + y, p:e.el.twP||0});
+      return;
+    }
+    var words = Array.prototype.slice.call(e.el.querySelectorAll(".tm-w"));
+    if(!words.length) return;
+    var cs = getComputedStyle(e.el);
+    var tol = Math.max(4, (parseFloat(cs.lineHeight)||16)/3);
+    var soft = 2.2 * (parseFloat(cs.fontSize)||16);
+    var line = null, top = 0;
+    words.forEach(function(w){
+      var r = w.getBoundingClientRect();
+      if(!line || Math.abs(r.top - top) > tol){
+        line = {words:[], x:r.left, right:r.right, top:r.top + y, soft:soft, p:w.twP||0,
+                lead:line ? null : e.el};
+        twUnits.push(line); top = r.top;
+      }
+      line.words.push({el:w, dx:r.left - line.x, w:r.width});
+      line.right = r.right;
+      w.style.setProperty("--s", soft.toFixed(1)+"px");
+    });
+  });
+  twUnits.forEach(function(u){ if(u.words) u.lw = u.right - u.x; });
+}
+function twProgress(u, y, vh, max){
+  var band = vh * (TW_FRONT - TW_BACK);
+  var start = Math.max(u.top - vh, Math.min(u.top - vh*TW_FRONT, max - band));
+  band = Math.min(band, Math.max(1, max - start));
+  var p = (y - start) / band;
+  return p < 0 ? 0 : p > 1 ? 1 : p;
+}
+function twPaint(u, o){
+  if(u.obj){ u.obj.style.setProperty("--o", o.toFixed(3)); return; }
+  if(u.lead) u.lead.style.setProperty("--o", o.toFixed(3));
+  var reach = o * (u.lw + u.soft) - u.soft;
+  u.words.forEach(function(wd){
+    if(wd.el.twDone) return;
+    var e = reach - wd.dx;
+    /* the o >= 1 arm is not redundant: the last word of a line has its right
+       edge exactly at the line's, and a rounding error a fraction of a pixel
+       wide would leave that one word masked for the life of the page */
+    if(o >= 1 || e >= wd.w){
+      wd.el.twDone = true;
+      wd.el.style.removeProperty("--e");
+      wd.el.classList.add("tm-done");
+      return;
+    }
+    wd.el.style.setProperty("--e", e.toFixed(1)+"px");
+  });
+}
+function twDrive(y){
+  var vh = window.innerHeight;
+  var max = Math.max(0, document.documentElement.scrollHeight - vh);
+  for(var i = 0; i < twUnits.length; i++){
+    var u = twUnits[i];
+    if(u.p >= 1) continue;
+    var p = twProgress(u, y, vh, max);
+    if(p <= u.p) continue;                 /* the ratchet */
+    u.p = p; (u.obj || u.words[0].el).twP = p;
+    twPaint(u, p*p*(3 - 2*p));             /* smoothstep, so nothing pops in */
+  }
+}
+function twFrame(){ twTick = false; if(!twLanding) twDrive(window.pageYOffset); }
+function twSchedule(){ if(!twTick){ twTick = true; requestAnimationFrame(twFrame); } }
+/* the landing: everything on screen is written by a virtual scroll that runs
+   from the first unwritten line's start to the point where the bottom edge of
+   the window is finished, at the pace of a calm scroll */
+function twLand(){
+  var vh = window.innerHeight, y = window.pageYOffset;
+  var end = y + vh*(1 - TW_BACK), from = Infinity;
+  twUnits.forEach(function(u){
+    if(u.p >= 1) return;
+    var start = u.top - vh*TW_FRONT;
+    if(start < end) from = Math.min(from, start);
+  });
+  if(from === Infinity) return;
+  twLanding = true;
+  var t0 = performance.now();
+  function step(now){
+    var t = Math.min(1, (now - t0)/TW_LAND), v = t*t*(3 - 2*t);
+    var end2 = window.pageYOffset + vh*(1 - TW_BACK);
+    twDrive(from + (end2 - from)*v);
+    if(t < 1) requestAnimationFrame(step);
+    else { twLanding = false; twSchedule(); }
+  }
+  requestAnimationFrame(step);
+}
+var twRz;
+function twRelayout(){
+  if(!twStarted) return;
+  clearTimeout(twRz);
+  twRz = setTimeout(function(){ twMeasure(); twSchedule(); }, 120);
+}
+function writing(){
+  if(twStarted || reduced) return;
+  twStarted = true;
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(function(){
+    twCollect(page);
+    twMeasure();
+    twLand();
+    window.addEventListener("scroll", twSchedule, {passive:true});
+    window.addEventListener("resize", twRelayout);
+    window.addEventListener("load", twRelayout);
+  });
+}
+
+/* ---------- the rail ---------- */
+function buildRail(){
+  var items = Array.prototype.slice.call(
+    document.querySelectorAll("[data-sec],[data-sub],[data-study]"));
+  if(!items.length) return;
+  items.forEach(function(el, i){
+    if(el.id) return;
+    el.id = el.dataset.sec ? "s"+el.dataset.sec
+          : el.dataset.study ? "study"+el.dataset.study
+          : "sub"+i;
+  });
+  rail.innerHTML = items.map(function(el){
+    var kind = el.dataset.sec ? "main" : el.dataset.study ? "study" : "sub";
+    /* No numerals at all: the mark carries the level and the words carry the
+       rest, so every row is a shape and a name. */
+    var name = el.dataset.rail || "";
+    return "<a href='#"+el.id+"' class='"+kind+"' aria-label='"+name+"'>" +
+      "<span class='t' data-t='"+name+"'></span></a>";
+  }).join("");
+  rail.classList.add("on");
+
+  /* the marker moves when a section's top crosses a line 22 percent down the
+     window, so the rail changes with the reading rather than with the scroll.
+     The rail itself only appears once the first section has arrived. */
+  var links = Array.prototype.slice.call(rail.querySelectorAll("a"));
+  var cur = -1, ticking = false;
+  function update(){
+    ticking = false;
+    var line = window.innerHeight * .22, next = 0;
+    for(var i = 0; i < items.length; i++){
+      if(items[i].getBoundingClientRect().top - line <= 1) next = i;
+    }
+    if(next === cur) return;
+    cur = next;
+    links.forEach(function(a, i){
+      a.classList.toggle("cur", i === cur);
+      a.classList.toggle("passed", i < cur);
+    });
+  }
+  function schedule(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener("scroll", schedule, {passive:true});
+  window.addEventListener("resize", schedule, {passive:true});
+  update();
+}
+
+/* ---------- what the studies send back ----------------------------------
+   Two kinds of message arrive from the frames. A height, which the article
+   acts on, and a run of the study, which it keeps.
+
+   The runs are kept in the page and nowhere else. Nothing is sent anywhere,
+   nothing is stored between visits, and nothing identifies anybody: the
+   article is a proposition and the studies are its instrument, so the
+   measures exist to be read off a session you are sitting in front of, on
+   yourself or on somebody beside you. Read them from the console:
+
+     tdp.runs                 every run, in the order they finished
+     tdp.runs.filter(r => r.demo === 1)
+     copy(JSON.stringify(tdp.runs))
+
+   Before this the studies posted their metrics and the article listened only
+   for heights, so every run was composed, sent, and dropped on the floor.
+   Wiring this to somewhere persistent is a different decision, and it takes a
+   backend, a URL and a line telling the reader what is being recorded. None
+   of those are here, so neither is the network. */
+var tdp = window.tdp = { runs: [] };
+
+/* Who a message came from, checked by the window that sent it rather than by
+   its origin.
+
+   The origin string was the obvious check and it was wrong. Opened over
+   file://, which is how this page is read when someone has downloaded it or
+   is working on it without a server, the article's own origin is "file://"
+   while each frame is an opaque origin, so no message a study sent could ever
+   match and every height was dropped. Both studies sat at the 640px they are
+   written with, and because the frames say scrolling="no" the content did not
+   scroll, it was cut. The check meant to keep a stranger out kept the studies
+   out.
+
+   e.source is the sending window itself. A message is from a study only if it
+   came from the exact frame it claims to be, which no other page can forge:
+   nothing outside this document holds a reference that compares equal to our
+   own iframe's contentWindow. It is a stricter test than the origin was, and
+   it does not care what protocol the page is served over. */
+/* A frame says scrolling="no" because its height is supposed to be its
+   content's height, and then the only scrolling in a study band is the page's.
+   That is true exactly as long as the heights arrive. When they do not, the
+   two rules combine into the worst version of both: a frame stuck at the
+   640px it is written with, with no way to reach what is under the cut. That
+   is what the origin check caused, and the cost of getting it wrong should not
+   be silence.
+
+   So the frames are given until three seconds after load to speak. Any that
+   has not is handed its scrollbar back. It is not the intended way to read a
+   study and it is not meant to be pretty; it is the difference between a
+   degraded study and a hidden one. */
+var heardFrom = {};
+window.addEventListener("load", function(){
+  setTimeout(function(){
+    [1,2].forEach(function(n){
+      if(heardFrom[n]) return;
+      var f = frameOf(n);
+      if(!f) return;
+      f.setAttribute("scrolling","yes");
+      f.style.overflow = "auto";
+    });
+  }, 3000);
+});
+
+function frameOf(n){
+  return (n === 1 || n === 2) ? document.getElementById("d" + n) : null;
+}
+window.addEventListener("message", function(e){
+  var d = e.data || {};
+  var f = frameOf(d.demo);
+  if(!f || e.source !== f.contentWindow) return;
+  if(d.type==="tdp-height"){
+    if(d.height > 200) f.style.height = d.height+"px";
+    heardFrom[d.demo] = true;
+    syncMeasure();
+    twRelayout();
+    return;
+  }
+  if(d.type==="tdp-demo"){
+    tdp.runs.push({
+      demo: d.demo,
+      version: d.version || null,
+      metrics: d.metrics || null,
+      at: Math.round(performance.now())      /* ms since the article loaded */
+    });
+  }
+});
+
+/* ---------- the reading size, across the frame boundary ----------
+   --fs-body is fluid in vw, and vw inside an iframe measures the iframe, not
+   the page. A study 1200 wide inside a 1440 page resolved 16.25px while the
+   prose beside it resolved 17, so the same voice was set at two sizes in one
+   band. The page hands each study its own resolved size and the two agree at
+   every width.
+   It is sent, not written in. Reaching into the frame's document works only
+   when the two are same origin, and a page opened from the file system is not:
+   the access threw, the catch swallowed it, and the study quietly set itself
+   at 16.24 next to prose at 17. Everything in a study that is measured against
+   the article's column, the note under the phones above all, moved with it. A
+   message crosses any origin, and the frame applies it itself. */
+function syncMeasure(){
+  var size = getComputedStyle(document.body).fontSize;
+  var frames = document.querySelectorAll(".study iframe");
+  for(var i=0;i<frames.length;i++){
+    var w = frames[i].contentWindow;
+    if(w) w.postMessage({type:"tdp-measure", size:size}, "*");
+  }
+}
+addEventListener("resize", syncMeasure);
+addEventListener("load", syncMeasure);
+document.querySelectorAll(".study iframe").forEach(function(f){
+  f.addEventListener("load", syncMeasure);
+});
+
+})();
+</script>
+<script>
+/* the closing figure, driven by the article's own scroll */
+
+(function(){
+  "use strict";
+
+  var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* in forced colours the figure is laid out flat by the stylesheet, so there
+     is no volume to turn and nothing for the loop to do */
+  var forced = matchMedia("(forced-colors: active)").matches;
+  var coarse = matchMedia("(pointer: coarse)").matches;
+  /* The frame's custom properties go on the figure, never on <html>: a
+     custom property write dirties style for the whole subtree it is set on,
+     and on the root that subtree is the entire article, every frame. All
+     their readers live under .depthfig. Every write is also guarded, so a
+     settled value writes nothing at all. */
+  var fig = document.querySelector(".depthfig");
+  var V = {};
+  function setF(name, val){
+    if (V[name] === val) return;
+    V[name] = val; fig.style.setProperty(name, val);
+  }
+  var deck = document.getElementById("deck");
+  var hits = document.getElementById("hits");
+  var stage = document.getElementById("dstage");
+  var track = document.getElementById("track");
+
+  /* Version a turns 33 degrees, which is the angle at which a stack of
+     screens reads as a stack. Words will not take that: at 33 the top of a
+     paragraph is foreshortened into the one below it and the lines lean off
+     their own baselines. This version turns 26 instead, and buys the depth
+     back where it costs the reading nothing, in the parting: 168 apart at 26
+     degrees lifts each layer as far as 138 did at 33, and sets them further
+     apart in the volume besides. */
+  var GAP = 168;      /* the parting, in px, at full open */
+  /* How far a layer nearer than the one being read stands aside. The parting
+     alone shows 74px of a layer behind, which is its title and no more: enough
+     to name a depth, not enough to read it. 112 further clears 186, and the
+     tallest of the three texts ends at 176. Anything less and the figure would
+     be asking to be read through something. */
+  var STEP = 112;
+  /* how much of the haze in front of the layer in focus is drawn aside. Short
+     of 1 on purpose: the haze is a fact about distance and never lifts
+     entirely, but the words in focus are meant to be read, and at the full
+     haze the second layer read at 2.3:1. 0 restores the haze as it was. */
+  var LIFT = .85;
+  var TILT = 26;      /* how far the volume turns, in degrees */
+  /* On a touch screen there is no pointer resting on the figure to steer
+     toward, only taps, and a deck that stayed leaned toward the last tap
+     read as knocked askew rather than attended to. The phone keeps the
+     volume square: the parting, the focus, the haze and the light carry
+     the depth, and the stack stands in vertical alignment. */
+  var LEAN_Y = coarse ? 0 : 7;  /* how far the viewpoint leans across, in degrees */
+  var LEAN_X = coarse ? 0 : 3;  /* and how far it rises, which is the same lean turned */
+  var SEG = 4000;     /* one depth of the walk the figure makes on its own */
+  var HOLD = .58;     /* the share of that spent resting on the depth */
+  var IDLE = 3200;    /* the wait before attention is given back to the figure */
+
+  /* ---------- build ------------------------------------------------
+     The three stages, in the order a person meets them, each on the layer
+     that is that stage. In version a the card held no words at all and the
+     naming happened outside it, on a tag: white is the surface of a
+     simulated product and nothing that talks about the principle is white.
+     Here the words are the content, so the layer stops being a screen a
+     person is using and becomes a page of the argument. */
+  var STAGES = [
+    {name:"Access", text:"A person establishes the relevant context, for example, by opening a messaging app, identifying a button, or recognizing a physical environment as the field of action."},
+    {name:"Orientation", text:"The possibilities become clear enough to identify and commit to the next step with confidence."},
+    {name:"Resolution", text:"The interaction reaches an outcome that resolves the intent and sometimes becomes the next context."}
+  ];
+
+  function card(i){
+    var st = STAGES[i];
+    return '<article class="card">' +
+      '<div class="top"><h3 class="ct">' + st.name + '</h3>' +
+        '<div class="num">0' + (i + 1) + '</div></div>' +
+      '<p class="cb">' + st.text + '</p>' +
+      '<div class="veil"></div>' +
+    '</article>';
+  }
+
+  /* Built front to back, which is the order the three stages are read in and
+     the order a screen reader will meet them. Nothing about the picture
+     depends on it: inside a preserve-3d context the layers are sorted by where
+     they stand in the volume, not by where they stand in the document, so the
+     order that is right for reading and the order that is right for looking
+     are free to be the same one. */
+  var html = "";
+  for (var i = 0; i < STAGES.length; i++){
+    html += "<div class='plane' data-i='" + i + "'>" + card(i) + "</div>";
+    /* the haze slab that stands in front of the next layer back */
+    if (i < STAGES.length - 1) html += "<div class='slab' data-slab='" + (i + 1) + "'></div>";
+  }
+  deck.innerHTML = html;
+
+  document.getElementById("hits").innerHTML =
+    STAGES.map(function(_, i){ return "<i data-i='" + i + "'></i>"; }).join("");
+  var plates = [].slice.call(document.querySelectorAll(".hits i"));
+
+  var planes = [].slice.call(deck.querySelectorAll(".plane")).sort(function(a,b){
+    return +a.dataset.i - +b.dataset.i;
+  });
+  var slabs = [].slice.call(deck.querySelectorAll(".slab"));
+  var plateZ = [], slabZ = [], slabL = [];
+  /* a slab's strength never changes; only its depth does */
+  slabs.forEach(function(sl){
+    sl.style.setProperty("--k", (.34 + .22 * (+sl.dataset.slab)).toFixed(2));
+  });
+  var parts = planes.map(function(p){
+    return {plane:p, card:p.querySelector(".card"), blur:-1, veil:-1,
+            z:"", dy:"", sk:"", lx:"", ly:""};
+  });
+
+  /* ---------- small maths ---------- */
+  function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function lerp(a, b, t){ return a + (b - a) * t; }
+  function smooth(a, b, x){ var k = clamp01((x - a) / (b - a)); return k * k * (3 - 2 * k); }
+
+  /* ---------- the state ------------------------------------------------
+     One number carries the whole reading of the figure: where the focal
+     plane is, in depths. 0 is the layer at the surface, 2 is the one
+     furthest in, and every layer is drawn from its own distance to it.
+     The pointer moves that number, and left alone the figure moves it
+     itself. Nothing else decides what is sharp. */
+  var S = {
+    open:0, px:.5, py:.5,
+    hover:null, pin:null, rect:null, roomPx:0, live:false, cx:0, cy:0,
+    downX:0, downY:0,
+    lastMove:-1e6, drift:1,          /* 1 is the figure running itself */
+    focus:0, lean:0, leanT:0, tiltLean:0, tiltLeanT:0
+  };
+
+  /* The idle walk. Left alone the figure visits the three depths in order
+     and rests on each, so the loop plays itself for someone who never
+     touches it, and the pointer takes it back the moment it moves. After
+     the last depth it travels the whole way back to the first, through the
+     two it came by, which is the loop the closing paragraph names. */
+  function walk(ms){
+    var n = STAGES.length, k = Math.max(0, ms) / SEG, f = Math.floor(k);
+    var i = f % n, u = k - f;
+    var m = clamp01((u - HOLD) / (1 - HOLD));
+    m = m * m * (3 - 2 * m);
+    return i + ((i + 1) % n - i) * m;
+  }
+
+  /* ---------- the frame ---------- */
+  /* What a layer nearer than the plane of focus gives up, in its own plane.
+     The second step is worth less than the first: by then the layer is only
+     getting out of the way of something already clear.
+
+     Capped by the room under the stack, because a short window has less of it
+     and a front layer sliding off the bottom edge of the figure is worse than
+     one that has not quite finished standing aside. */
+  function step(fore, room){
+    return Math.min(room, STEP * (Math.min(fore, 1) + .6 * Math.max(0, fore - 1)));
+  }
+
+  function render(now){
+    var open = S.open;
+    var gap = open * GAP;
+    var tilt = open * TILT + S.tiltLean;
+    var rad = tilt * Math.PI / 180;
+    /* The layers rise as the volume turns, so the composition would climb out
+       of the stage. Give back half of what the deepest layer gains.
+
+       The standing aside is deliberately NOT compensated for. It was, once,
+       and it cost the figure its one rule: giving half of it back moved the
+       deck, which moved the layer being pointed at out from under the pointer,
+       which took the focus off it, which moved the deck back. Hovering the
+       layer furthest in oscillated. Now the layer in focus never moves at all,
+       and only the ones in front of it do, always downward and away from the
+       bands above them, so nothing can ever arrive under a pointer that is
+       standing still. */
+    var recentre = (gap * (STAGES.length - 1) * Math.sin(rad)) * .5;
+
+    setF("--tilt", tilt.toFixed(2));
+    setF("--lean", S.lean.toFixed(2));
+    setF("--open", open.toFixed(3));
+    setF("--recentre", recentre.toFixed(1));
+    /* the air and the ground answer to the same lean, a little behind it */
+    setF("--pdx", (S.lean * 3.2).toFixed(1));
+    setF("--pdy", ((S.py - .5) * 16 * open * (1 - S.drift)).toFixed(1));
+    setF("--cdx", (S.lean * -1.1).toFixed(1));
+
+    /* how far a layer can stand aside before it leaves the frame, taken back
+       out of the tilt into the layer's own plane. The two lengths it is
+       measured from are read with the frame's other reads, never here. */
+    var room = S.roomPx / Math.max(.4, Math.cos(rad));
+
+    /* the lamp comes back to the upper left as the figure returns to itself */
+    var lampx = lerp(S.px * 100, 30, S.drift);
+    var lampy = lerp(S.py * 100, 22, S.drift);
+
+    for (var i = 0; i < parts.length; i++){
+      var p = parts[i];
+      var away = Math.abs(i - S.focus);   /* this layer's distance from the plane */
+      var clar = clamp01(1 - away);       /* and so how far it is into focus */
+      /* Behind the plane and in front of it are not the same amount of blur.
+         A layer nearer than the plane is spread over more of the frame, so the
+         same radius reads as far more of it, and the layer a person is
+         standing at would drown the one they are looking into. It gives way by
+         two thirds as much, which is what leaves the deep layer readable. */
+      var back = Math.max(0, i - S.focus), fore = Math.max(0, S.focus - i);
+
+      /* Distance and focus are two different things and they are kept apart.
+         The haze is a fact about how far away a layer is and never lifts
+         entirely. The blur is a fact about where the plane of focus is, so a
+         layer at the back can be the sharp one and the layer at the surface
+         can be the one that gives way, which is the whole of what looking
+         into a stack means. */
+      /* The parting, and a fraction of a pixel that is there even when there is
+         no parting at all. Layers at exactly the same depth are a tie, and a
+         tie inside a 3D context is broken by document order, which here is
+         reading order: with the stack shut, the last stage would paint over
+         the first, and the single screen a person is given would be the wrong
+         one. Six tenths of a pixel is enough to sort them and far too little
+         to see. */
+      var z    = -i * (gap + .6) + clar * 16 * open;
+      var dy   = step(fore, room) * open;
+      /* the haze of distance stays on a far layer even in focus, but its blur
+         does not: these words are meant to be read, and 13px of monospace does
+         not survive a pixel and a half of it. What is being looked at is
+         sharp, wherever in the volume it is standing. */
+      var blur = open * (i * .9 * (1 - clar) + back * 3.6 + fore * 2.4);
+      /* the haze lifts further here than in version a. There the veil sat on a
+         diagram of a card and .20 of it read as distance; here it sits on
+         13px of text that has to be read, and .11 is what leaves it black */
+      var veil = open * Math.min(.44, i * .23) * (1 - .75 * clar);
+      var sk   = (i === 0 ? 1 : open * (1 - .22 * i)) * (1 + .3 * clar * open);
+
+      var qz = z.toFixed(1), qd = dy.toFixed(1);
+      if (p.z !== qz){ p.z = qz; p.plane.style.setProperty("--z", qz); }
+      if (p.dy !== qd){ p.dy = qd; p.plane.style.setProperty("--dy", qd); }
+
+      /* blur is the one expensive property here, so it is quantised and
+         written only when the quarter pixel it lands on has changed */
+      var qb = Math.round(blur * 4) / 4;
+      if (qb !== p.blur){
+        p.blur = qb;
+        p.card.style.filter = qb ? "blur(" + qb + "px)" : "none";
+      }
+      var qv = Math.round(veil * 100) / 100;
+      if (qv !== p.veil){ p.veil = qv; p.card.style.setProperty("--veil", qv); }
+      /* the shadow and the lamp repaint what they touch, so both are
+         quantised and written only on change, like the blur above */
+      var qs = (Math.round(sk * 50) / 50).toFixed(2);
+      if (p.sk !== qs){ p.sk = qs; p.card.style.setProperty("--sk", qs); }
+      /* the light sits deeper into the volume for a layer further away, which
+         is the same parallax the layers themselves are drawn with */
+      var qlx = (Math.round((50 + (lampx - 50) * (1 - .22 * i)) * 2) / 2).toFixed(1) + "%";
+      var qly = (Math.round((50 + (lampy - 50) * (1 - .22 * i)) * 2) / 2).toFixed(1) + "%";
+      if (p.lx !== qlx){ p.lx = qlx; p.card.style.setProperty("--lx", qlx); }
+      if (p.ly !== qly){ p.ly = qly; p.card.style.setProperty("--ly", qly); }
+    }
+
+    /* the plates keep the resting arrangement: the parting and nothing else */
+    for (var q = 0; q < plates.length; q++){
+      var qh = (-q * (gap + .6)).toFixed(1);
+      if (plateZ[q] !== qh){ plateZ[q] = qh; plates[q].style.setProperty("--hz", qh); }
+    }
+
+    for (var s = 0; s < slabs.length; s++){
+      var qsz = (-(+slabs[s].dataset.slab - .5) * gap).toFixed(1);
+      if (slabZ[s] !== qsz){ slabZ[s] = qsz; slabs[s].style.setProperty("--z", qsz); }
+      /* a slab stands in front of its layer and every layer behind it, so it
+         thins as the plane of focus moves through it, and thickens again as
+         the walk comes back out */
+      var ql = (Math.round(LIFT * clamp01(S.focus - +slabs[s].dataset.slab + 1) * 50) / 50).toFixed(2);
+      if (slabL[s] !== ql){ slabL[s] = ql; slabs[s].style.setProperty("--lift", ql); }
+    }
+  }
+
+  /* ---------- what turns the volume ----------------------------------
+     The scroll is the timeline. There is no duration and no transition:
+     the figure is exactly as open as the reader has decided it is.
+
+     There used to be a second way in: a host page could postMessage a
+     progress value and drive the figure from outside. That belonged to the
+     figure's iframe mode, which was dropped when the figure was inlined, and
+     it outlived it as an unguarded listener on the article, accepting a
+     "stack:progress" from any origin and setting how open the figure stands.
+     Nothing has sent one since the frame went. It is removed rather than
+     given an origin check: the article is never framed, so the channel has no
+     caller to keep, and a listener kept for nobody is a door kept for nobody.
+     _stack.html and _stack-b.html hold their own copies for the harness. */
+
+  function fromScroll(){
+    var r = track.getBoundingClientRect();
+    var span = r.height - window.innerHeight;
+    if (span <= 0) return null;
+    return clamp01(-r.top / span);
+  }
+
+  function setProgress(p){
+    /* the opening is spent early in the track, so the rest of it is the
+       figure held fully open with the pass running through it */
+    S.open = smooth(.06, .46, p);
+  }
+
+  /* ---------- what the pointer is on ---------------------------------
+     The pointer is attention. The layer it rests on is pulled into focus,
+     leaned toward and lit, and the other two give way. A click holds a
+     layer after the pointer has left it, which is the only way a finger
+     can say anything at all: a touch has no hovering.
+     ------------------------------------------------------------------- */
+  /* Which layer a point is on is answered off the layers themselves, but not
+     off the event's target: hit testing walks the document in order, and this
+     document is in reading order, so the target at a point where two layers
+     overlap is the last one written rather than the nearest one standing. The
+     browser is still doing the geometry, which is what matters; all that is
+     wanted from us is the sort. Every layer whose own rectangle contains the
+     point comes back from elementsFromPoint, and the nearest of those is the
+     one a person sees there, which is the one they mean. */
+  function hitAt(cx, cy){
+    var els = document.elementsFromPoint(cx, cy), best = null;
+    for (var i = 0; i < els.length; i++){
+      var pl = els[i].parentNode === hits ? els[i] : null;
+      if (pl){ var k = +pl.dataset.i; if (best === null || k < best) best = k; }
+    }
+    return best;
+  }
+
+  function at(e){
+    /* the stage's box is read once a frame, with the other reads, rather than
+       on every move: a pointer can fire a dozen moves between two frames and
+       each of those would have been a layout flush against a deck that had
+       just been written to */
+    var r = S.rect || (S.rect = stage.getBoundingClientRect());
+    S.cx = e.clientX; S.cy = e.clientY;
+    S.px = clamp01((e.clientX - r.left) / r.width);
+    S.py = clamp01((e.clientY - r.top) / r.height);
+    S.lastMove = performance.now();
+  }
+
+  /* the hit is resolved once a frame, not once a move, for the same reason */
+  stage.addEventListener("pointermove", function(e){ at(e); S.live = true; }, {passive:true});
+  stage.addEventListener("pointerleave", function(){
+    S.hover = null; S.live = false;
+  }, {passive:true});
+  /* A mouse pins on the press. A finger cannot: on a touch screen the same
+     gesture that pins is also how the page is scrolled, and this stage fills
+     the window for the whole of the figure's track. Pinning on the press
+     meant every scroll that began on a card toggled that card's pin before
+     the browser claimed the drag, so a pass through the figure came out
+     holding whatever the thumb had last landed on. A finger commits on the
+     lift instead: a drag that turned into a scroll ends in pointercancel and
+     never lifts here, so it filters itself out. */
+  stage.addEventListener("pointerdown", function(e){
+    at(e);
+    var i = hitAt(e.clientX, e.clientY);
+    S.hover = i; S.live = true;
+    if (e.pointerType === "mouse"){
+      /* the same layer again, or the air around the stack, lets it go */
+      S.pin = (i === null || i === S.pin) ? null : i;
+    } else {
+      S.downX = e.clientX; S.downY = e.clientY;
+    }
+  }, {passive:true});
+  /* a finger never leaves the way a pointer does: it lifts. Without this the
+     figure would count a tap as a hand still resting on the layer and would
+     never go back to running itself. What a clean tap pinned, it goes on
+     holding; the slop is a thumb's tremble, not a drag. */
+  stage.addEventListener("pointerup", function(e){
+    if (e.pointerType !== "mouse"){
+      if (Math.hypot(e.clientX - S.downX, e.clientY - S.downY) < 12){
+        var i = hitAt(e.clientX, e.clientY);
+        /* the same layer again, or the air around the stack, lets it go */
+        S.pin = (i === null || i === S.pin) ? null : i;
+      }
+      S.hover = null; S.live = false;
+    }
+  }, {passive:true});
+  stage.addEventListener("pointercancel", function(){
+    S.hover = null; S.live = false;
+  }, {passive:true});
+
+  /* ---------- run ---------- */
+  var running = false, t0 = null, lastTs = null;
+
+  /* The easing rates in this loop are written for a 60fps frame. A phone
+     that renders the figure at half that used to take twice the wall time
+     to settle, which read as lag rather than as ease. k() raises a rate to
+     the length of the frame that is actually being drawn, in 60ths, so
+     every settle takes the same time at any frame rate. */
+  function k(base, dtf){ return reduced ? 1 : 1 - Math.pow(1 - base, dtf); }
+
+  function frame(ts){
+    if (!running) return;
+    if (t0 === null) t0 = ts;
+    var dtf = lastTs === null ? 1 : Math.min(3, (ts - lastTs) / 16.667);
+    lastTs = ts;
+    /* every read the frame needs, taken together and before the first write */
+    S.rect = stage.getBoundingClientRect();
+    /* the room under the stack: half the stage, less the part of a card that
+       already hangs below the middle of it */
+    S.roomPx = Math.max(0, S.rect.height * .5 - deck.offsetHeight * .62);
+    if (S.live) S.hover = hitAt(S.cx, S.cy);
+    var p = fromScroll();
+    if (p !== null) setProgress(p);
+
+    var now = performance.now();
+    /* Left alone the figure goes back to running itself, but not while a
+       layer is being looked at: the pointer resting on a depth is a reader
+       holding it, and it would be a strange figure that pulled away from
+       someone standing still in front of it. */
+    var idle = !reduced && S.pin === null && S.hover === null &&
+               now - S.lastMove > IDLE;
+    /* reduced motion gets the same states, arrived at without the travel */
+    S.drift = lerp(S.drift, idle ? 1 : 0, k(idle ? .012 : .10, dtf));
+
+    /* the plane of focus, from the pointer and from the figure itself, and
+       nothing at all until the layers have parted enough to tell apart */
+    var held = S.hover !== null ? S.hover : (S.pin !== null ? S.pin : 0);
+    var live = smooth(.34, .78, S.open);
+    var focusT = lerp(held, walk(ts - t0), S.drift) * live;
+    /* a touch rack runs a little tighter than a hover: a tap is a request,
+       and a request answered over a full second reads as lag on a phone */
+    S.focus = lerp(S.focus, focusT, k(coarse ? .11 : .07, dtf));
+
+    /* the viewpoint leans toward the pointer, and squares up again when the
+       figure is left to itself */
+    var hold = S.open * (1 - S.drift);
+    S.leanT = (S.px - .5) * 2 * LEAN_Y * hold;
+    S.tiltLeanT = (.5 - S.py) * 2 * LEAN_X * hold;
+    S.lean = lerp(S.lean, S.leanT, k(coarse ? .08 : .055, dtf));
+    S.tiltLean = lerp(S.tiltLean, S.tiltLeanT, k(coarse ? .08 : .055, dtf));
+
+    render(now);
+    requestAnimationFrame(frame);
+  }
+
+  function start(){ if (running || forced) return; running = true; t0 = null; lastTs = null; requestAnimationFrame(frame); }
+  function stop(){ running = false; }
+
+  /* nothing is computed while the figure is off screen */
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(en){ en.isIntersecting ? start() : stop(); });
+    }, {rootMargin:"120px"}).observe(track);
+  } else { start(); }
+
+  /* in a page that cannot scroll for it: open once, on its own, and hold there */
+  setTimeout(function(){
+    if (fromScroll() !== null) return;
+    if (reduced){ S.open = 1; return; }
+    var s = null;
+    requestAnimationFrame(function tick(ts){
+      if (s === null) s = ts;
+      var k = clamp01((ts - s) / 1400);
+      S.open = 1 - Math.pow(1 - k, 3);
+      if (k < 1) requestAnimationFrame(tick);
+    });
+  }, 600);
+
+  render(performance.now());
+})();
+</script>
+
+</body>
+</html>

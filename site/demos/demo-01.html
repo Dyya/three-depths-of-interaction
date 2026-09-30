@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- A fragment of the article, not a page of its own: kept out of search as a
+     bare URL, still readable to a crawler inside the article that embeds it.
+     Paper only, like the article, so a forced dark mode leaves it alone. -->
+<meta name="robots" content="noindex, indexifembedded">
+<meta name="color-scheme" content="only light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23FCFCFC'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%23121212'/%3E%3C/svg%3E">
+<title>Three Depths of Interaction · Study 01</title>
+<link rel="stylesheet" href="../system.css">
+<style>
+  /* Tokens, the reset, the base type, the label idiom and the focus state come
+     from system.css, linked above and shared with the article. Below is this
+     study's own work, and nothing else. */
+
+  .wrap{max-width:var(--track);margin:0 auto;padding:var(--s6) var(--edge) var(--s7);}
+  .k{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);font-weight:500;}
+  header .k{display:flex;justify-content:space-between;margin-bottom:var(--s3);}
+  h1{font-size:var(--fs-h2);line-height:var(--lh-h2);font-weight:700;letter-spacing:-.02em;max-width:var(--w-text);}
+  .lede{margin-top:var(--s3);max-width:var(--w-text);font-size:var(--fs-body);line-height:var(--lh-body);color:var(--muted);}
+  .lede b{color:var(--ink);font-weight:600;}
+
+  /* --s5, the gap study 02 sets between its two panels. The two studies stand
+     one above the other in the article and were spacing their subjects
+     differently, 32 here and 48 there, which read as two grids rather than one
+     page. It also buys back some of what the shorter device gives up: the row
+     is fixed, so 16 more px of air on each side is 16 fewer of device, and at
+     the narrowest three-up case that is a 299px phone rather than 310. The
+     article inside still clears it by 55px, because it drops a line at exactly
+     that width. */
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,280px));gap:var(--s5);
+    margin-top:var(--s5);justify-content:center;}
+  /* Three up, until three would mean three narrow ones. The device's height is
+     tied to its width by the aspect ratio, but the article inside it is set on
+     the product scale and does not shrink with the device, so a narrow phone is
+     a phone whose screen holds less. The article stops fitting below 296px of
+     device, and this breakpoint was low enough to hand it 298: two pixels, at
+     two viewport widths, one of them a common laptop. The screen answered by
+     scrolling, and the reader met a scrollbar inside a phone in a study about
+     whether a destination is visible before you commit to it.
+     1055 rather than 1020 puts the narrowest three-up device at 310. */
+  /* Stacked, the column is capped at 380 because a phone drawn any wider stops
+     reading as a phone. The cap was there; the centring was not, so the device
+     sat hard against the left with the whole remainder of the row beside it:
+     18px of it at 430, 272 at 700, 703 by the time the third column returns.
+     Study 02 never showed this because its stacked column is 1fr and fills.
+     justify-content centres the track itself, which is the thing that is
+     narrower than the grid. */
+  /* Three capped devices and two gaps want 3*280 + 2*48 = 936 of row, and the
+     wrap is 999 wide by the time it offers that much. Measured, not derived:
+     at 984 the tracks come out at 275, because the wrap's padding is not the
+     only thing between the row and the frame. 275 does still fit the article,
+     by 55px, but the cap is the promise this layout makes and it should not be
+     quietly missed at one width.
+
+     The breakpoint is that measurement and not a judgement about how narrow a
+     device may get: it was 1055 when the row was elastic and the question was
+     how much squeezing the article would take. Three up starts lower now,
+     which is the point. */
+  @media(max-width:998px){.grid{grid-template-columns:minmax(0,380px);gap:var(--s7);
+    justify-content:center;}}
+
+  /* phone */
+  /* The device is 9/18.2 again, and 280px wide at most.
+
+     Shortening the shape was the wrong lever. 1.72 is squatter than an iPhone
+     3G, and the whole band between it and 2.0 is 2008 to 2013 hardware, so
+     there is no ratio in there that saves space without the device reading as
+     old. 2.02 is where a modern phone starts and it is where this began.
+
+     The saving comes off the width instead, which costs nothing in
+     recognition: a phone capped at 280 is still exactly a phone, just a
+     smaller one, and the room it gives up becomes air around the row rather
+     than a shape nobody owns. Against the 310 x 627 this study started with,
+     280 x 566 is 30 narrower and 61 shorter.
+
+     280 rather than 275, which is where the article stops fitting. The article
+     inside does not shrink with the device, and it sheds a line at 275 and
+     again at 285, so 280 sits on the safe side of the first of those with 66px
+     to spare. Below the breakpoint the device stacks and may take 380, where
+     there is a whole screen for it. */
+  /* The product's surfaces, as in study 02: its controls a faint grey on the
+     white screen, a step darker when pressed, and the device lifted by a long,
+     soft shadow rather than a tight one. The article's band grey was one step
+     too heavy inside a product that is otherwise white. */
+  .phone{--c-fill:#F8F8F9;--c-press:#F1F1F3;
+    width:100%;aspect-ratio:9/18.2;border-radius:var(--r-device);background:var(--surface0);
+    box-shadow:0 2px 6px -2px rgba(18,18,18,.05),0 28px 56px -30px rgba(18,18,18,.26);
+    overflow:hidden;position:relative;display:flex;flex-direction:column;}
+  /* No status bar: a clock and a variant letter are chrome the reader already
+     knows, and three of them stood between the study's heading and the work.
+     The device is the screen now. The letter still names each version, in the
+     panel below the phone where the commentary is. */
+  /* The screen does not scroll. It is a phone showing an article, and the task
+     is to save the article, not to read it: nothing the study measures is
+     below the fold, so a scroll bar here is an affordance for something that
+     is not being asked. It clips instead, and the breakpoint above is what
+     makes sure there is never anything to clip. */
+  .screen{flex:1;overflow:hidden;position:relative;transition:opacity var(--t3) var(--settle);}
+  /* The overlay layer covers the whole device: a menu that dims the article
+     but leaves any part of the device lit would be dimming a page inside a
+     phone rather than the phone. It cannot live in .screen, which clips
+     anything reaching past it, so it is a sibling that spans the device.
+     Inert until it holds something. */
+  .over{position:absolute;inset:0;pointer-events:none;
+    transition:opacity var(--t3) var(--settle);}
+  .over > *{pointer-events:auto;}
+
+  /* Two placements, each exact and independent of the other: the menu at the
+     interior inset in both axes, and the reading matter centred in the device.
+     Auto margins do the centring rather than justify-content, because they
+     collapse to zero instead of clipping the top if the text ever outgrows the
+     screen. The button stays inside .screen so the menu scrim still dims it. */
+  .art{position:relative;min-height:100%;padding:20px;display:flex;flex-direction:column;}
+
+  .art-body{margin-block:auto;}
+  /* Stacked, the device is up to 380 wide and so up to 770 tall, and the
+     article centred in it floated in a band of empty screen above and below.
+     There the reading matter starts where a page starts: under the button, at
+     the same distance below it as in the row of three. */
+  @media(max-width:998px){.art-body{margin-block:calc(var(--ctl-touch) + 16px) auto;}}
+  /* The three dots are drawn, not set. As type they were three U+00B7, so their
+     spacing was the face's monospaced advance (9.6px at that size, far wider
+     than the dots themselves) and their height was wherever the face puts a
+     middle dot above the baseline, which is not the centre of the circle.
+     Drawn, one dot is placed dead centre by the grid and the other two are cast
+     from it by box-shadow, so the mark is exact on both axes and its spacing is
+     one number, kept even against an even button so dot and pair land on whole
+     pixels, where an odd dot would straddle a half pixel and render soft. The
+     two sizes and their casts are with the ::before below. */
+  /* --ctl-touch, not --ctl-card. The system picks a control's tier by where it
+     lives rather than how big it looks, and this one lives inside a phone: it
+     is the only way into the task and it was 36. */
+  .menu-btn{position:absolute;top:20px;right:20px;
+    width:var(--ctl-touch);height:var(--ctl-touch);border-radius:50%;
+    background:var(--c-fill);display:grid;place-items:center;
+    transition:background var(--t1) var(--settle);}
+  /* The mark is drawn, not set, and its geometry is even against whichever
+     button it sits in: centred in 44 a 2px dot spans 21 to 23 with the pair
+     cast at 10 landing on 11..13 and 31..33, and centred in 32 it spans 15 to
+     17 with the pair at 7 landing on 8..10 and 22..24. Whole pixels on both
+     axes at both sizes, and the mark reads exactly half the button either way,
+     22 of 44 and 16 of 32. */
+  .menu-btn::before{content:"";width:2px;height:2px;border-radius:50%;
+    background:var(--ink);box-shadow:-10px 0 0 var(--ink),10px 0 0 var(--ink);}
+  .menu-btn:active{background:var(--c-press);}
+  @media (hover:hover){.menu-btn:hover,.ic:hover,.d-btn:not(.primary):hover{background:var(--c-press);}}
+
+  /* ---------- the device as a drawing ------------------------------------
+     Three up, the device is 280 wide and stands for a phone that is 390, so
+     everything inside it is being drawn at 0.72 and reads 39 per cent large:
+     a 44px control is a 61pt one on the phone it depicts, and a 20px margin
+     is 28pt. Both are a step too big, and the button is the one you see.
+
+     The type is not. Measured against the thing it imitates, the title is 28pt
+     against iOS's 28, the body 18 against 17, the byline 15 against 13. It was
+     drawn for this and it can stay; a step down would buy a proportion nobody
+     asked for and cost the legibility the reader actually needs, since they
+     are reading it at page scale rather than at arm's length.
+
+     Stacked, none of this applies: the device is 358 to 380, near enough real
+     size that a 20px margin is 20pt and a 44px control is a finger's target,
+     which is what it will be, because a device that stacks is on a phone.
+
+     Three up the button is 32, not a tier: it is a drawing of a control, and
+     32 at the 0.72 the device is drawn at depicts a 44pt one, which is the
+     touch tier itself. The drawing now shows the control it depicts at its
+     true size, where 36 showed a 50pt one. The tier scale governs controls a
+     finger can land on; a drawn control follows the drawing. */
+  @media(min-width:999px){
+    .art{padding:var(--s2);}
+    .menu-btn{top:var(--s2);right:var(--s2);
+      width:32px;height:32px;}
+    .menu-btn::before{box-shadow:-7px 0 0 var(--ink),7px 0 0 var(--ink);}
+  }
+  .art h3{font-size:var(--fs-p0);line-height:var(--lh-p0);font-weight:700;letter-spacing:-.022em;}
+  .art .by{font-size:var(--fs-p4);color:var(--muted);margin:8px 0 16px;line-height:var(--lh-p4);}
+  .art p{font-size:var(--fs-p2);color:var(--ink);margin-bottom:12px;line-height:var(--lh-p2);}
+
+  .scrim{position:absolute;inset:0;background:rgba(18,18,18,.28);animation:fade var(--t2) var(--settle);}
+  @keyframes fade{from{opacity:0}}
+  /* inset by --s2 rather than 8: the phone clips at its own edge, so a sheet
+     nearer than the shadow's reach had its shadow cut off in a straight line
+     along the bottom of the device. */
+  /* ---------- inside a sheet -------------------------------------------
+     One inset, on the 8 grid, and every child answers to it.
+
+     The sheet padded 16 and then each child padded again by a different
+     number: text by 8, rows and the back control by 12, the icon strip by 4.
+     So the title sat at 24 from the sheet's edge, a row's label at 28, and an
+     icon at 20, and none of the three lined up with any other. The strip's 4
+     is what made the row of icons collapse: 16 and 16 and 4 leaves 208 of a
+     280px device, four 52px icons are 208, and the gaps measured 0, 0 and 0.
+     They were touching. The wider device had 30px of slack to hide it in.
+
+     Now the sheet insets 16 and every child insets 8, so the strip has 200 to
+     spend: four controls at --ctl-touch and three gaps of 8 is exactly 200.
+     The icon size is not chosen here, it falls out of the grid. */
+  .sheet{position:absolute;left:var(--s2);right:var(--s2);bottom:var(--s2);
+    background:var(--surface0);border-radius:var(--r-card);
+    padding:var(--s2);animation:rise var(--t3) var(--settle);
+    box-shadow:var(--lift-over);}
+  @keyframes rise{from{transform:translateY(24px);opacity:0}}
+  .s-title{font-size:var(--fs-ctl);line-height:20px;font-weight:700;
+    padding:0 var(--s1) var(--s1);}
+  .s-row{display:flex;align-items:center;gap:var(--s1);width:100%;text-align:left;
+    padding:0 var(--s1);
+    min-height:var(--ctl-touch);border-radius:var(--r-md);font-size:var(--fs-ctl);font-weight:500;}
+  .s-row:hover{background:var(--c-fill);}
+  .s-row:active{background:var(--c-press);}
+  .s-row .arr{margin-left:auto;color:var(--muted);font-weight:400;}
+  /* no bottom inset of its own: the sheet's 16 is the bottom of the sheet */
+  .s-note{font-size:var(--fs-meta);line-height:16px;color:var(--muted);
+    padding:var(--s1) var(--s1) 0;max-width:200px;}
+  /* the way back out of a sub-sheet, inside a phone: a touch target */
+  .s-back{display:flex;align-items:center;min-height:var(--ctl-touch);font-size:var(--fs-ctl);
+    color:var(--muted);padding:0 var(--s1);font-weight:500;}
+  .s-back:hover{color:var(--ink);}
+  .icons{display:flex;justify-content:space-between;gap:var(--s1);padding:var(--s1);}
+  .ic{width:var(--ctl-touch);height:var(--ctl-touch);border-radius:var(--r-md);
+    background:var(--c-fill);display:flex;flex:none;
+    align-items:center;justify-content:center;transition:background var(--t1) var(--settle);}
+  .ic:active{background:var(--c-press);}
+  .ic svg{width:22px;height:22px;stroke:var(--ink);stroke-width:1.8;fill:none;
+    stroke-linecap:round;stroke-linejoin:round;}
+  .dialog{position:absolute;left:24px;right:24px;top:38%;background:var(--surface0);border-radius:var(--r-lg);
+    padding:20px 20px 16px;text-align:center;box-shadow:var(--lift-over);
+    animation:rise var(--t3) var(--settle);}
+  .dialog p{font-size:var(--fs-ctl);line-height:20px;font-weight:600;margin-bottom:16px;}
+  .d-row{display:flex;gap:8px;}
+  .d-btn{flex:1;min-height:var(--ctl-touch);border-radius:var(--r-sm);background:var(--c-fill);
+    font-size:var(--fs-ctl);font-weight:600;}
+  .d-btn.primary{background:var(--ink);color:var(--surface0);}
+  .toast{position:absolute;left:20px;right:20px;bottom:18px;background:var(--ink);color:var(--surface0);
+    border-radius:var(--r-md);padding:12px 16px;font-size:var(--fs-ctl);font-weight:600;display:flex;
+    justify-content:space-between;align-items:center;animation:rise var(--t2) var(--settle);}
+  .toast small{display:block;font-weight:400;opacity:.65;font-size:var(--fs-meta);margin-top:0;}
+  .toast .undo{color:var(--surface0);font-size:var(--fs-p3);font-weight:600;opacity:.85;
+    text-decoration:underline;text-underline-offset:2px;line-height:var(--lh-p3);}
+
+  /* panel */
+  /* No field. White is the surface of a simulated product, and this panel talks
+     about one: as a white card it read as a second phone screen beside the
+     phone. Commentary sits on the ground the study sits on, and shares the
+     phone's own edges rather than being inset from them. */
+  /* one gap under the phones, whatever stands there: the pass-one note, the
+     questions, or the facts. An emptied panel takes no room, so the facts sit
+     at the same distance the questions did. */
+  .panel{margin-top:var(--s5);}
+  .panel:empty{display:none;}
+  /* the instruction is about the study, not about one phone, so it is said
+     once under the row and goes as soon as the first question appears. It is
+     the study speaking rather than a caption on a phone, so it stands in the
+     reading column: the frame and the article share a centre and a measure, so
+     this line begins exactly where the prose under the study begins. */
+  /* The box already begins exactly where the prose box begins, at every width.
+     What the eye compares is the ink, and a round Q sits almost on its advance
+     edge while the stem below it stands about 3px inside, so the line hung
+     2.25px left of the paragraph under it. The nudge closes that. It is in em
+     so it holds at any measure, and it is tied to this sentence's first
+     letter: change the opening word and this needs measuring again. */
+  .passnote{margin:var(--s5) auto 0;font-size:var(--fs-p2);line-height:var(--lh-p2);
+    color:var(--muted);max-width:var(--w-text);padding-left:.173em;}
+  .passnote.gone{display:none;}
+  .panel [tabindex="-1"]:focus-visible,.final:focus-visible{outline:none;}
+  .q{font-size:var(--fs-p2);font-weight:600;margin-bottom:var(--s1);line-height:var(--lh-p2);}
+  .c-opts{display:flex;flex-direction:column;gap:8px;}
+  .c-btn{text-align:left;font-size:var(--fs-ctl);min-height:var(--ctl-card);padding:0 12px;
+    border-radius:var(--r-sm);background:var(--surface2);
+    /* centre, not baseline: with a min-height taller than the line, baseline
+       alignment leaves the label sitting at the top of the button. Both
+       children are the same size, so nothing is lost by centring. */
+    display:flex;gap:12px;align-items:center;
+    transition:background var(--t1) var(--settle);}
+  .c-btn b{font-variant-numeric:tabular-nums;}
+  /* the recess cannot lighten on hover without turning into the product's
+     white, so the affordance is a ring rather than a fill */
+  .c-btn:hover{box-shadow:inset 0 0 0 var(--ring) var(--faint);}
+  .done-note{font-size:var(--fs-p4);color:var(--muted);margin-top:var(--s1);line-height:var(--lh-p4);}
+
+  /* final section */
+  .final{margin-top:var(--s5);display:none;}
+  .final.show{display:block;}
+  .after{opacity:0;transition:opacity var(--t4) var(--settle);pointer-events:none;}
+  .after.show{opacity:1;pointer-events:auto;}
+
+  /* results: the article's own scales only. The path in body type, ink for
+     what was visible before the commitment and muted for what was discovered
+     after it; the facts in small mono, label left and value right, set off by
+     the row rhythm and not by rules. Accent is kept for the two facts that
+     carry the argument, blind commitments and where the destination showed. */
+  .results{margin-top:0;}
+  .res{display:flex;flex-direction:column;}
+  .res .k{margin:0;}
+  .facts{margin-top:auto;padding-top:var(--s4);}
+  .facts{font-family:var(--mono);font-size:var(--fs-small);line-height:var(--lh-small);
+    font-variant-numeric:tabular-nums;}
+  .facts div{display:grid;grid-template-columns:1fr auto;gap:var(--s3);padding:4px 0;}
+  .facts dt{color:var(--muted);}
+  .facts dd{text-align:right;}
+  .facts .hot{color:var(--accent);font-weight:700;}
+
+  /* The axiom takes the article's treatment: no field, only scale. It is a
+     statement, not a banner, and a filled box around it was a second frame
+     inside the page's. Same size, weight and tracking as the axioms between
+     the article's sections, measured on the grid rather than in ch. */
+  footer{margin-top:var(--s7);display:flex;justify-content:space-between;font-family:var(--mono);
+    font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:var(--lh-label);}
+  .notice{max-width:var(--w-text);margin-top:var(--s2);font-family:var(--mono);font-size:var(--fs-small);line-height:var(--lh-small);color:var(--muted);}
+</style>
+<script>if(window.self!==window.top)document.documentElement.classList.add('embed');</script>
+<style>
+  html.embed .wrap{max-width:none;margin:0;padding:0 var(--bleed);}
+  html.embed header{display:none;}
+  html.embed footer{display:none;}
+  html.embed body{background:transparent;}
+  html.embed .grid{margin-top:0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="k"><span>Interactive study · 01</span><span>The Three-Depth Principle</span></div>
+  <h1>Save for later</h1>
+  <p class="lede">Complete the same task across all three screens from left to right (top-down on mobile).</p>
+  <p class="notice">Data and answers are anonymously logged for research.</p>
+</header>
+
+<div class="grid">
+  <section aria-label="Version A">
+    <div class="phone" id="phA"><div class="screen" id="scrA"></div>
+      <div class="over" id="ovA"></div></div>
+    <div class="panel" id="pnA"></div>
+  </section>
+  <section aria-label="Version B">
+    <div class="phone" id="phB"><div class="screen" id="scrB"></div>
+      <div class="over" id="ovB"></div></div>
+    <div class="panel" id="pnB"></div>
+  </section>
+  <section aria-label="Version C">
+    <div class="phone" id="phC"><div class="screen" id="scrC"></div>
+      <div class="over" id="ovC"></div></div>
+    <div class="panel" id="pnC"></div>
+  </section>
+</div>
+
+<p class="passnote" id="passnote">Questions will appear after the task is finished.</p>
+
+<div class="final" id="final" tabindex="-1">
+  <!-- The person has just said how certain they felt. What follows is only
+       the facts: three columns on the phones' own grid, one per version, the
+       same six rows in the same order. The paths, the recall note, the legend,
+       the replay and the closing line were all saying what the article says
+       in its own voice under the study, so they went. -->
+  <div class="after" id="after">
+    <div class="grid results" id="results"></div>
+  </div>
+</div>
+
+<footer><span>Three Depths of Interaction</span><span>Adi Dizdarevic · 2026</span></footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var CONF = ["Guessing","Uncertain","Mostly certain","Certain","Completely clear"];
+var RECALL = ["Reading List","Bookmarks","Saved articles","I can't tell"];
+var sims = {};
+
+function article(){
+  return "<div class='art'>" +
+    "<button class='menu-btn' data-a='menu' aria-label='Menu'></button>" +
+    "<div class='art-body'><h3>The Quiet Return of the Walkable City</h3>" +
+    "<div class='by'>M. Ito · 6 min read</div>" +
+    "<p>For half a century, cities were drawn around the turning radius of a car. That default is quietly dissolving. From Vienna to Tokyo, planners are rediscovering a unit of measure older than zoning itself: the fifteen minute walk.</p>" +
+    "<p>The shift is not nostalgic. Walkable districts consistently outperform on retail revenue, air quality, and reported wellbeing. What changed is not the argument but the tooling.</p></div></div>";
+}
+function svg(p){return "<svg viewBox='0 0 24 24'>"+p+"</svg>";}
+var IC = {
+  share:svg("<path d='M12 15V4M8 8l4-4 4 4'/><path d='M5 13v6h14v-6'/>"),
+  text:svg("<path d='M4 7V5h12v2M10 5v14M14 12v-2h6v2M17 10v9'/>"),
+  book:svg("<path d='M7 4h10v16l-5-4-5 4z'/>"),
+  print:svg("<path d='M7 8V4h10v4M7 16H5v-6h14v6h-2M8 13h8v7H8z'/>")
+};
+function sub(title,note){
+  return "<div class='sheet'><button class='s-back' data-a='back'>← Back</button>" +
+    "<div class='s-title'>"+title+"</div><div class='s-note'>"+note+"</div></div>";
+}
+
+/* Focus follows a keyboard and nothing else. A pointer or a finger gets no
+   help and needs none: this only runs when the control that was used had
+   visible keyboard focus, so a click behaves exactly as it always has. */
+function byKeyboard(root){
+  var a = document.activeElement;
+  return !!(a && root.contains(a) && a.matches(":focus-visible"));
+}
+function focusFirst(list, still){
+  for(var i = 0; i < list.length; i++) if(list[i]){ list[i].focus({preventScroll:!!still}); return; }
+}
+
+function makeSim(id, cfg){
+  var scr = document.getElementById("scr"+id);
+  var ov  = document.getElementById("ov"+id);
+  var box = document.getElementById("ph"+id);
+  var pn = document.getElementById("pn"+id);
+  var s = {id:id, cfg:cfg, screen:"article", log:[], commits:0, blind:0, back:0,
+           t0:null, secs:null, done:false, conf:null, recall:null};
+
+  function render(){
+    var sc = s.screen;
+    var html = article();
+    if(sc === "toast" || s.done){
+      html += cfg.toast();
+    }
+    scr.innerHTML = html;
+    /* the scrim and whatever it dims for are painted over the device, not
+       inside the scrolling screen */
+    ov.innerHTML = (sc !== "article" && sc !== "toast")
+      ? "<div class='scrim' data-a='dismiss'></div>" + cfg.sheets[sc](s)
+      : "";
+  }
+  function log(screen, label, tag){
+    s.log.push({screen:screen, label:label, tag:tag});
+  }
+  function panel(){
+    if(!s.done){
+      pn.innerHTML = "";
+      return;
+    }
+    var html = "";
+    if(cfg.recallProbe && s.recall === null){
+      html = "<div class='q' id='q"+id+"'>Where is the article now?</div><div class='c-opts' role='group' aria-labelledby='q"+id+"'>" +
+        RECALL.map(function(r,i){return "<button class='c-btn' data-recall='"+i+"'>"+r+"</button>";}).join("") +
+        "</div>";
+    } else if(s.conf === null){
+      html = "<div class='q' id='q"+id+"'>Before selecting the action, how certain were you about what would happen?</div>" +
+        "<div class='c-opts' role='group' aria-labelledby='q"+id+"'>" + CONF.map(function(l,i){
+          return "<button class='c-btn' data-conf='"+(i+1)+"'><b>"+(i+1)+"</b>"+l+"</button>";}).join("") +
+        "</div>";
+    } else if(finalShown){
+      /* all three are recorded and the reading below has the data: a panel
+         still saying it is waiting would be stale */
+      pn.innerHTML = "";
+      return;
+    } else {
+      html = "<div class='k' tabindex='-1'>Recorded</div>" +
+        "<p class='done-note' style='margin-top:8px'>Waiting for the other versions.</p>";
+    }
+    pn.innerHTML = "<div class='k' style='margin-bottom:8px'>"+id+"</div>" + html;
+  }
+  function finish(){
+    s.done = true;
+    var note = document.getElementById("passnote");
+    if(note) note.classList.add("gone");
+    s.secs = (performance.now() - s.t0)/1000;
+    log("toast", cfg.resLabel, "res");
+    s.screen = "toast";
+    render(); panel();
+  }
+
+  box.addEventListener("click", function(e){
+    var t = e.target.closest("[data-a]");
+    if(!t || s.done) return;
+    if(s.t0 === null) s.t0 = performance.now();
+    var kb = byKeyboard(box);
+    cfg.act(t.dataset.a, s, {
+      log:log, render:function(){render();}, finish:finish,
+      commit:function(){s.commits++;},
+      blindHit:function(){s.blind++;},
+      backHit:function(){s.back++;}
+    });
+    /* every action redraws the device, and the control that had focus goes
+       with it. A keyboard is put where the next step is: the sheet that just
+       opened, the question that follows the task, or the menu again */
+    if(kb) focusFirst([ov.querySelector("button"), s.done ? pn.querySelector(".c-btn") : null,
+                       scr.querySelector("[data-a='menu']")], !s.done);
+  });
+  pn.addEventListener("click", function(e){
+    var kb = byKeyboard(pn);
+    var r = e.target.closest("[data-recall]");
+    var c = e.target.closest("[data-conf]");
+    if(r){ s.recall = RECALL[+r.dataset.recall]; panel(); maybeFinal(); }
+    else if(c){ s.conf = +c.dataset.conf; panel(); emit(s); maybeFinal(); }
+    else return;
+    /* the next question, or the note that this version is recorded, or, once
+       all three are, the reading below */
+    if(kb) focusFirst([pn.querySelector(".c-btn"), pn.querySelector("[tabindex='-1']"),
+                       finalShown ? document.getElementById("final") : null], true);
+  });
+
+  s.panelFn = panel;
+  render(); panel();
+  sims[id] = s;
+}
+
+/* ---------- Version A · icons, "Saved." only ---------- */
+makeSim("A", {
+  recallProbe:true,
+  resLabel:"Saved.",
+  toast:function(){ return "<div class='toast'><span>Saved.<small>&nbsp;</small></span></div>"; },
+  sheets:{
+    menu:function(){ return "<div class='sheet'><div class='icons'>" +
+      "<button class='ic' data-a='share' aria-label='Share symbol'>"+IC.share+"</button>" +
+      "<button class='ic' data-a='text' aria-label='Text size symbol'>"+IC.text+"</button>" +
+      "<button class='ic' data-a='save' aria-label='Bookmark symbol'>"+IC.book+"</button>" +
+      "<button class='ic' data-a='print' aria-label='Print symbol'>"+IC.print+"</button></div></div>"; },
+    share:function(){ return sub("Share","A system share sheet. Not what you needed."); },
+    text:function(){ return sub("Text size","Reading preferences. Not what you needed."); },
+    print:function(){ return sub("Print","Printer selection. Not what you needed."); }
+  },
+  act:function(a, s, api){
+    if(a==="menu"){ api.commit(); api.log("article","Open action menu","access");
+      api.log("menu","Unlabeled icons revealed","partial"); s.screen="menu"; api.render(); return; }
+    if(a==="save"){ api.commit(); api.blindHit(); api.log("menu","Select unlabeled icon","blind");
+      api.finish(); return; }
+    if(a==="share"||a==="text"||a==="print"){
+      api.commit(); api.blindHit(); api.log("menu","Select unlabeled icon","blind");
+      api.log(a,"Wrong destination","miss"); s.screen=a; api.render(); return; }
+    if(a==="back"){ api.backHit(); api.log(s.screen,"Back","back"); s.screen="menu"; api.render(); return; }
+    if(a==="dismiss"){ api.backHit(); s.screen="article"; api.render(); return; }
+  }
+});
+
+/* ---------- Version B · labeled, reversible ---------- */
+makeSim("B", {
+  resLabel:"Saved to Reading List",
+  toast:function(){ return "<div class='toast'><span>Saved to Reading List" +
+    "<small>Article added</small></span><button class='undo'>Undo</button></div>"; },
+  sheets:{
+    menu:function(){ return "<div class='sheet'><div class='s-title'>Article</div>" +
+      "<button class='s-row' data-a='bshare'>Share<span class='arr'>→</span></button>" +
+      "<button class='s-row' data-a='bsave'>Save to Reading List</button>" +
+      "<button class='s-row' data-a='bcoll'>Add to Collection<span class='arr'>→</span></button></div>"; },
+    bshare:function(){ return sub("Share","Sends the article elsewhere. Its label said so."); },
+    bcoll:function(){ return sub("Add to Collection","Organizes into a named collection. Its label said so."); }
+  },
+  act:function(a, s, api){
+    if(a==="menu"){ api.commit(); api.log("article","Open action menu","access");
+      api.log("menu","Labeled actions revealed","orient"); s.screen="menu"; api.render(); return; }
+    if(a==="bsave"){ api.commit(); api.log("menu","Select Save to Reading List","orient");
+      api.finish(); return; }
+    if(a==="bshare"||a==="bcoll"){ api.commit(); api.log("menu","Explore a labeled action","miss");
+      s.screen=a; api.render(); return; }
+    if(a==="back"){ api.backHit(); api.log(s.screen,"Back","back"); s.screen="menu"; api.render(); return; }
+    if(a==="dismiss"){ api.backHit(); s.screen="article"; api.render(); return; }
+  }
+});
+
+/* ---------- Version C · fragmented ---------- */
+makeSim("C", {
+  resLabel:"Saved to Reading List",
+  toast:function(){ return "<div class='toast'><span>Saved to Reading List" +
+    "<small>Via More, Organize</small></span></div>"; },
+  sheets:{
+    menu:function(){ return "<div class='sheet'>" +
+      "<button class='s-row' data-a='cshare'>Share<span class='arr'>→</span></button>" +
+      "<button class='s-row' data-a='ccopy'>Copy Link</button>" +
+      "<button class='s-row' data-a='chome'>Add to Home Screen</button>" +
+      "<button class='s-row' data-a='creport'>Report an Issue<span class='arr'>→</span></button>" +
+      "<button class='s-row' data-a='cmore'>More<span class='arr'>→</span></button></div>"; },
+    cshare:function(){ return sub("Share","Not what you needed."); },
+    ccopy:function(){ return sub("Copy Link","Link copied. The article itself is not saved."); },
+    chome:function(){ return sub("Add to Home Screen","Places a shortcut. Not a reading list."); },
+    creport:function(){ return sub("Report an Issue","Feedback about the article. Not here."); },
+    cmore:function(){ return "<div class='sheet'><button class='s-back' data-a='backmenu'>← Back</button>" +
+      "<div class='s-title'>More</div>" +
+      "<button class='s-row' data-a='capp'>Appearance<span class='arr'>→</span></button>" +
+      "<button class='s-row' data-a='corg'>Organize<span class='arr'>→</span></button>" +
+      "<button class='s-row' data-a='cset'>Settings<span class='arr'>→</span></button></div>"; },
+    capp:function(){ return sub("Appearance","Themes and layout. Not here."); },
+    cset:function(){ return sub("Settings","Account and sync. Not here."); },
+    corg:function(){ return "<div class='sheet'><button class='s-back' data-a='backmore'>← Back</button>" +
+      "<div class='s-title'>Organize</div>" +
+      "<button class='s-row' data-a='clist'>Reading List<span class='arr'>→</span></button>" +
+      "<button class='s-row' data-a='carch'>Archive<span class='arr'>→</span></button>" +
+      "<button class='s-row' data-a='ccollx'>Collections<span class='arr'>→</span></button>" +
+      "<button class='s-row' data-a='ctags'>Tags<span class='arr'>→</span></button></div>"; },
+    ccollx:function(){ return sub("Collections","Requires an existing collection. Not here."); },
+    ctags:function(){ return sub("Tags","Labels for filtering. Not here."); },
+    carch:function(){ return sub("Archive","Long term storage. Not here."); },
+    clist:function(){ return "<div class='dialog'><p>Add this article to Reading List?</p>" +
+      "<div class='d-row'><button class='d-btn' data-a='backorg'>Cancel</button>" +
+      "<button class='d-btn primary' data-a='cconfirm'>Confirm</button></div></div>"; }
+  },
+  act:function(a, s, api){
+    var deadend = {cshare:["menu","Select Share"],ccopy:["menu","Select Copy Link"],
+      chome:["menu","Select Add to Home Screen"],creport:["menu","Select Report an Issue"],
+      capp:["cmore","Select Appearance"],cset:["cmore","Select Settings"],
+      ccollx:["corg","Select Collections"],ctags:["corg","Select Tags"],
+      carch:["corg","Select Archive"]};
+    if(a==="menu"){ api.commit(); api.log("article","Open action menu","access");
+      api.log("menu","Broad categories revealed","partial"); s.screen="menu"; api.render(); return; }
+    if(a==="cmore"){ api.commit(); api.blindHit(); api.log("menu","Select More","blind");
+      api.log("cmore","Another category revealed","partial"); s.screen="cmore"; api.render(); return; }
+    if(a==="corg"){ api.commit(); api.blindHit(); api.log("cmore","Select Organize","blind");
+      api.log("corg","Another layer revealed","partial"); s.screen="corg"; api.render(); return; }
+    if(a==="clist"){ api.commit(); api.log("corg","Select Reading List","partial");
+      s.screen="clist"; api.render(); return; }
+    if(a==="cconfirm"){ api.commit(); api.log("clist","Confirm","orient"); api.finish(); return; }
+    if(deadend[a]){ api.commit(); api.log(a, deadend[a][1], "miss"); s.screen=a; api.render(); return; }
+    if(a==="back"){ api.backHit(); api.log(s.screen,"Back","back");
+      s.screen = {cshare:"menu",ccopy:"menu",chome:"menu",creport:"menu",capp:"cmore",
+        cset:"cmore",ccollx:"corg",ctags:"corg",carch:"corg"}[s.screen]||"menu";
+      api.render(); return; }
+    if(a==="backmenu"){ api.backHit(); api.log("cmore","Back","back"); s.screen="menu"; api.render(); return; }
+    if(a==="backmore"){ api.backHit(); api.log("corg","Back","back"); s.screen="cmore"; api.render(); return; }
+    if(a==="backorg"){ api.backHit(); api.log("clist","Back","back"); s.screen="corg"; api.render(); return; }
+    if(a==="dismiss"){ api.backHit(); s.screen="article"; api.render(); return; }
+  }
+});
+
+
+/* ---------- research send: numbers only, nothing that identifies anyone ----------
+   Fires only under /three-depths/ (the published route), so previews and local
+   copies send nothing. One run id per browser tab links the versions of a study
+   and the two studies; it is random and lives in sessionStorage. A flag in
+   localStorage marks a later session from the same browser as a repeat so it
+   can be excluded at analysis. Nothing else leaves the page. */
+var TDP_BUILD = "2026-09-24";
+var tdpSend = (function(){
+  var on = /^\/three-depths\//.test(location.pathname);
+  var run = null;
+  try{ run = sessionStorage.getItem("tdp-run"); }catch(e){}
+  if(!run){
+    run = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() :
+      "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c){
+        var r = Math.random()*16|0; return (c === "x" ? r : (r&3|8)).toString(16); });
+    try{ sessionStorage.setItem("tdp-run", run); }catch(e){}
+  }
+  var seq = 0;
+  return function(study, version, metrics){
+    if(!on) return;
+    var prev = null; try{ prev = localStorage.getItem("tdp-sent-" + study); }catch(e){}
+    seq++;
+    var body = JSON.stringify({run:run, study:study, version:version, seq:seq, build:TDP_BUILD,
+      embed: window.parent !== window,
+      pointer: (window.matchMedia && matchMedia("(pointer:coarse)").matches) ? "coarse" : "fine",
+      vw: Math.round(window.innerWidth/100)*100,
+      repeat: (prev && prev !== run) ? 1 : 0, metrics: metrics});
+    try{
+      if(navigator.sendBeacon) navigator.sendBeacon("/three-depths/api/run", new Blob([body], {type:"application/json"}));
+      else fetch("/three-depths/api/run", {method:"POST", headers:{"Content-Type":"application/json"}, body:body, keepalive:true});
+    }catch(e){}
+    try{ localStorage.setItem("tdp-sent-" + study, run); }catch(e){}
+  };
+})();
+
+/* ---------- emit ---------- */
+function emit(s){
+  var metrics = {commitments:s.commits, blind:s.blind, backtracks:s.back,
+    seconds:+s.secs.toFixed(1), confidence:s.conf, recall:s.recall};
+  try{ parent.postMessage({type:"tdp-demo", demo:1, version:s.id, metrics:metrics}, "*"); }catch(e){}
+  metrics.path = s.log.map(function(l){ return l.tag; });
+  tdpSend(1, s.id, metrics);
+}
+
+/* ---------- final: results ---------- */
+var META = {
+  A:{name:"Compressed", vis:"Never", visHot:true,
+     stack:[["Article",1],["Unlabeled actions",0],["Saved, somewhere",0]]},
+  B:{name:"Legible", vis:"Before committing", visHot:false,
+     stack:[["Article",1],["Labeled actions",1],["Save to Reading List",1],["Saved",1]]},
+  C:{name:"Fragmented", vis:"After 3 commitments", visHot:true,
+     stack:[["Article",1],["More",0],["Organize",0],["Reading List",1],["Confirm",1],["Saved",1]]}
+};
+var finalShown = false;
+function maybeFinal(){
+  var ready = ["A","B","C"].every(function(id){
+    var s = sims[id];
+    return s.done && s.conf !== null && (!s.cfg.recallProbe || s.recall !== null);
+  });
+  if(!ready || finalShown) return;
+  finalShown = true;
+  ["A","B","C"].forEach(function(id){ sims[id].panelFn(); });
+  var fin = document.getElementById("final");
+  fin.classList.add("show");
+  revealAfter();
+}
+
+function revealAfter(){
+  var results = document.getElementById("results");
+  results.innerHTML = ["A","B","C"].map(function(id){
+    var m = META[id], s = sims[id];
+    function fact(k, v, hot){ return "<div><dt>"+k+"</dt><dd"+(hot?" class='hot'":"")+">"+v+"</dd></div>"; }
+    return "<div class='res'><div class='k'>"+id+" · "+m.name+"</div>" +
+      "<dl class='facts'>" +
+      fact("Commitments", s.commits) +
+      fact("Blind commitments", s.blind, s.blind>0) +
+      fact("Destination visible", m.vis, m.visHot) +
+      fact("Backtracks", s.back) +
+      fact("Time", s.secs.toFixed(1)+" s") +
+      fact("Confidence", s.conf+" · "+CONF[s.conf-1]) +
+      "</dl></div>";
+  }).join("");
+
+  document.getElementById("after").classList.add("show");
+  document.getElementById("final").scrollIntoView({behavior:reduced?"auto":"smooth", block:"start"});
+}
+
+})();
+</script>
+
+<script>
+(function(){
+  /* documentElement.scrollHeight is clamped to the frame's own viewport, so it
+     can only grow. Measure the content element instead, and the frame can
+     shrink back when a view collapses. */
+
+/* the reading size, handed down by the article (see syncMeasure there): vw
+   inside a frame measures the frame, so the size cannot be worked out here */
+addEventListener("message", function(e){
+  /* From our embedder, and a plain CSS length or nothing.
+
+     This was an origin comparison, which is unanswerable here: opened over
+     file:// the article and this study are both opaque origins and never
+     match, so the study never heard the article and the article never heard
+     the study. Checking the sending window works on any protocol, and the
+     value is checked as well as the sender, because the one thing this sets
+     is a length and anything that is not a length is not from the article. */
+  if(e.source !== window.parent || window.parent === window) return;
+  var d = e.data || {};
+  if(d.type === "tdp-measure" && typeof d.size === "string" &&
+     /^[0-9]+(\.[0-9]+)?px$/.test(d.size))
+    document.documentElement.style.setProperty("--fs-body", d.size);
+});
+
+  var last = 0;
+  function post(){
+    var w = document.querySelector(".wrap");
+    var h = w ? Math.ceil(w.getBoundingClientRect().height) + 8
+              : document.body.scrollHeight;
+    if(Math.abs(h - last) < 2) return;
+    last = h;
+    try{ parent.postMessage({type:"tdp-height", demo:1, height:h}, "*"); }catch(e){}
+  }
+  if(window.ResizeObserver){
+    var ro = new ResizeObserver(post);
+    ro.observe(document.querySelector(".wrap"));
+  }
+  addEventListener("load", post);
+  setInterval(post, 700);
+  post();
+})();
+</script>
+</body>
+</html>

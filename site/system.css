@@ -1,0 +1,229 @@
+/* ===========================================================================
+   Three Depths of Interaction, the shared system.
+
+   The one place a value is declared. The article and every study link
+   this file, so a token cannot drift between the page and the work inside it.
+   Before this file existed the block below was copied into five documents and
+   had drifted in every copy: the motion curve never reached a single study,
+   and two different greys were doing one job.
+
+   Relative URLs in a stylesheet resolve against the stylesheet, not against
+   the document, so one font path serves the article at site/ and every study
+   at site/demos/.
+
+   What belongs here: tokens, the reset, the base type, the label idiom, the
+   focus state. What does not: layout, and anything a single study owns.
+   =========================================================================== */
+
+/* The face has a neutral name because it has two sources. The live site
+   serves FT Polar Mono, licensed for this site and never redistributed; the
+   public repository ships Red Hat Mono (SIL OFL) in the same two files, so
+   every page is byte-identical between the two. The one other difference is
+   --char below, the face's advance width. */
+@font-face{font-family:"Article Mono";src:url("fonts/article-mono-book.woff2") format("woff2");
+  font-weight:100 500;font-style:normal;font-display:swap;}
+@font-face{font-family:"Article Mono";src:url("fonts/article-mono-semibold.woff2") format("woff2");
+  font-weight:600 900;font-style:normal;font-display:swap;}
+
+:root{
+  /* ---- ink and ground ----------------------------------------------------
+     One ink, and the page's greys are that ink at three opacities, never a
+     separate grey. A grey mixed by hand carries its own hue: the #6E6E68 the
+     studies used to declare reads yellow next to the ink it sits beside. */
+  --paper:#FCFCFC;
+  --ink:#121212;
+  --accent:#E32119;
+  --muted:rgba(18,18,18,.62);   /* secondary text */
+  --faint:rgba(18,18,18,.38);   /* text that is present but not yet read */
+  --rule:rgba(18,18,18,.14);    /* a hairline, when one is unavoidable */
+
+  /* the surface ramp, lightest first. --surface0 is the only true white on
+     the page: the lit screen of a simulated product, never the page itself. */
+  --surface0:#FFFFFF;
+  --surface1:#EFEFF1;           /* the band a study sits on */
+  --surface2:#E6E6E9;           /* a recess inside a study */
+
+  --sans:"Article Mono","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"Article Mono",ui-monospace,"Geist Mono","SF Mono","IBM Plex Mono",Menlo,monospace;
+
+  /* ---- the grid ----------------------------------------------------------
+     One track, twelve columns, one gutter. Every width on the page is a span
+     of this grid, so text and demonstrations share the same left and right
+     edges at every size. The frame is the track; nothing is measured in ch,
+     which scales with each element's own type size. */
+  --track:1200px;
+  --edge:24px;                    /* page margin when the viewport is narrow */
+  --char:.60;                     /* Red Hat Mono advance width, in ems (the live site's FT Polar Mono is .64) */
+  --measure:66;                   /* characters per line, the reading measure */
+  --w-text:calc(var(--fs-body) * var(--char) * var(--measure));  /* exact, at any size */
+  /* the two fixed spans are written as whole pixels rather than derived. The
+     formula returns 794.667 and 997.333, and a block centred on a fraction
+     renders its two edges on different pixels. These are those spans rounded:
+       --w-mid      8 col   calc(8 * col + 7 * gutter)   794.667
+       --w-display 10 col   calc(10 * col + 9 * gutter)  997.333  */
+  --w-mid:795px;                  /*  8 col, wide standfirst */
+  --w-display:997px;              /* 10 col, hero and axioms */
+
+  /* ---- spacing, multiples of the gutter ---- */
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px;
+  --s5:48px; --s6:64px; --s7:96px; --s8:128px;
+
+  /* ---- the type scale, written once -------------------------------------
+     Built up from the body: every step is a whole number of pixels and every
+     line height sits on the 4px grid.
+
+     The grid is two tiers, which is the only way a monospaced reading page can
+     hold one: 8 governs space BETWEEN things (the --sN scale, the track, the
+     gutter, the edge) and 4 governs space WITHIN them (leading, control
+     heights, radii, and the padding inside a simulated product). Leading
+     follows the face and the measure, not the layout: the body is 17/28
+     because 1.65 is right for a 66 character line, where the 8 grid would
+     force 24 (tight) or 32 (loose). The horizontal axis answers to neither,
+     because it is set by the advance width: 66 characters is 718.08px at
+     17px, and no pixel grid contains that. */
+  --fs-h1:48px;  --lh-h1:52px;
+  --fs-h2:24px;  --lh-h2:32px;
+  --fs-h3:18px;  --lh-h3:28px;
+  /* the body size scales with the page, and the reading column follows it,
+     so the measure stays at 66 characters from a phone to a desktop:
+     15px at 866 and below, 17px at 1400 and above (the floor was 14 until
+     2026-09-29, when a phone read small and loose; the phone line is set
+     below, where the phone sizes are). 17 rather than 16 because
+     this face carries a 0.50 x-height, under Helvetica's 0.52 and well under
+     Menlo's 0.55, so it renders a smaller reading image at the same size. */
+  --fs-body:clamp(15px, .375vw + 11.75px, 17px);--lh-body:28px;
+  --fs-small:12px;--lh-small:20px;
+  --fs-label:11px;--lh-label:16px;
+
+  /* ---- inside the simulated products -------------------------------------
+     The phone, the instrument and the booking device run on their own denser
+     scale. They are products being observed, not the page doing the observing,
+     so the reading measure does not govern them. They are still a scale: five
+     steps, whole pixels, every leading on a 2px grid. Before this the studies
+     rendered 9.5, 10.5, 10.8333 and 12.5px, with leadings of 14.25, 15.75,
+     18.75 and 24.15, none of which land on a pixel. */
+  --fs-p0:20px; --lh-p0:28px;   /* the one display line inside a product */
+  --fs-p1:15px; --lh-p1:24px;   /* a heading inside a product */
+  --fs-p2:13px; --lh-p2:20px;   /* product body copy */
+  --fs-p3:12px; --lh-p3:20px;   /* secondary */
+  --fs-p4:11px; --lh-p4:16px;   /* meta, the page label size */
+  --fs-p5:10px; --lh-p5:16px;   /* the densest instrument marking */
+
+  /* ---- controls ----------------------------------------------------------
+     Three tiers, by where the control lives, not by how important it looks:
+       touch  44px  inside a phone simulation, and every primary action
+       card   36px  inside a card or a panel
+       dense  28px  packed into an instrument
+     A control is one of these three heights. There is no fourth. */
+  --ctl-touch:44px; --ctl-card:36px; --ctl-dense:28px;
+  --fs-ctl:13px; --fs-meta:11px;
+
+  /* radii. --r-device is the one large radius, for the bezel of a simulated
+     device. When a control nests inside a container, the inner radius is the
+     outer less the inset, so the two curves stay concentric. */
+  --r-xs:4px; --r-sm:8px; --r-md:12px; --r-lg:16px; --r-card:20px;
+  --r-device:32px; --r-pill:100px;
+
+  /* ---- elevation ---------------------------------------------------------
+     A thing lifts by shadow, never by an outline: a container stroke would put
+     a second frame inside the page's frame. Three throws, chosen by what the
+     thing is lifting off, its own track, the page, or the surface of a product
+     it has been laid over. There is no fourth. */
+  --lift-sm:0 1px 3px -1px rgba(0,0,0,.2);      /* a control, off its track */
+  --lift:0 16px 40px -18px rgba(0,0,0,.16);     /* a study, off the band */
+  --lift-over:0 8px 24px -8px rgba(0,0,0,.28); /* a sheet or dialog, over a product */
+
+  /* The room a shadow needs outside the frame it is drawn in. A study is drawn
+     in an iframe whose edges are the article's frame, so a shadow reaching past
+     them is sliced off at both sides of every study. The frame lends the study
+     this much bleed on each side and takes it back with a negative margin, so
+     the content still lands exactly on the frame while the shadow has somewhere
+     to go.
+
+     It was 8px, from reading --lift's reach off the spec as blur / 2 + spread,
+     which is 2px. Measured, it is 27: a browser's blur is a Gaussian whose tail
+     runs to about 1.1 times the radius, so the reach is blur * 1.1 + spread,
+     and --lift was still darkening the band by 4 of 255 where the frame cut it.
+     That step is what read as a line down the side of every device. 32 clears
+     the whole tail and stays on the spacing scale.
+
+     One constant, not a breakpoint: a media query inside the iframe measures
+     the iframe, so the study and the article would disagree about the value and
+     the content would land off the frame. Below 1221, where the rail's claim is
+     not reserved, the frame is inset by less than 32 and the surplus is clipped
+     at the window edge instead, where the shadow is down to 1 of 255. */
+  --bleed:32px;
+  /* The same room, measured downward. --lift is offset 16px before it is blurred,
+     so under a box it reaches 16 + 27, where --bleed's 27 is the tail alone. A
+     study whose last element is a lifted box hands the frame a height that stops
+     at that box, and 34 of the 43 gets sliced off at the iframe's bottom edge.
+     48 clears it and stays on the spacing scale. Only needed where a study ends
+     on something lifted: study 01 ends on text and already has room. */
+  --bleed-b:48px;
+
+  /* the one ring width. A ring is an affordance boundary inside a product, not
+     a frame around a container: containers lift, they are never outlined. 1.5px
+     rather than the 1.2 and 1.4 that were in use, because 1.5 lands on whole
+     device pixels on a 2x display and those do not. */
+  --ring:1.5px;
+
+  /* ---- motion ------------------------------------------------------------
+     From the Anti Tapes system: an exponential settle, never a bounce. One
+     curve, four durations, so every state change on the page and inside every
+     study agrees. --t1 a control answering, --t2 a state changing, --t3 a
+     view changing, --t4 something arriving or leaving. */
+  --settle:cubic-bezier(.16,1,.3,1);
+  --t1:90ms; --t2:180ms; --t3:360ms; --t4:600ms;
+
+  /* where the rail's first label sits inside the first section's top padding,
+     less the item's own leading, so its text lines up with the section label */
+  --rail-lead:calc(var(--s7) - 5px);
+  /* what the rail actually occupies on the canvas, so the frame can clear it:
+     24 inset + 6 marker + 10 gap + the longest name ("Commitments", 87.1),
+     plus one gutter of clearance. Measured at 127.1, so 143.
+
+     Its history is the shape of the rail. 153 when rows were a numeral and a
+     name and the longest was "Recursion". 169 once the subsections were listed
+     and "Commitments" pushed the rail's right edge to exactly the track's left
+     edge. 143 now the numerals are gone and the numeral slot with them. */
+  --rail-claim:143px;
+}
+@media (max-width:1100px){:root{--fs-h1:40px;--lh-h1:44px;--fs-h2:22px;--lh-h2:28px;}}
+/* On a phone the body line is 24 on 15 (1.6): 28 on 14 read loose there, a
+   2.0 ratio against the desktop's 1.65. 24 keeps the 4px grid. */
+@media (max-width:680px){:root{--edge:16px;--fs-h1:30px;--lh-h1:36px;
+  --fs-h2:20px;--lh-h2:28px;--fs-h3:16px;--lh-h3:24px;--lh-body:24px;}}
+
+/* ---------- reset and base ------------------------------------------------ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}
+  *{animation:none!important;transition:none!important;}}
+
+/* Every document in the set opens on the same body: the same face, the same
+   size, the same rhythm, and the same rendering. The smoothing matters as much
+   as the size. Without it this face renders a heavier stroke, and three of the
+   four studies used to sit inside the article rendering bolder than the prose
+   around them. */
+body{font-family:var(--sans);font-size:var(--fs-body);line-height:var(--lh-body);
+  background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;}
+
+button{font-family:inherit;font-size:inherit;cursor:pointer;border:none;
+  background:none;color:inherit;}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px;}
+
+/* ---------- the label idiom ----------------------------------------------
+   One label, everywhere: the same size, tracking, case, weight and colour on
+   the page and inside every study. Tabular figures, because a label that
+   carries a number is often counting. */
+.label{font-family:var(--mono);font-size:var(--fs-label);line-height:var(--lh-label);
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;
+  font-variant-numeric:tabular-nums;}
+
+/* ---------- focus ---------------------------------------------------------
+   One focus state for the whole set. Every study used to fall back to the
+   browser's own ring, which arrives in system blue: the only blue anywhere
+   near this page. It is the ink, at the offset the entrance control uses. */
+:where(a,button,summary,input,select,textarea,[tabindex]):focus-visible{
+  outline:2px solid var(--ink);outline-offset:3px;}
