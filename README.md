@@ -74,9 +74,8 @@ Each study posts one row when a reader finishes a version: counts, timings, the 
 versions were finished in, and a random id that links one reader's versions within a
 browser tab. The study database never holds IP addresses, user agents, cookies or free
 text; `worker.js` and `schema.sql` show how that is enforced. The hypotheses and
-exclusion rules were written down before the first row arrived; two thresholds they rely
-on are still open and will be added as dated amendments before any results are
-examined. All of it is in [research/README.md](research/README.md).
+exclusion rules were written down before the first row arrived, and the two thresholds
+they left open were fixed in a dated amendment before any results were examined. All of it is in [research/README.md](research/README.md).
 
 Separately from the studies, the site's host adds Cloudflare Web Analytics to every page
 it serves on the domain: cookieless page-view and performance counts. That script is
