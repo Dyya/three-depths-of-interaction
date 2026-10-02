@@ -1,5 +1,7 @@
 # Three Depths of Interaction
 
+<img width="1200" height="675" alt="three-depths_16x9_signal" src="https://github.com/user-attachments/assets/c599a0f8-d685-4d6c-96cb-41b358a69c58" />
+
 The source of an interactive article by Adi Dizdarevic, published in September 2026 at
 **https://www.adidizdarevic.com/three-depths/**
 
